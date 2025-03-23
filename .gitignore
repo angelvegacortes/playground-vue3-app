@@ -1,4 +1,4 @@
-# Logs
+# logs
 logs
 *.log
 npm-debug.log*
@@ -7,17 +7,27 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# NPM
 node_modules
-.DS_Store
+
+# vite
 dist
 dist-ssr
 coverage
+
+# env
 *.local
 
+# tests
+test-results/
+playwright-report/
 /cypress/videos/
 /cypress/screenshots/
 
-# Editor directories and files
+# dependency cruiser
+.dependency-graph*
+
+# IDE and misc
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -26,8 +36,5 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-
 *.tsbuildinfo
-
-test-results/
-playwright-report/
+.DS_Sßtore
