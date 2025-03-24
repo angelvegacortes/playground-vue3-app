@@ -29,7 +29,6 @@ playwright-report/
 
 # IDE and misc
 .vscode/*
-!.vscode/extensions.json
 .idea
 *.suo
 *.ntvs*
