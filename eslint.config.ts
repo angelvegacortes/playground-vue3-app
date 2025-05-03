@@ -36,8 +36,10 @@ export default defineConfigWithVueTs(
           pattern: [
             "src/assets/**",
             "src/components/**",
-            "src/router/**",
-            "src/stores/**"
+            "src/mocks/**",
+            "src/stores/**",
+            "src/types/**",
+            "src/router/**"
           ]
         },
         {

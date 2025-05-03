@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // import ATestChild from '../featureA/ATestChild.vue'
 // import CTestChild from '../featureC/CTestChild.vue'
-
 </script>
 
 <template>
