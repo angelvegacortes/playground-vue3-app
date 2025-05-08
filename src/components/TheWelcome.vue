@@ -9,26 +9,10 @@ const title = import.meta.env.VITE_APP_TITLE
 const subtitle = import.meta.env.VITE_APP_SUBTITLE
 
 const url = ref('/api/test/200')
-const { execute, isFetching, error, data } = await useFetch(url, {
-  refetch: true,
-  immediate: false,
+const { isFetching, error, data } = await useFetch(url, {
+  refetch: true
 })
 
-const checkData = () => {
-  console.log(`data=${data.value}`)
-  console.log(`is data is null? ${data.value === null}`)
-  console.log(`is data is undefined? ${data.value === undefined}`)
-  console.log(`is data an empty string? ${data.value === ''}`)
-}
-
-// execute 1st fetch
-execute()
-checkData()
-
-// execute 2nd fetch
-url.value = '/api/test/204'
-execute()
-checkData()
 </script>
 
 <template>
@@ -53,5 +37,8 @@ checkData()
     <span v-else></span>
     <span v-if="data"> Data: {{ data }}</span>
     <span v-if="error"> Error: {{ error }}</span>
+    <p>Is data null? {{ data === null }}</p>
+    <p>Is data undefined? {{ data === undefined }}</p>
+    <p>Is data an empty string? {{ data === '' }}</p>
   </div>
 </template>
