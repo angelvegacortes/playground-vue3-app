@@ -10,7 +10,7 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "lint-check": "eslint . --fix-dry-run",
-    "format": "prettier --write src/",
+    "format": "prettier . --write",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
     "dep-graph-clean": "rm -rf ./.dependency-graph*",

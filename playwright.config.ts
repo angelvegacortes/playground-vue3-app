@@ -50,7 +50,7 @@ export default defineConfig({
       use: {
         channel: 'chrome',
       },
-    }
+    },
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */

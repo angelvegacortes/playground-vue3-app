@@ -10,9 +10,8 @@ const subtitle = import.meta.env.VITE_APP_SUBTITLE
 
 const url = ref('/api/test/200')
 const { isFetching, error, data } = await useFetch(url, {
-  refetch: true
+  refetch: true,
 })
-
 </script>
 
 <template>
