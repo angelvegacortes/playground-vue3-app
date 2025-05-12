@@ -6,7 +6,7 @@ import { useFetch } from '@vueuse/core'
 import { ref } from 'vue'
 
 const title = import.meta.env.VITE_APP_TITLE
-const subtitle = import.meta.env.VITE_APP_SUBTITLE
+const version = import.meta.env.VITE_APP_VERSION
 
 const url = ref('/api/test/200')
 const { isFetching, error, data } = await useFetch(url, {
@@ -16,7 +16,7 @@ const { isFetching, error, data } = await useFetch(url, {
 
 <template>
   <h1>{{ title }}</h1>
-  <h2>{{ subtitle }}</h2>
+  <h2>App version: {{ version }}</h2>
   <br />
   <hr />
   <br />
