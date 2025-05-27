@@ -4,8 +4,13 @@ import { type User } from '@/types/main'
 const getUserData = () => {
   const user: User = {
     id: 1,
+    email: 'john.doe@gmail.com',
     firstName: 'John',
     lastName: 'Doe',
+    role: 'user',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    isAuthenticated: false,
   }
   return user
 }
