@@ -6,7 +6,6 @@ import { useFetch } from '@vueuse/core'
 export const useUserStore = defineStore('user', () => {
   const user = ref<User | null>(null)
   const init = async () => {
-    console.log('useUserStore::init()')
     const { data } = await useFetch<User>('api/test/200').get().json()
     user.value = data.value
   }
@@ -14,24 +13,32 @@ export const useUserStore = defineStore('user', () => {
   const isAuthenticated = () => {
     if (user.value !== null) {
       return user.value!.isAuthenticated
-    } else {
-      return false
     }
+
+    return false
+  }
+
+  const getName = () => {
+    if (isAuthenticated()) {
+      return `${user.value!.firstName} ${user.value!.lastName}`
+    }
+
+    return ''
   }
 
   const login = () => {
-    if (user.value !== null) {
+    if (!isAuthenticated()) {
       user.value!.isAuthenticated = true
     }
   }
 
   const logout = () => {
-    if (user.value !== null) {
+    if (isAuthenticated()) {
       user.value!.isAuthenticated = false
     }
   }
 
   init()
 
-  return { isAuthenticated, login, logout }
+  return { isAuthenticated, login, logout, getName }
 })

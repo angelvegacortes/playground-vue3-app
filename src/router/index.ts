@@ -14,16 +14,19 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue'),
+      component: HomeView,
       meta: { requiresAuth: false },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/logout',
+      name: 'logout',
+      component: HomeView,
+      meta: { requiresAuth: false },
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../views/TestView.vue'),
       meta: { requiresAuth: true },
     },
     {
@@ -36,10 +39,17 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
+  console.log(
+    `user access from [${from.name?.toString()}]-->[${to.name?.toString()}] not authorized`,
+  )
   const userStore = useUserStore()
 
   if (to.name === 'login') {
     userStore.login()
+  }
+
+  if (to.name === 'logout') {
+    userStore.logout()
   }
 
   if (to.meta.requiresAuth && !userStore.isAuthenticated()) {

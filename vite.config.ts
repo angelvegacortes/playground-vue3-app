@@ -4,6 +4,9 @@ import { runtimeEnv } from 'vite-plugin-runtime'
 import { defineConfig, mergeConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import Components from 'unplugin-vue-components/vite'
+import { PrimeVueResolver } from '@primevue/auto-import-resolver'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -16,6 +19,10 @@ export default defineConfig(({ command, mode }) => {
         injectHtml: true,
         envsubstTemplate: true,
       }),
+      Components({
+        resolvers: [PrimeVueResolver()],
+      }),
+      tailwindcss(),
     ],
     resolve: {
       alias: {
