@@ -4,6 +4,9 @@ import BTestParent from '@/features/featureB/BTestParent.vue'
 import CTestParent from '@/features/featureC/CTestParent.vue'
 import { useFetch } from '@vueuse/core'
 import { ref } from 'vue'
+import { useAppAbility } from '@/auth/use-app-ability'
+
+const { can } = useAppAbility()
 
 const url = ref('/api/test/200')
 const { isFetching, error, data } = await useFetch(url, {
@@ -13,21 +16,21 @@ const { isFetching, error, data } = await useFetch(url, {
 
 <template>
   <div class="grid grid-cols-3 gap-3">
-    <Card class="mb-5">
+    <Card class="mb-5" v-if="can('read', 'featureA')">
       <template #title>Feature A Test</template>
       <template #content>
         <ATestParent />
       </template>
     </Card>
 
-    <Card class="mb-5">
+    <Card class="mb-5" v-if="can('read', 'featureB')">
       <template #title>Feature B Test</template>
       <template #content>
         <BTestParent />
       </template>
     </Card>
 
-    <Card class="mb-5">
+    <Card class="mb-5" v-if="can('read', 'featureC')">
       <template #title>Feature C Test</template>
       <template #content>
         <CTestParent />

@@ -5,6 +5,8 @@ import { createPinia } from 'pinia'
 import { worker } from '@/mocks/browser'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
+import { abilitiesPlugin } from '@casl/vue'
+import ability from '@/auth/ability-config-advanced'
 
 import App from './App.vue'
 import router from './router'
@@ -21,6 +23,8 @@ prepare().then(() => {
   const app = createApp(App)
 
   app.use(createPinia())
+  app.use(abilitiesPlugin, ability)
+  app.use(router)
   app.use(PrimeVue, {
     // Default theme configuration
     theme: {
@@ -32,7 +36,6 @@ prepare().then(() => {
       },
     },
   })
-  app.use(router)
 
   app.mount('#app')
 })

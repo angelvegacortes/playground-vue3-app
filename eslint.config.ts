@@ -32,11 +32,12 @@ export default defineConfigWithVueTs(
           type: 'global-level-resource',
           pattern: [
             'src/assets/**',
+            'src/auth/**',
             'src/components/**',
             'src/mocks/**',
+            'src/router/**',
             'src/stores/**',
             'src/types/**',
-            'src/router/**',
           ],
         },
         {

@@ -1,49 +1,47 @@
 <template>
-  <div class="card">
-    <Toolbar>
-      <template #start>
-        <div class="mr-5">{{ title }}</div>
+  <Toolbar>
+    <template #start>
+      <div class="mr-5">{{ title }}</div>
 
+      <Button
+        class="mr-2"
+        icon="pi pi-home"
+        severity="secondary"
+        label="Home"
+        @click="visit('/')"
+      />
+      <Button
+        class="mr-2"
+        icon="pi pi-chart-scatter"
+        severity="secondary"
+        label="Test"
+        @click="visit('/test')"
+      />
+    </template>
+
+    <template #center> </template>
+
+    <template #end>
+      <Button
+        v-if="!userStore.isAuthenticated()"
+        class="mr-2"
+        icon="pi pi-sign-in"
+        severity="secondary"
+        label="Login"
+        @click="visit('/login')"
+      />
+      <div v-if="userStore.isAuthenticated()">
+        <span class="mr-2">Logged in as {{ userStore.getName() }}</span>
         <Button
           class="mr-2"
-          icon="pi pi-home"
+          icon="pi pi-sign-out"
           severity="secondary"
-          label="Home"
-          @click="visit('/')"
+          label="Logout"
+          @click="visit('/logout')"
         />
-        <Button
-          class="mr-2"
-          icon="pi pi-chart-scatter"
-          severity="secondary"
-          label="Test"
-          @click="visit('/test')"
-        />
-      </template>
-
-      <template #center> </template>
-
-      <template #end>
-        <Button
-          v-if="!userStore.isAuthenticated()"
-          class="mr-2"
-          icon="pi pi-sign-in"
-          severity="secondary"
-          label="Login"
-          @click="visit('/login')"
-        />
-        <div v-if="userStore.isAuthenticated()">
-          <span class="mr-2">Logged in as {{ userStore.getName() }}</span>
-          <Button
-            class="mr-2"
-            icon="pi pi-sign-out"
-            severity="secondary"
-            label="Logout"
-            @click="visit('/logout')"
-          />
-        </div>
-      </template>
-    </Toolbar>
-  </div>
+      </div>
+    </template>
+  </Toolbar>
 </template>
 
 <script setup lang="ts">
