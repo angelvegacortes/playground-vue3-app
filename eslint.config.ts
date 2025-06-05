@@ -2,12 +2,8 @@ import pluginVue from 'eslint-plugin-vue'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import boundaries from 'eslint-plugin-boundaries'
 import importPlugin from 'eslint-plugin-import'
-// import typescriptParser from "@typescript-eslint/parser";
-// import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
 import pluginVitest from '@vitest/eslint-plugin'
-import pluginPlaywright from 'eslint-plugin-playwright'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
-import cspellPlugin from '@cspell/eslint-plugin'
 
 export default defineConfigWithVueTs(
   {
@@ -16,7 +12,7 @@ export default defineConfigWithVueTs(
   },
   {
     name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/coverage/**'],
+    ignores: ['dist/**', 'coverage/**', 'docker/**'],
   },
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
@@ -88,20 +84,13 @@ export default defineConfigWithVueTs(
       'import/no-unresolved': 'off',
     },
   },
+  pluginVitest.configs.recommended,
   {
-    plugins: { '@cspell': cspellPlugin },
-    files: ['src/**/*.{ts,vue}'],
+    files: ['src/**/*.spec.ts'],
     rules: {
-      '@cspell/spellchecker': ['warn', {}],
+      'vitest/consistent-test-it': 'error',
+      'vitest/consistent-test-filename': ['error', { pattern: '.*\\.spec\\.ts?$' }],
     },
-  },
-  {
-    ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
-  },
-  {
-    ...pluginPlaywright.configs['flat/recommended'],
-    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
   },
   skipFormatting,
 )
