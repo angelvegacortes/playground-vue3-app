@@ -3,20 +3,8 @@
     <template #start>
       <div class="mr-5">{{ title }}</div>
 
-      <Button
-        class="mr-2"
-        icon="pi pi-home"
-        severity="secondary"
-        label="Home"
-        @click="visit('/')"
-      />
-      <Button
-        class="mr-2"
-        icon="pi pi-chart-scatter"
-        severity="secondary"
-        label="Test"
-        @click="visit('/test')"
-      />
+      <Button class="mr-2" icon="pi pi-home" label="Home" @click="visit('/')" />
+      <Button class="mr-2" icon="pi pi-chart-scatter" label="Test" @click="visit('/test')" />
     </template>
 
     <template #center> </template>
@@ -26,7 +14,6 @@
         v-if="!userStore.isAuthenticated()"
         class="mr-2"
         icon="pi pi-sign-in"
-        severity="secondary"
         label="Login"
         @click="visit('/login')"
       />

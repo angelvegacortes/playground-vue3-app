@@ -12,8 +12,11 @@ declare module 'vue' {
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
+    Drawer: typeof import('primevue/drawer')['default']
+    DummyText: typeof import('./src/components/dummy-text.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideNavigation: typeof import('./src/components/side-navigation.vue')['default']
     Toolbar: typeof import('primevue/toolbar')['default']
   }
 }
