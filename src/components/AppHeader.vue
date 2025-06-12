@@ -1,16 +1,13 @@
 <template>
-  <Toolbar>
+  <Menubar :model="items">
     <template #start>
-      <div class="mr-5">{{ title }}</div>
+            <div class="mr-5">{{ title }}</div>
 
       <Button class="mr-2" icon="pi pi-home" label="Home" @click="visit('/')" />
       <Button class="mr-2" icon="pi pi-chart-scatter" label="Test" @click="visit('/test')" />
     </template>
-
-    <template #center> </template>
-
     <template #end>
-      <Button
+          <Button
         v-if="!userStore.isAuthenticated()"
         class="mr-2"
         icon="pi pi-sign-in"
@@ -28,7 +25,7 @@
         />
       </div>
     </template>
-  </Toolbar>
+  </Menubar>
 </template>
 
 <script setup lang="ts">

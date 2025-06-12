@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-    <Drawer v-model:visible="visible" header="Drawer">
+    <Drawer v-model:visible="visible" header="Drawer" :base-z-index="10" :modal="false">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
