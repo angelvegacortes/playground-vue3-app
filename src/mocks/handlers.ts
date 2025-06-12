@@ -4,9 +4,9 @@ import { type User } from '@/types/main'
 const getUserData = () => {
   const user: User = {
     id: 1,
-    email: 'john.doe@gmail.com',
+    email: 'john.wick@continental.com',
     firstName: 'John',
-    lastName: 'Doe',
+    lastName: 'Wick',
     role: 'user',
     createdAt: new Date(),
     updatedAt: new Date(),

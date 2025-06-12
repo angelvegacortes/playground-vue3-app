@@ -8,15 +8,24 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppFooter: typeof import('./src/components/AppFooter.vue')['default']
-    AppHeader: typeof import('./src/components/AppHeader.vue')['default']
+    AppFooter: typeof import('./src/components/app-footer.vue')['default']
+    AppHeader: typeof import('./src/components/app-header.vue')['default']
+    AppSideNavigation: typeof import('./src/components/app-side-navigation.vue')['default']
+    Avatar: typeof import('primevue/avatar')['default']
+    Badge: typeof import('primevue/badge')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
+    Dialog: typeof import('primevue/dialog')['default']
     Drawer: typeof import('primevue/drawer')['default']
     DummyText: typeof import('./src/components/dummy-text.vue')['default']
+    InputText: typeof import('primevue/inputtext')['default']
+    Menubar: typeof import('primevue/menubar')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideNavigation: typeof import('./src/components/side-navigation.vue')['default']
     Toolbar: typeof import('primevue/toolbar')['default']
+  }
+  export interface GlobalDirectives {
+    Ripple: typeof import('primevue/ripple')['default']
   }
 }
