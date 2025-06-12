@@ -18,6 +18,18 @@ export const useUserStore = defineStore('user', () => {
     return false
   }
 
+  const hasAcceptedTerms = () => {
+    if (user.value !== null) {
+      return user.value!.hasAcceptedTerms
+    }
+
+    return false
+  }
+
+  const acceptTerms = () => {
+    user.value!.hasAcceptedTerms = true
+  }
+
   const getName = () => {
     if (isAuthenticated()) {
       return `${user.value!.firstName} ${user.value!.lastName}`
@@ -35,10 +47,11 @@ export const useUserStore = defineStore('user', () => {
   const logout = () => {
     if (isAuthenticated()) {
       user.value!.isAuthenticated = false
+      user.value!.hasAcceptedTerms = false
     }
   }
 
   init()
 
-  return { isAuthenticated, login, logout, getName }
+  return { isAuthenticated, login, logout, getName, hasAcceptedTerms, acceptTerms }
 })

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/home-view.vue'
 import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
@@ -9,51 +9,41 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { requiresAuth: false },
+      meta: { requiresAuth: true },
     },
     {
       path: '/login',
       name: 'login',
-      component: HomeView,
+      component: () => import('../views/login-view.vue'),
       meta: { requiresAuth: false },
     },
     {
-      path: '/logout',
-      name: 'logout',
-      component: HomeView,
-      meta: { requiresAuth: false },
+      path: '/consent',
+      name: 'consent',
+      component: () => import('../views/consent-view.vue'),
+      meta: { requiresAuth: true },
     },
     {
       path: '/test',
       name: 'test',
-      component: () => import('../views/TestView.vue'),
+      component: () => import('../views/test-view.vue'),
       meta: { requiresAuth: true },
     },
     {
       path: '/unauthorized',
       name: 'unauthorized',
-      component: () => import('../views/NotAuthorized.vue'),
+      component: () => import('../views/not-authorized.vue'),
       meta: { requiresAuth: false },
     },
   ],
 })
 
 router.beforeEach((to, from) => {
-  console.log(
-    `user access from [${from.name?.toString()}]-->[${to.name?.toString()}] not authorized`,
-  )
+  console.log(`router[${from.name?.toString()}]-->[${to.name?.toString()}]`)
   const userStore = useUserStore()
 
-  if (to.name === 'login') {
-    userStore.login()
-  }
-
-  if (to.name === 'logout') {
-    userStore.logout()
-  }
-
   if (to.meta.requiresAuth && !userStore.isAuthenticated()) {
-    return { name: 'unauthorized' }
+    return { name: 'login' }
   }
 })
 
