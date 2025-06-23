@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex justify-center"
-    v-if="userStore.isAuthenticated() && userStore.hasAcceptedTerms()"
+    v-if="true || (userStore.isAuthenticated() && userStore.hasAcceptedTerms())"
   >
     <Drawer v-model:visible="visible" header="Drawer" :base-z-index="10" :modal="false">
       <p>
