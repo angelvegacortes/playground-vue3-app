@@ -3,14 +3,27 @@ import ATestParent from '@/features/featureA/ATestParent.vue'
 import BTestParent from '@/features/featureB/BTestParent.vue'
 import CTestParent from '@/features/featureC/CTestParent.vue'
 import { useFetch } from '@vueuse/core'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useAppAbility } from '@/auth/use-app-ability'
 
 const { can } = useAppAbility()
-
 const url = ref('/api/test/200')
-const { isFetching, error, data } = await useFetch(url, {
-  refetch: true,
+const isFetching = ref(false)
+const data = ref()
+const error = ref(null)
+
+onMounted(async () => {
+  const {
+    isFetching: fetchingStatus,
+    error: fetchedError,
+    data: fetchedData,
+  } = await useFetch(url, {
+    refetch: true,
+  })
+
+  isFetching.value = fetchingStatus.value
+  data.value = fetchedData.value
+  error.value = fetchedError.value
 })
 </script>
 
