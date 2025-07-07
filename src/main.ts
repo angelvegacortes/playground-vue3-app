@@ -7,6 +7,7 @@ import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 import { abilitiesPlugin } from '@casl/vue'
 import ability from '@/auth/ability-config-advanced'
+import Tooltip from 'primevue/tooltip'
 
 import App from './App.vue'
 import router from './router'
@@ -26,6 +27,7 @@ prepare().then(() => {
 
   app.use(createPinia())
   app.use(abilitiesPlugin, ability)
+  app.directive('tooltip', Tooltip)
   app.use(router)
   app.use(PrimeVue, {
     // Default theme configuration

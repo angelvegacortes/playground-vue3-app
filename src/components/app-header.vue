@@ -3,10 +3,10 @@
     <template #start>
       <div class="mr-5">{{ title }}</div>
       <RouterLink to="/">
-        <Button class="mr-2" icon="pi pi-home" label="Home" />
+        <Button class="mr-2" icon="pi pi-home" label="Home" v-tooltip="'Home'" />
       </RouterLink>
       <RouterLink to="/test">
-        <Button class="mr-2" icon="pi pi-chart-scatter" label="Test" />
+        <Button class="mr-2" icon="pi pi-chart-scatter" label="Test" v-tooltip="'Test'" />
       </RouterLink>
     </template>
     <template #end>
