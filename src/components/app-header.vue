@@ -3,7 +3,10 @@
     <template #start>
       <div class="mr-5">{{ title }}</div>
       <RouterLink to="/">
-        <Button class="mr-2" icon="pi pi-home" label="Home" v-tooltip="'Home'" />
+        <Button class="mr-2" v-tooltip="'Home'">
+          <span class="material-symbols-rounded">home</span>
+          <span>Home</span>
+        </Button>
       </RouterLink>
       <RouterLink to="/test">
         <Button class="mr-2" icon="pi pi-chart-scatter" label="Test" v-tooltip="'Test'" />
