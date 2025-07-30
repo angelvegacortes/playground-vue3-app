@@ -6,7 +6,7 @@
     <Drawer v-model:visible="visible" header="Drawer" :base-z-index="10" :modal="false">
       <p id="my-test-id">KABOOM</p>
     </Drawer>
-    <Button icon="pi pi-arrow-right" @click="visible = true" />
+    <Button icon="pi pi-arrow-right" @click="visible = true" label="Open" />
   </div>
 </template>
 

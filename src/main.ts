@@ -14,7 +14,7 @@ import router from './router'
 
 // enable msw only for development
 async function prepare() {
-  if (import.meta.env.DEV) {
+  if (import.meta.env.DEV || import.meta.env.PROD) {
     return worker.start({
       onUnhandledRequest: 'bypass',
     })

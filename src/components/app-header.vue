@@ -2,27 +2,30 @@
   <Menubar v-if="userStore.isAuthenticated() && userStore.hasAcceptedTerms()">
     <template #start>
       <div class="mr-5">{{ title }}</div>
-      <RouterLink to="/">
-        <Button class="mr-2" v-tooltip="'Home'">
-          <span class="material-symbols-rounded">home</span>
-          <span>Home</span>
-        </Button>
-      </RouterLink>
-      <RouterLink to="/test">
-        <Button class="mr-2" icon="pi pi-chart-scatter" label="Test" v-tooltip="'Test'" />
-      </RouterLink>
+      <Button as="router-link" to="/" class="mr-2" v-tooltip="'Home'">
+        <span class="material-symbols-rounded">home</span>
+        <span>Home</span>
+      </Button>
+      <Button
+        as="router-link"
+        to="/test"
+        class="mr-2"
+        icon="pi pi-chart-scatter"
+        label="Test"
+        v-tooltip="'Test'"
+      />
     </template>
     <template #end>
       <span class="mr-2">Logged in as {{ userStore.getName() }}</span>
-      <RouterLink to="/login">
-        <Button
-          class="mr-2"
-          icon="pi pi-sign-out"
-          severity="secondary"
-          label="Logout"
-          @click="userStore.logout"
-        />
-      </RouterLink>
+      <Button
+        as="router-link"
+        to="/login"
+        class="mr-2"
+        icon="pi pi-sign-out"
+        severity="secondary"
+        label="Logout"
+        @click="userStore.logout"
+      />
     </template>
   </Menubar>
 </template>
