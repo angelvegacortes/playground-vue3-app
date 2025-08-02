@@ -11,6 +11,7 @@ const getUserData = () => {
     createdAt: new Date(),
     updatedAt: new Date(),
     isAuthenticated: false,
+    hasAcceptedTerms: false
   }
   return user
 }
