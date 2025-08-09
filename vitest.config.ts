@@ -8,8 +8,10 @@ export default defineConfig((configEnv) =>
     defineConfig({
       test: {
         environment: 'jsdom',
+        globals: true,
         exclude: [...configDefaults.exclude],
         root: fileURLToPath(new URL('./', import.meta.url)),
+        setupFiles: './vitest.setup.ts',
         coverage: {
           provider: 'v8',
           reporter: ['text', 'json', 'html'],

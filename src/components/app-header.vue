@@ -1,13 +1,14 @@
 <template>
-  <Menubar v-if="userStore.isAuthenticated() && userStore.hasAcceptedTerms()">
+  <!-- <Menubar v-if="userStore.isAuthenticated() && userStore.hasAcceptedTerms()"> -->
+  <Menubar>
     <template #start>
       <div class="mr-5">{{ title }}</div>
-      <Button as="router-link" to="/" class="mr-2" v-tooltip="'Home'">
+      <Button as="router-link" to="/" class="mr-2" v-tooltip="'Home'" label="Home">
         <span class="material-symbols-rounded">home</span>
         <span>Home</span>
       </Button>
       <Button
-        as="router-link"
+        as="RouterLink"
         to="/test"
         class="mr-2"
         icon="pi pi-chart-scatter"
@@ -18,7 +19,7 @@
     <template #end>
       <span class="mr-2">Logged in as {{ userStore.getName() }}</span>
       <Button
-        as="router-link"
+        as="RouterLink"
         to="/login"
         class="mr-2"
         icon="pi pi-sign-out"
