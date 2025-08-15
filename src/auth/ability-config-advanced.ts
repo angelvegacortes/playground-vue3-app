@@ -1,5 +1,5 @@
 import { AbilityBuilder, createMongoAbility } from '@casl/ability'
-import { type AppAbility } from './ability-types'
+import { type AppAbility } from './types/ability'
 
 const { can, cannot, build } = new AbilityBuilder<AppAbility>(createMongoAbility)
 

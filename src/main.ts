@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { worker } from '@/mocks/browser'
 import PrimeVue from 'primevue/config'
-import Aura from '@primeuix/themes/aura'
+import { themeOptions } from './config/theme'
 import { abilitiesPlugin } from '@casl/vue'
 import ability from '@/auth/ability-config-advanced'
 import Tooltip from 'primevue/tooltip'
@@ -30,21 +30,10 @@ prepare().then(() => {
   pinia.use(piniaPluginPersistedstate)
 
   app.use(pinia)
-  app.use(abilitiesPlugin, ability)
-  app.directive('tooltip', Tooltip)
   app.use(router)
-  app.use(PrimeVue, {
-    // Default theme configuration
-    theme: {
-      preset: Aura,
-      options: {
-        prefix: 'p',
-        darkModeSelector: 'system',
-        cssLayer: false,
-      },
-    },
-    ripple: true,
-  })
+  app.use(PrimeVue, themeOptions)
+  app.directive('tooltip', Tooltip)
+  app.use(abilitiesPlugin, ability)
 
   app.mount('#app')
 })

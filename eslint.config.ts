@@ -30,6 +30,7 @@ export default defineConfigWithVueTs(
             'src/assets/**',
             'src/auth/**',
             'src/components/**',
+            'src/config/**',
             'src/mocks/**',
             'src/router/**',
             'src/stores/**',
