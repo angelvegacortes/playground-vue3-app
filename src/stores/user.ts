@@ -3,55 +3,62 @@ import { defineStore } from 'pinia'
 import { type User } from '@/types/main'
 import { useFetch } from '@vueuse/core'
 
-export const useUserStore = defineStore('user', () => {
-  const user = ref<User | null>(null)
-  const init = async () => {
-    const { data } = await useFetch<User>('api/test/200').get().json()
-    user.value = data.value
-  }
+export const useUserStore = defineStore(
+  'user',
+  () => {
+    const user = ref<User | null>(null)
 
-  const isAuthenticated = () => {
-    if (user.value !== null) {
-      return user.value!.isAuthenticated
+    const init = async () => {
+      if (user.value == null) {
+        const { data } = await useFetch<User>('api/test/200').get().json()
+        user.value = data.value
+      }
     }
 
-    return false
-  }
+    const isAuthenticated = () => {
+      if (user.value !== null) {
+        return user.value!.isAuthenticated
+      }
 
-  const hasAcceptedTerms = () => {
-    if (user.value !== null) {
-      return user.value!.hasAcceptedTerms
+      return false
     }
 
-    return false
-  }
+    const hasAcceptedTerms = () => {
+      if (user.value !== null) {
+        return user.value!.hasAcceptedTerms
+      }
 
-  const acceptTerms = () => {
-    user.value!.hasAcceptedTerms = true
-  }
-
-  const getName = () => {
-    if (isAuthenticated()) {
-      return `${user.value!.firstName} ${user.value!.lastName}`
+      return false
     }
 
-    return ''
-  }
-
-  const login = () => {
-    if (!isAuthenticated()) {
-      user.value!.isAuthenticated = true
+    const acceptTerms = () => {
+      user.value!.hasAcceptedTerms = true
     }
-  }
 
-  const logout = () => {
-    if (isAuthenticated()) {
-      user.value!.isAuthenticated = false
-      user.value!.hasAcceptedTerms = false
+    const getName = () => {
+      if (isAuthenticated()) {
+        return `${user.value!.firstName} ${user.value!.lastName}`
+      }
+
+      return ''
     }
-  }
 
-  init()
+    const login = () => {
+      if (!isAuthenticated()) {
+        user.value!.isAuthenticated = true
+      }
+    }
 
-  return { isAuthenticated, login, logout, getName, hasAcceptedTerms, acceptTerms }
-})
+    const logout = () => {
+      if (isAuthenticated()) {
+        user.value!.isAuthenticated = false
+        user.value!.hasAcceptedTerms = false
+      }
+    }
+
+    return { isAuthenticated, login, logout, getName, hasAcceptedTerms, acceptTerms, user, init }
+  },
+  {
+    persist: true,
+  },
+)

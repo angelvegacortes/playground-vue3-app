@@ -3,6 +3,14 @@ import { RouterView } from 'vue-router'
 import AppFooter from './components/app-footer.vue'
 import AppHeader from './components/app-header.vue'
 import sideNavigation from './components/app-side-navigation.vue'
+import { useUserStore } from './stores/user'
+import { onMounted } from 'vue'
+
+const userStore = useUserStore()
+
+onMounted(() => {
+  userStore.init()
+})
 </script>
 
 <template>

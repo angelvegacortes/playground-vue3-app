@@ -2,6 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { worker } from '@/mocks/browser'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
@@ -25,7 +26,10 @@ async function prepare() {
 prepare().then(() => {
   const app = createApp(App)
 
-  app.use(createPinia())
+  const pinia = createPinia()
+  pinia.use(piniaPluginPersistedstate)
+
+  app.use(pinia)
   app.use(abilitiesPlugin, ability)
   app.directive('tooltip', Tooltip)
   app.use(router)
