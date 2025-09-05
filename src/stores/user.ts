@@ -1,6 +1,7 @@
 import { ref } from 'vue'
+import 'pinia-plugin-persistedstate'
 import { defineStore } from 'pinia'
-import { type User } from '@/types/main'
+import { type User } from '@/types'
 import { useFetch } from '@vueuse/core'
 
 export const useUserStore = defineStore(

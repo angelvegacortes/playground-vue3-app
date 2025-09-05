@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type User } from '@/types/main'
+import { type User } from '@/types'
 
 const getUserData = () => {
   const user: User = {

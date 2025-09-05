@@ -10,7 +10,7 @@ import { abilitiesPlugin } from '@casl/vue'
 import ability from '@/auth/ability-config-advanced'
 import Tooltip from 'primevue/tooltip'
 
-import App from './App.vue'
+import App from './app.vue'
 import router from './router'
 
 // enable msw only for development

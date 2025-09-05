@@ -9,3 +9,5 @@ export interface User {
   isAuthenticated: boolean
   hasAcceptedTerms: boolean
 }
+
+export const samples = ['SAMPLE_1', 'SAMPLE_2', 'SAMPLE_3'] as const

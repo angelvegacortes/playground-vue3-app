@@ -10,7 +10,7 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "lint-check": "eslint . --fix-dry-run",
-    "lint-all": "npm run format && npm run lint",
+    "lint-all": "npm run format && npm run lint && npm run type-check",
     "format": "prettier . --write",
     "test": "vitest",
     "test-coverage": "vitest run --coverage",
