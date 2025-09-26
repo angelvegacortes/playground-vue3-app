@@ -19,7 +19,7 @@ export default defineConfig((configEnv) =>
             branches: 80,
             functions: 80,
             lines: 80,
-            statements: 80
+            statements: 80,
           },
           include: ['src/**/*.{ts,vue}'],
           exclude: [

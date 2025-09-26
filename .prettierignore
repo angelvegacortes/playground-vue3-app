@@ -1,7 +1,7 @@
 *.html
 *.md
 *.cjs
+coverage/
 dist/
 node_modules/
-playwright-report/
-test-results/
+public/
