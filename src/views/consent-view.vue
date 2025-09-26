@@ -12,6 +12,15 @@
 <script setup lang="ts">
 import DummyText from '@/components/dummy-text.vue'
 import { useUserStore } from '@/stores/user'
+import { onMounted, onUnmounted } from 'vue'
 
 const userStore = useUserStore()
+
+onMounted(() => {
+  document.body.classList.add('consent-alternate-background-color')
+})
+
+onUnmounted(() => {
+  document.body.classList.remove('consent-alternate-background-color')
+})
 </script>

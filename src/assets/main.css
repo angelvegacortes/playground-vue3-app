@@ -2,3 +2,4 @@
 @import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
 @import 'material-symbols';
+@import './base.css';
