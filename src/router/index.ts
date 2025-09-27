@@ -24,10 +24,37 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/test',
-      name: 'test',
-      component: () => import('../views/test-view.vue'),
+      path: '/test/1',
+      name: 'test1',
+      component: () => import('../views/test1-view.vue'),
       meta: { requiresAuth: true },
+    },
+    {
+      path: '/test/2',
+      component: () => import('../views/test2-view.vue'),
+      meta: { requiresAuth: true },
+      children: [
+        {
+          path: '',
+          name: 'test2',
+          component: () => import('@/features/featureA/ATestParent.vue'),
+        },
+        {
+          path: 'feature/a',
+          name: 'feature/a',
+          component: () => import('@/features/featureA/ATestParent.vue'),
+        },
+        {
+          path: 'feature/b',
+          name: 'feature/b',
+          component: () => import('@/features/featureB/BTestParent.vue'),
+        },
+        {
+          path: 'feature/c',
+          name: 'feature/c',
+          component: () => import('@/features/featureC/CTestParent.vue'),
+        },
+      ],
     },
     {
       path: '/unauthorized',

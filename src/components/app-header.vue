@@ -9,11 +9,19 @@
       </Button>
       <Button
         as="RouterLink"
-        to="/test"
+        to="/test/1"
         class="mr-2"
         icon="pi pi-chart-scatter"
-        label="Test"
-        v-tooltip="'Test'"
+        label="Test 1"
+        v-tooltip="'Test 1'"
+      />
+      <Button
+        as="RouterLink"
+        to="/test/2"
+        class="mr-2"
+        icon="pi pi-chart-scatter"
+        label="Test 2"
+        v-tooltip="'Test 2'"
       />
     </template>
     <template #end>

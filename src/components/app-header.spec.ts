@@ -13,6 +13,6 @@ describe('app-header', () => {
     })
 
     expect(getByRole('link', { name: 'Home' })).toBeTruthy()
-    expect(getByRole('link', { name: 'Test' })).toBeTruthy()
+    expect(getByRole('link', { name: 'Test 1' })).toBeTruthy()
   })
 })

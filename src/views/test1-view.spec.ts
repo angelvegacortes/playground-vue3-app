@@ -1,16 +1,16 @@
 import { describe, expect, it, beforeEach } from 'vitest'
-import TestView from './test-view.vue'
+import Test1View from './test1-view.vue'
 import { render } from '@testing-library/vue'
 import ability from '@/auth/ability-config-advanced'
 
-describe('test-view', () => {
+describe('test1-view', () => {
   beforeEach(() => {
     // NOTE: disable all permissions before each test
     ability.update([])
   })
 
   it('shows no features without permissions', () => {
-    const { queryByText } = render(TestView, {
+    const { queryByText } = render(Test1View, {
       global: {
         stubs: {
           teleport: true,
@@ -26,7 +26,7 @@ describe('test-view', () => {
   it('shows all features with all permissions', () => {
     ability.update([{ action: 'read', subject: 'all' }])
 
-    const { getByText } = render(TestView, {
+    const { getByText } = render(Test1View, {
       global: {
         stubs: {
           teleport: true,
@@ -42,7 +42,7 @@ describe('test-view', () => {
   it('shows only feature a when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureA' }])
 
-    const { getByText, queryByText } = render(TestView, {
+    const { getByText, queryByText } = render(Test1View, {
       global: {
         stubs: {
           teleport: true,
@@ -58,7 +58,7 @@ describe('test-view', () => {
   it('shows only feature b when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureB' }])
 
-    const { getByText, queryByText } = render(TestView, {
+    const { getByText, queryByText } = render(Test1View, {
       global: {
         stubs: {
           teleport: true,
@@ -74,7 +74,7 @@ describe('test-view', () => {
   it('shows only feature C when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureC' }])
 
-    const { getByText, queryByText } = render(TestView, {
+    const { getByText, queryByText } = render(Test1View, {
       global: {
         stubs: {
           teleport: true,
