@@ -26,12 +26,12 @@ const router = createRouter({
     {
       path: '/test/1',
       name: 'test1',
-      component: () => import('../views/test1-view.vue'),
+      component: () => import('../views/examples/test1-view.vue'),
       meta: { requiresAuth: true },
     },
     {
       path: '/test/2',
-      component: () => import('../views/test2-view.vue'),
+      component: () => import('../views/examples/test2-view.vue'),
       meta: { requiresAuth: true },
       children: [
         {
@@ -57,9 +57,15 @@ const router = createRouter({
       ],
     },
     {
+      path: '/test/3',
+      name: 'test3',
+      component: () => import('../views/examples/test3-view.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/unauthorized',
       name: 'unauthorized',
-      component: () => import('../views/not-authorized.vue'),
+      component: () => import('../views/errors/not-authorized.vue'),
       meta: { requiresAuth: false },
     },
   ],

@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import dummyText from '@/components/dummy-text.vue'
+import dummyText from '@/components/text/dummy-text.vue'
 import { samples } from '@/types'
 import { ref } from 'vue'
 const selectedSample = ref()

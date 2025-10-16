@@ -8,18 +8,25 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppFooter: typeof import('./src/components/app-footer.vue')['default']
-    AppHeader: typeof import('./src/components/app-header.vue')['default']
-    AppSideNavigation: typeof import('./src/components/app-side-navigation.vue')['default']
+    AppFooter: typeof import('./src/components/layout/app-footer.vue')['default']
+    AppHeader: typeof import('./src/components/layout/app-header.vue')['default']
+    AppSideNavigation: typeof import('./src/components/layout/app-side-navigation.vue')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
-    Dialog: typeof import('primevue/dialog')['default']
+    Column: typeof import('primevue/column')['default']
+    CustomDataTable: typeof import('./src/components/tables/custom-data-table.vue')['default']
+    CustomDataTableColumn: typeof import('./src/components/tables/custom-data-table-column.vue')['default']
+    DataTable: typeof import('primevue/datatable')['default']
+    Divider: typeof import('primevue/divider')['default']
     Drawer: typeof import('primevue/drawer')['default']
-    DummyText: typeof import('./src/components/dummy-text.vue')['default']
+    DummyText: typeof import('./src/components/text/dummy-text.vue')['default']
     Menubar: typeof import('primevue/menubar')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('primevue/select')['default']
+    Tab: typeof import('primevue/tab')['default']
+    TabList: typeof import('primevue/tablist')['default']
+    Tabs: typeof import('primevue/tabs')['default']
   }
   export interface GlobalDirectives {
     Tooltip: typeof import('primevue/tooltip')['default']

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import AppFooter from './components/app-footer.vue'
-import AppHeader from './components/app-header.vue'
-import sideNavigation from './components/app-side-navigation.vue'
+import AppFooter from './components/layout/app-footer.vue'
+import AppHeader from './components/layout/app-header.vue'
+import sideNavigation from './components/layout/app-side-navigation.vue'
 import { useUserStore } from './stores/user'
 import { onMounted } from 'vue'
 

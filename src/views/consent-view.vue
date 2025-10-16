@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import DummyText from '@/components/dummy-text.vue'
+import DummyText from '@/components/text/dummy-text.vue'
 import { useUserStore } from '@/stores/user'
 import { onMounted, onUnmounted } from 'vue'
 
