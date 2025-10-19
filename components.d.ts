@@ -19,12 +19,16 @@ declare module 'vue' {
     DataTable: typeof import('primevue/datatable')['default']
     Drawer: typeof import('primevue/drawer')['default']
     DummyText: typeof import('./src/components/text/dummy-text.vue')['default']
+    InputNumber: typeof import('primevue/inputnumber')['default']
     InputText: typeof import('primevue/inputtext')['default']
     Menubar: typeof import('primevue/menubar')['default']
     MultiSelect: typeof import('primevue/multiselect')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('primevue/select')['default']
+    Tab: typeof import('primevue/tab')['default']
+    TabList: typeof import('primevue/tablist')['default']
+    Tabs: typeof import('primevue/tabs')['default']
     Tag: typeof import('primevue/tag')['default']
   }
   export interface GlobalDirectives {

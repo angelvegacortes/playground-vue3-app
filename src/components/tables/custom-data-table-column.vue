@@ -1,7 +1,9 @@
 <template>
   <Column
+    v-if="!isHidden"
     :field="field"
     :header="header"
+    :hidden="isHidden"
     :sortable="isSortable"
     :class="cssClass"
     :show-filter-match-modes="false"
@@ -17,6 +19,14 @@
         v-if="showFilterByText"
         v-model="filterModel.value"
         type="text"
+        @input="filterCallback()"
+        :placeholder="filterPlaceholder"
+      />
+      <InputNumber
+        v-if="showFilterByNumber"
+        v-model="filterModel.value"
+        :min="0"
+        show-buttons
         @input="filterCallback()"
         :placeholder="filterPlaceholder"
       />
@@ -45,18 +55,20 @@ const {
   field = '',
   header = '',
   cssClass = 'w-1/4',
-  isSortable = true,
+  isHidden = false,
+  isSortable = false,
   isFilterable = false,
   filterOptions = undefined,
-  isFilterOptionsMultiSelect = false,
+  filterType = 'text',
 } = defineProps<{
   field: string
   header: string
   cssClass: `w-${number}/${number}` | `w-[${number}/${number}]`
+  isHidden?: boolean
   isSortable?: boolean
   isFilterable?: boolean
   filterOptions?: unknown[] | undefined
-  isFilterOptionsMultiSelect?: boolean
+  filterType?: 'text' | 'number' | 'select' | 'multi-select' | undefined
 }>()
 
 const EMPTY_VALUE_PLACEHOLDER = '-'
@@ -66,14 +78,18 @@ const filterPlaceholder = computed(() => {
 })
 
 const showFilterByText = computed(() => {
-  return isFilterable && filterOptions === undefined && !isFilterOptionsMultiSelect
+  return isFilterable && filterType === 'text'
+})
+
+const showFilterByNumber = computed(() => {
+  return isFilterable && filterType === 'number'
 })
 
 const showFilterBySelect = computed(() => {
-  return isFilterable && filterOptions !== undefined && !isFilterOptionsMultiSelect
+  return isFilterable && filterType === 'select' && filterOptions !== undefined
 })
 
 const showFilterByMultiSelect = computed(() => {
-  return isFilterable && filterOptions !== undefined && isFilterOptionsMultiSelect
+  return isFilterable && filterType === 'multi-select' && filterOptions !== undefined
 })
 </script>

@@ -11,7 +11,9 @@ export interface User {
 }
 
 export interface Product {
-  name: string
+  firstName: string
+  middleName?: string
+  lastName: string
   email: string
   jobType?: string
   country: string

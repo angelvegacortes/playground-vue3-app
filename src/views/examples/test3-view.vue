@@ -26,31 +26,76 @@
           variant="outlined"
           @click="onClearFilters()"
         />
+        <Button
+          type="button"
+          label="Toggle Additional Columns"
+          variant="outlined"
+          @click="onToggleColumns()"
+        />
       </div>
     </template>
     <template #empty> No products found. </template>
-    <Column field="name" header="Name" sortable class="w-1/4" :show-filter-match-modes="false">
+    <Column
+      field="firstName"
+      header="First Name"
+      sortable
+      class="w-1/6"
+      :show-filter-match-modes="false"
+    >
       <template #filter="{ filterModel, filterCallback }">
         <InputText
           v-model="filterModel.value"
           type="text"
           @input="filterCallback()"
-          placeholder="Filter by Name"
+          placeholder="Filter by First Name"
         />
       </template>
     </Column>
-    <Column field="email" header="Email" sortable class="w-1/4">
+    <Column
+      field="middleName"
+      header="Middle Name"
+      sortable
+      class="w-1/6"
+      :show-filter-match-modes="false"
+      :hidden="hideAdditionalColumns"
+    >
+      <template #filter="{ filterModel, filterCallback }">
+        <InputText
+          v-model="filterModel.value"
+          type="text"
+          @input="filterCallback()"
+          placeholder="Filter by Middle Name"
+        />
+      </template>
+    </Column>
+    <Column
+      field="lastName"
+      header="Last Name"
+      sortable
+      class="w-1/6"
+      :show-filter-match-modes="false"
+    >
+      <template #filter="{ filterModel, filterCallback }">
+        <InputText
+          v-model="filterModel.value"
+          type="text"
+          @input="filterCallback()"
+          placeholder="Filter by Last Name"
+        />
+      </template>
+    </Column>
+    <Column field="email" header="Email" sortable class="w-1/6">
       <template #body="{ data }">
         <i class="pi pi-envelope"></i>
         {{ data.email }}
       </template>
     </Column>
-    <Column field="jobType" header="Job Type" :sortable="false" class="w-1/4"></Column>
+    <Column field="jobType" header="Job Type" :sortable="false" class="w-1/6"></Column>
     <Column
       field="country"
       header="Country"
       sortable
-      class="w-1/4"
+      class="w-1/6"
       :show-filter-match-modes="false"
     >
       <template #filter="{ filterModel }">
@@ -103,17 +148,47 @@
           variant="outlined"
           @click="onClearFilters()"
         />
+        <Button
+          type="button"
+          label="Toggle Additional Columns"
+          variant="outlined"
+          @click="onToggleColumns()"
+        />
       </div>
     </template>
     <template #empty> No products found. </template>
     <CustomDataTableColumn
-      key="name"
-      field="name"
-      header="Name"
-      css-class="w-1/4"
+      key="firstName"
+      field="firstName"
+      header="First Name"
+      css-class="w-1/6"
+      :is-sortable="true"
       :is-filterable="true"
     />
-    <CustomDataTableColumn key="email" field="email" header="Email" css-class="w-1/4">
+    <CustomDataTableColumn
+      key="middleName"
+      field="middleName"
+      header="Middle Name"
+      css-class="w-1/6"
+      :is-sortable="true"
+      :is-hidden="hideAdditionalColumns"
+      :is-filterable="true"
+    />
+    <CustomDataTableColumn
+      key="lastName"
+      field="lastName"
+      header="Last Name"
+      css-class="w-1/6"
+      :is-sortable="true"
+      :is-filterable="true"
+    />
+    <CustomDataTableColumn
+      key="email"
+      field="email"
+      header="Email"
+      css-class="w-1/6"
+      :is-sortable="true"
+    >
       <template #body="{ data }">
         <i class="pi pi-envelope"></i>
         {{ data.email }}
@@ -124,13 +199,14 @@
       field="jobType"
       header="Job Type"
       :is-sortable="false"
-      css-class="w-1/4"
+      css-class="w-1/6"
     />
     <CustomDataTableColumn
       key="country"
       field="country"
       header="Country"
-      css-class="w-1/4"
+      css-class="w-1/6"
+      :is-sortable="true"
       :is-filterable="true"
       :filter-options="countries"
       :is-filter-options-multi-select="true"
@@ -144,13 +220,37 @@
   </p>
   <CustomDataTable :data="products" v-model:filters="filters3">
     <CustomDataTableColumn
-      key="name"
-      field="name"
-      header="Name"
-      css-class="w-1/4"
+      key="firstName"
+      field="firstName"
+      header="First Name"
+      css-class="w-1/6"
+      :is-sortable="true"
       :is-filterable="true"
     />
-    <CustomDataTableColumn key="email" field="email" header="Email" css-class="w-1/4">
+    <CustomDataTableColumn
+      key="middleName"
+      field="middleName"
+      header="Middle Name"
+      css-class="w-1/6"
+      :is-hidden="hideAdditionalColumns"
+      :is-sortable="true"
+      :is-filterable="true"
+    />
+    <CustomDataTableColumn
+      key="lastName"
+      field="lastName"
+      header="Last Name"
+      css-class="w-1/6"
+      :is-sortable="true"
+      :is-filterable="true"
+    />
+    <CustomDataTableColumn
+      key="email"
+      field="email"
+      header="Email"
+      css-class="w-1/6"
+      :is-sortable="true"
+    >
       <template #body="{ data }">
         <i class="pi pi-envelope"></i>
         {{ data.email }}
@@ -161,13 +261,14 @@
       field="jobType"
       header="Job Type"
       :is-sortable="false"
-      css-class="w-1/4"
+      css-class="w-1/6"
     />
     <CustomDataTableColumn
       key="country"
       field="country"
       header="Country"
-      css-class="w-1/4"
+      css-class="w-1/6"
+      :is-sortable="true"
       :is-filterable="true"
       :filter-options="countries"
       :is-filter-options-multi-select="true"
@@ -190,7 +291,9 @@ onMounted(() => {
 })
 
 const baseFilters = ref({
-  name: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  firstName: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  middleName: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  lastName: { value: null, matchMode: FilterMatchMode.CONTAINS },
   country: { value: null, matchMode: FilterMatchMode.IN },
 })
 
@@ -203,7 +306,9 @@ const products = ref<Product[]>([])
 const getProducts = (limit: number) => {
   for (let i = 0; i < limit; i++)
     products.value.push({
-      name: faker.person.fullName(),
+      firstName: faker.person.firstName(),
+      middleName: i % 2 !== 0 ? faker.person.middleName() : undefined,
+      lastName: faker.person.lastName(),
       email: faker.internet.email(),
       jobType: i % 2 === 0 ? faker.person.jobType() : undefined,
       country: faker.location.country(),
@@ -229,5 +334,11 @@ const initFilters = () => {
 
 const onClearFilters = () => {
   initFilters()
+}
+
+const hideAdditionalColumns = ref(true)
+
+const onToggleColumns = () => {
+  hideAdditionalColumns.value = !hideAdditionalColumns.value
 }
 </script>
