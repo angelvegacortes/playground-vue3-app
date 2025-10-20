@@ -124,7 +124,7 @@
   <p class="my-3">
     This table is using
     <Tag severity="contrast" value="DataTable" rounded></Tag> and
-    <Tag severity="contrast" value="CustomDataTableColumn" rounded></Tag>
+    <Tag severity="contrast" value="AppDataTableColumn" rounded></Tag>
     components.
   </p>
   <DataTable
@@ -157,7 +157,7 @@
       </div>
     </template>
     <template #empty> No products found. </template>
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="firstName"
       field="firstName"
       header="First Name"
@@ -165,7 +165,7 @@
       :is-sortable="true"
       :is-filterable="true"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="middleName"
       field="middleName"
       header="Middle Name"
@@ -174,7 +174,7 @@
       :is-hidden="hideAdditionalColumns"
       :is-filterable="true"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="lastName"
       field="lastName"
       header="Last Name"
@@ -182,7 +182,7 @@
       :is-sortable="true"
       :is-filterable="true"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="email"
       field="email"
       header="Email"
@@ -193,15 +193,15 @@
         <i class="pi pi-envelope"></i>
         {{ data.email }}
       </template>
-    </CustomDataTableColumn>
-    <CustomDataTableColumn
+    </AppDataTableColumn>
+    <AppDataTableColumn
       key="jobType"
       field="jobType"
       header="Job Type"
       :is-sortable="false"
       css-class="w-1/6"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="country"
       field="country"
       header="Country"
@@ -214,12 +214,12 @@
   </DataTable>
   <p class="my-3">
     This table is using
-    <Tag severity="contrast" value="CustomDataTable" rounded></Tag> and
-    <Tag severity="contrast" value="CustomDataTableColumn" rounded></Tag>
+    <Tag severity="contrast" value="AppDataTable" rounded></Tag> and
+    <Tag severity="contrast" value="AppDataTableColumn" rounded></Tag>
     components.
   </p>
-  <CustomDataTable :data="products" v-model:filters="filters3">
-    <CustomDataTableColumn
+  <AppDataTable :data="products" v-model:filters="filters3">
+    <AppDataTableColumn
       key="firstName"
       field="firstName"
       header="First Name"
@@ -227,7 +227,7 @@
       :is-sortable="true"
       :is-filterable="true"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="middleName"
       field="middleName"
       header="Middle Name"
@@ -236,7 +236,7 @@
       :is-sortable="true"
       :is-filterable="true"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="lastName"
       field="lastName"
       header="Last Name"
@@ -244,7 +244,7 @@
       :is-sortable="true"
       :is-filterable="true"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="email"
       field="email"
       header="Email"
@@ -255,15 +255,15 @@
         <i class="pi pi-envelope"></i>
         {{ data.email }}
       </template>
-    </CustomDataTableColumn>
-    <CustomDataTableColumn
+    </AppDataTableColumn>
+    <AppDataTableColumn
       key="jobType"
       field="jobType"
       header="Job Type"
       :is-sortable="false"
       css-class="w-1/6"
     />
-    <CustomDataTableColumn
+    <AppDataTableColumn
       key="country"
       field="country"
       header="Country"
@@ -273,16 +273,16 @@
       :filter-options="countries"
       :is-filter-options-multi-select="true"
     />
-  </CustomDataTable>
+  </AppDataTable>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { faker } from '@faker-js/faker'
-import CustomDataTableColumn from '@/components/tables/custom-data-table-column.vue'
+import AppDataTableColumn from '@/components/tables/app-data-table-column.vue'
 import type { Product } from '@/types'
 import { FilterMatchMode } from '@primevue/core/api'
-import CustomDataTable from '@/components/tables/custom-data-table.vue'
+import AppDataTable from '@/components/tables/app-data-table.vue'
 
 onMounted(() => {
   initFilters()

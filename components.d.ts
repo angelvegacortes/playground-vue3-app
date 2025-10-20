@@ -8,17 +8,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppDataTable: typeof import('./src/components/tables/app-data-table.vue')['default']
+    AppDataTableColumn: typeof import('./src/components/tables/app-data-table-column.vue')['default']
+    AppDummyText: typeof import('./src/components/text/app-dummy-text.vue')['default']
     AppFooter: typeof import('./src/components/layout/app-footer.vue')['default']
     AppHeader: typeof import('./src/components/layout/app-header.vue')['default']
     AppSideNavigation: typeof import('./src/components/layout/app-side-navigation.vue')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
     Column: typeof import('primevue/column')['default']
-    CustomDataTable: typeof import('./src/components/tables/custom-data-table.vue')['default']
-    CustomDataTableColumn: typeof import('./src/components/tables/custom-data-table-column.vue')['default']
     DataTable: typeof import('primevue/datatable')['default']
     Drawer: typeof import('primevue/drawer')['default']
-    DummyText: typeof import('./src/components/text/dummy-text.vue')['default']
     InputNumber: typeof import('primevue/inputnumber')['default']
     InputText: typeof import('primevue/inputtext')['default']
     Menubar: typeof import('primevue/menubar')['default']
