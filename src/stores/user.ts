@@ -11,7 +11,7 @@ export const useUserStore = defineStore(
 
     const init = async () => {
       if (user.value == null) {
-        const { data } = await useFetch<User>('api/test/200').get().json()
+        const { data } = await useFetch<User>('api/user').get().json()
         user.value = data.value
       }
     }

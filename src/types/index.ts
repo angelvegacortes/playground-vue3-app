@@ -19,4 +19,10 @@ export interface Product {
   country: string
 }
 
+export interface CalendarEvent {
+  title: string
+  start: Date
+  end: Date
+}
+
 export const samples = ['SAMPLE_1', 'SAMPLE_2', 'SAMPLE_3'] as const

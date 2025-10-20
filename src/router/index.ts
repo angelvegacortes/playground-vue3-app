@@ -63,6 +63,12 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: '/test/4',
+      name: 'test4',
+      component: () => import('../views/examples/test4-view.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/unauthorized',
       name: 'unauthorized',
       component: () => import('../views/errors/not-authorized.vue'),

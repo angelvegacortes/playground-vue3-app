@@ -278,15 +278,15 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { faker } from '@faker-js/faker'
 import AppDataTableColumn from '@/components/tables/app-data-table-column.vue'
 import type { Product } from '@/types'
 import { FilterMatchMode } from '@primevue/core/api'
 import AppDataTable from '@/components/tables/app-data-table.vue'
+import { useFetch } from '@vueuse/core'
 
-onMounted(() => {
+onMounted(async () => {
   initFilters()
-  getProducts(10)
+  await getProducts()
   getCountries()
 })
 
@@ -303,16 +303,14 @@ const filters3 = ref()
 
 const products = ref<Product[]>([])
 
-const getProducts = (limit: number) => {
-  for (let i = 0; i < limit; i++)
-    products.value.push({
-      firstName: faker.person.firstName(),
-      middleName: i % 2 !== 0 ? faker.person.middleName() : undefined,
-      lastName: faker.person.lastName(),
-      email: faker.internet.email(),
-      jobType: i % 2 === 0 ? faker.person.jobType() : undefined,
-      country: faker.location.country(),
-    })
+const getProducts = async () => {
+  const { data, error } = await useFetch<Product[]>('api/products').get().json()
+
+  if (error.value) {
+    console.error(error.value)
+  } else {
+    products.value = data.value!
+  }
 }
 
 const countries = ref<string[]>([])

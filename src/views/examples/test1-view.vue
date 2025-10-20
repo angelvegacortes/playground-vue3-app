@@ -7,7 +7,7 @@ import { onMounted, ref } from 'vue'
 import { useAppAbility } from '@/auth/use-app-ability'
 
 const { can } = useAppAbility()
-const url = ref('/api/test/200')
+const url = ref('api/test/200')
 const isFetching = ref(false)
 const data = ref()
 const error = ref(null)
@@ -20,6 +20,8 @@ onMounted(async () => {
   } = await useFetch(url, {
     refetch: true,
   })
+    .get()
+    .json()
 
   isFetching.value = fetchingStatus.value
   data.value = fetchedData.value

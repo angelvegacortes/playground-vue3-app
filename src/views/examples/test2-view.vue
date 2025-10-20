@@ -3,7 +3,7 @@ import { useFetch } from '@vueuse/core'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-const url = ref('/api/test/200')
+const url = ref('api/test/200')
 const isFetching = ref(false)
 const data = ref()
 const error = ref(null)
@@ -16,6 +16,8 @@ onMounted(async () => {
   } = await useFetch(url, {
     refetch: true,
   })
+    .get()
+    .json()
 
   isFetching.value = fetchingStatus.value
   data.value = fetchedData.value
