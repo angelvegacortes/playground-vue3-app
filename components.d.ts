@@ -14,6 +14,7 @@ declare module 'vue' {
     AppCalendar: typeof import('./src/components/calendar/app-calendar.vue')['default']
     AppDataTable: typeof import('./src/components/tables/app-data-table.vue')['default']
     AppDataTableColumn: typeof import('./src/components/tables/app-data-table-column.vue')['default']
+    AppDialog: typeof import('./src/components/layout/app-dialog.vue')['default']
     AppDummyText: typeof import('./src/components/text/app-dummy-text.vue')['default']
     AppFooter: typeof import('./src/components/layout/app-footer.vue')['default']
     AppHeader: typeof import('./src/components/layout/app-header.vue')['default']

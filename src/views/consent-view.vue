@@ -1,12 +1,10 @@
 <template>
-  <Dialog :visible="true" modal header="EULA" :closable="false">
+  <AppDialog header="EULA" :is-visible="true">
     <DummyText class="my-5" />
     <div class="text-center">
-      <RouterLink to="/">
-        <Button label="Accept" @click="userStore.acceptTerms" />
-      </RouterLink>
+      <Button as="RouterLink" to="/" label="Accept" @click="userStore.acceptTerms" />
     </div>
-  </Dialog>
+  </AppDialog>
 </template>
 
 <script setup lang="ts">

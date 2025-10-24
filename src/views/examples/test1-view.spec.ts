@@ -1,7 +1,7 @@
-import { describe, expect, it, beforeEach } from 'vitest'
-import Test1View from './test1-view.vue'
-import { render } from '@testing-library/vue'
 import ability from '@/auth/ability-config-advanced'
+import { render } from '@testing-library/vue'
+import { beforeEach, describe, expect, it } from 'vitest'
+import Test1View from './test1-view.vue'
 
 describe('test1-view', () => {
   beforeEach(() => {
@@ -10,13 +10,7 @@ describe('test1-view', () => {
   })
 
   it('shows no features without permissions', () => {
-    const { queryByText } = render(Test1View, {
-      global: {
-        stubs: {
-          teleport: true,
-        },
-      },
-    })
+    const { queryByText } = render(Test1View)
 
     expect(queryByText('Feature A Test')).toBeNull()
     expect(queryByText('Feature B Test')).toBeNull()
@@ -26,13 +20,7 @@ describe('test1-view', () => {
   it('shows all features with all permissions', () => {
     ability.update([{ action: 'read', subject: 'all' }])
 
-    const { getByText } = render(Test1View, {
-      global: {
-        stubs: {
-          teleport: true,
-        },
-      },
-    })
+    const { getByText } = render(Test1View)
 
     expect(getByText('Feature A Test')).toBeTruthy()
     expect(getByText('Feature B Test')).toBeTruthy()
@@ -42,13 +30,7 @@ describe('test1-view', () => {
   it('shows only feature a when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureA' }])
 
-    const { getByText, queryByText } = render(Test1View, {
-      global: {
-        stubs: {
-          teleport: true,
-        },
-      },
-    })
+    const { getByText, queryByText } = render(Test1View)
 
     expect(getByText('Feature A Test')).toBeTruthy()
     expect(queryByText('Feature B Test')).toBeNull()
@@ -58,13 +40,7 @@ describe('test1-view', () => {
   it('shows only feature b when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureB' }])
 
-    const { getByText, queryByText } = render(Test1View, {
-      global: {
-        stubs: {
-          teleport: true,
-        },
-      },
-    })
+    const { getByText, queryByText } = render(Test1View)
 
     expect(queryByText('Feature A Test')).toBeNull()
     expect(getByText('Feature B Test')).toBeTruthy()
@@ -74,13 +50,7 @@ describe('test1-view', () => {
   it('shows only feature C when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureC' }])
 
-    const { getByText, queryByText } = render(Test1View, {
-      global: {
-        stubs: {
-          teleport: true,
-        },
-      },
-    })
+    const { getByText, queryByText } = render(Test1View)
 
     expect(queryByText('Feature A Test')).toBeNull()
     expect(queryByText('Feature B Test')).toBeNull()
