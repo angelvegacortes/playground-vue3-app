@@ -1,14 +1,13 @@
 <template>
-  <Dialog :visible="true" modal header="Login" :closable="false">
+  <AppDialog header="Login" :is-visible="true">
     <div class="text-center">
-      <RouterLink to="/consent">
-        <Button label="Login" @click="userStore.login" />
-      </RouterLink>
+      <Button as="RouterLink" to="/consent" label="Login" @click="userStore.login" />
     </div>
-  </Dialog>
+  </AppDialog>
 </template>
 
 <script setup lang="ts">
+import AppDialog from '@/components/layout/app-dialog.vue'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
