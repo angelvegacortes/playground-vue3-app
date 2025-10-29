@@ -1,9 +1,9 @@
-import pluginVue from 'eslint-plugin-vue'
+import pluginVitest from '@vitest/eslint-plugin'
+import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import boundaries from 'eslint-plugin-boundaries'
 import importPlugin from 'eslint-plugin-import'
-import pluginVitest from '@vitest/eslint-plugin'
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import pluginVue from 'eslint-plugin-vue'
 
 export default defineConfigWithVueTs(
   {
@@ -83,6 +83,7 @@ export default defineConfigWithVueTs(
     rules: {
       'no-unused-vars': 'off',
       'import/no-unresolved': 'off',
+      'import/namespace': 'off',
     },
   },
   pluginVitest.configs.recommended,

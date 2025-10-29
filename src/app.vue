@@ -1,10 +1,9 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import AppFooter from './components/layout/app-footer.vue'
 import AppHeader from './components/layout/app-header.vue'
-import sideNavigation from './components/layout/app-side-navigation.vue'
 import { useUserStore } from './stores/user'
-import { onMounted } from 'vue'
 
 const userStore = useUserStore()
 
@@ -18,7 +17,8 @@ onMounted(() => {
     <AppHeader />
   </header>
   <nav>
-    <sideNavigation />
+    <!-- NOTE disable sidenav for now -->
+    <!-- <sideNavigation /> -->
   </nav>
   <main class="mx-5 my-5 z-0 flex-1">
     <Suspense>

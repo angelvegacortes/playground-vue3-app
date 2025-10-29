@@ -1,14 +1,15 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
+import ability from '@/auth/ability-config-advanced'
+import { worker } from '@/mocks/browser'
+import { abilitiesPlugin } from '@casl/vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { worker } from '@/mocks/browser'
 import PrimeVue from 'primevue/config'
-import { themeOptions } from './config/theme'
-import { abilitiesPlugin } from '@casl/vue'
-import ability from '@/auth/ability-config-advanced'
+import ToastService from 'primevue/toastservice'
 import Tooltip from 'primevue/tooltip'
+import { createApp } from 'vue'
+import { themeOptions } from './config/theme'
 
 import App from './app.vue'
 import router from './router'
@@ -29,6 +30,7 @@ prepare().then(() => {
   const pinia = createPinia()
   pinia.use(piniaPluginPersistedstate)
 
+  app.use(ToastService)
   app.use(pinia)
   app.use(router)
   app.use(PrimeVue, themeOptions)

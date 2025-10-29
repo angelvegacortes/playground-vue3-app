@@ -1,288 +1,308 @@
 <template>
-  <p class="my-3">
-    This table is using
-    <Tag severity="contrast" value="DataTable" rounded></Tag> and
-    <Tag severity="contrast" value="Column" rounded></Tag>
-    components.
-  </p>
-  <DataTable
-    :value="products"
-    size="small"
-    data-key="id"
-    v-model:filters="filters1"
-    removableSort
-    paginator
-    sort-mode="multiple"
-    filterDisplay="menu"
-    :rows="5"
-    :rowsPerPageOptions="[5, 10, 20, 50]"
-  >
-    <template #header>
-      <div class="flex justify-between">
-        <Button
-          type="button"
-          icon="pi pi-filter-slash"
-          label="Clear Filters"
-          variant="outlined"
-          @click="onClearFilters()"
-        />
-        <Button
-          type="button"
-          label="Toggle Additional Columns"
-          variant="outlined"
-          @click="onToggleColumns()"
-        />
-      </div>
+  <Card class="mx-2 my-4">
+    <template #title>
+      <p>
+        This table is using
+        <Tag severity="contrast" value="DataTable" rounded></Tag> and
+        <Tag severity="contrast" value="Column" rounded></Tag>
+        components.
+      </p>
     </template>
-    <template #empty> No products found. </template>
-    <Column
-      field="firstName"
-      header="First Name"
-      sortable
-      class="w-1/6"
-      :show-filter-match-modes="false"
-    >
-      <template #filter="{ filterModel, filterCallback }">
-        <InputText
-          v-model="filterModel.value"
-          type="text"
-          @input="filterCallback()"
-          placeholder="Filter by First Name"
-        />
-      </template>
-    </Column>
-    <Column
-      field="middleName"
-      header="Middle Name"
-      sortable
-      class="w-1/6"
-      :show-filter-match-modes="false"
-      :hidden="hideAdditionalColumns"
-    >
-      <template #filter="{ filterModel, filterCallback }">
-        <InputText
-          v-model="filterModel.value"
-          type="text"
-          @input="filterCallback()"
-          placeholder="Filter by Middle Name"
-        />
-      </template>
-    </Column>
-    <Column
-      field="lastName"
-      header="Last Name"
-      sortable
-      class="w-1/6"
-      :show-filter-match-modes="false"
-    >
-      <template #filter="{ filterModel, filterCallback }">
-        <InputText
-          v-model="filterModel.value"
-          type="text"
-          @input="filterCallback()"
-          placeholder="Filter by Last Name"
-        />
-      </template>
-    </Column>
-    <Column field="email" header="Email" sortable class="w-1/6">
-      <template #body="{ data }">
-        <i class="pi pi-envelope"></i>
-        {{ data.email }}
-      </template>
-    </Column>
-    <Column field="jobType" header="Job Type" :sortable="false" class="w-1/6"></Column>
-    <Column
-      field="country"
-      header="Country"
-      sortable
-      class="w-1/6"
-      :show-filter-match-modes="false"
-    >
-      <template #filter="{ filterModel }">
-        <!-- NOTE fiter by text -->
-        <!-- <InputText
+    <template #content>
+      <DataTable
+        :value="products"
+        size="small"
+        data-key="id"
+        v-model:filters="filters1"
+        removableSort
+        paginator
+        sort-mode="multiple"
+        filterDisplay="menu"
+        :rows="5"
+        :rowsPerPageOptions="[5, 10, 20, 50]"
+      >
+        <template #header>
+          <div class="flex justify-between">
+            <Button
+              type="button"
+              icon="pi pi-filter-slash"
+              label="Clear Filters"
+              variant="outlined"
+              @click="onClearFilters()"
+            />
+            <Button
+              type="button"
+              label="Toggle Additional Columns"
+              variant="outlined"
+              @click="onToggleColumns()"
+            />
+          </div>
+        </template>
+        <template #empty> No products found. </template>
+        <Column
+          field="firstName"
+          header="First Name"
+          sortable
+          class="w-1/6"
+          :show-filter-match-modes="false"
+        >
+          <template #filter="{ filterModel, filterCallback }">
+            <InputText
+              v-model="filterModel.value"
+              type="text"
+              @input="filterCallback()"
+              placeholder="Filter by First Name"
+            />
+          </template>
+        </Column>
+        <Column
+          field="middleName"
+          header="Middle Name"
+          sortable
+          class="w-1/6"
+          :show-filter-match-modes="false"
+          :hidden="hideAdditionalColumns"
+        >
+          <template #filter="{ filterModel, filterCallback }">
+            <InputText
+              v-model="filterModel.value"
+              type="text"
+              @input="filterCallback()"
+              placeholder="Filter by Middle Name"
+            />
+          </template>
+        </Column>
+        <Column
+          field="lastName"
+          header="Last Name"
+          sortable
+          class="w-1/6"
+          :show-filter-match-modes="false"
+        >
+          <template #filter="{ filterModel, filterCallback }">
+            <InputText
+              v-model="filterModel.value"
+              type="text"
+              @input="filterCallback()"
+              placeholder="Filter by Last Name"
+            />
+          </template>
+        </Column>
+        <Column field="email" header="Email" sortable class="w-1/6">
+          <template #body="{ data }">
+            <i class="pi pi-envelope"></i>
+            {{ data.email }}
+          </template>
+        </Column>
+        <Column field="jobType" header="Job Type" :sortable="false" class="w-1/6"></Column>
+        <Column
+          field="country"
+          header="Country"
+          sortable
+          class="w-1/6"
+          :show-filter-match-modes="false"
+        >
+          <template #filter="{ filterModel }">
+            <!-- NOTE fiter by text -->
+            <!-- <InputText
           v-model="filterModel.value"
           type="text"
           @input="filterCallback()"
           placeholder="Filter by Country"
         /> -->
-        <!-- NOTE fiter by select -->
-        <!-- <Select
+            <!-- NOTE fiter by select -->
+            <!-- <Select
           v-model="filterModel.value"
           :options="countries"
           placeholder="Filter by Country"
          /> -->
-        <!-- NOTE fiter by multi select -->
-        <MultiSelect
-          v-model="filterModel.value"
-          :options="countries"
-          placeholder="Filter by Country"
-        />
-      </template>
-    </Column>
-  </DataTable>
-  <p class="my-3">
-    This table is using
-    <Tag severity="contrast" value="DataTable" rounded></Tag> and
-    <Tag severity="contrast" value="AppDataTableColumn" rounded></Tag>
-    components.
-  </p>
-  <DataTable
-    :value="products"
-    size="small"
-    data-key="id"
-    v-model:filters="filters2"
-    removableSort
-    paginator
-    sort-mode="multiple"
-    filterDisplay="menu"
-    :rows="5"
-    :rowsPerPageOptions="[5, 10, 20, 50]"
-  >
-    <template #header>
-      <div class="flex justify-between">
-        <Button
-          type="button"
-          icon="pi pi-filter-slash"
-          label="Clear Filters"
-          variant="outlined"
-          @click="onClearFilters()"
-        />
-        <Button
-          type="button"
-          label="Toggle Additional Columns"
-          variant="outlined"
-          @click="onToggleColumns()"
-        />
-      </div>
+            <!-- NOTE fiter by multi select -->
+            <MultiSelect
+              v-model="filterModel.value"
+              :options="countries"
+              placeholder="Filter by Country"
+            />
+          </template>
+        </Column>
+      </DataTable>
     </template>
-    <template #empty> No products found. </template>
-    <AppDataTableColumn
-      key="firstName"
-      field="firstName"
-      header="First Name"
-      css-class="w-1/6"
-      :is-sortable="true"
-      :is-filterable="true"
-    />
-    <AppDataTableColumn
-      key="middleName"
-      field="middleName"
-      header="Middle Name"
-      css-class="w-1/6"
-      :is-sortable="true"
-      :is-hidden="hideAdditionalColumns"
-      :is-filterable="true"
-    />
-    <AppDataTableColumn
-      key="lastName"
-      field="lastName"
-      header="Last Name"
-      css-class="w-1/6"
-      :is-sortable="true"
-      :is-filterable="true"
-    />
-    <AppDataTableColumn
-      key="email"
-      field="email"
-      header="Email"
-      css-class="w-1/6"
-      :is-sortable="true"
-    >
-      <template #body="{ data }">
-        <i class="pi pi-envelope"></i>
-        {{ data.email }}
-      </template>
-    </AppDataTableColumn>
-    <AppDataTableColumn
-      key="jobType"
-      field="jobType"
-      header="Job Type"
-      :is-sortable="false"
-      css-class="w-1/6"
-    />
-    <AppDataTableColumn
-      key="country"
-      field="country"
-      header="Country"
-      css-class="w-1/6"
-      :is-sortable="true"
-      :is-filterable="true"
-      :filter-options="countries"
-      :is-filter-options-multi-select="true"
-    />
-  </DataTable>
-  <p class="my-3">
-    This table is using
-    <Tag severity="contrast" value="AppDataTable" rounded></Tag> and
-    <Tag severity="contrast" value="AppDataTableColumn" rounded></Tag>
-    components.
-  </p>
-  <AppDataTable :data="products" v-model:filters="filters3">
-    <AppDataTableColumn
-      key="firstName"
-      field="firstName"
-      header="First Name"
-      css-class="w-1/6"
-      :is-sortable="true"
-      :is-filterable="true"
-    />
-    <AppDataTableColumn
-      key="middleName"
-      field="middleName"
-      header="Middle Name"
-      css-class="w-1/6"
-      :is-hidden="hideAdditionalColumns"
-      :is-sortable="true"
-      :is-filterable="true"
-    />
-    <AppDataTableColumn
-      key="lastName"
-      field="lastName"
-      header="Last Name"
-      css-class="w-1/6"
-      :is-sortable="true"
-      :is-filterable="true"
-    />
-    <AppDataTableColumn
-      key="email"
-      field="email"
-      header="Email"
-      css-class="w-1/6"
-      :is-sortable="true"
-    >
-      <template #body="{ data }">
-        <i class="pi pi-envelope"></i>
-        {{ data.email }}
-      </template>
-    </AppDataTableColumn>
-    <AppDataTableColumn
-      key="jobType"
-      field="jobType"
-      header="Job Type"
-      :is-sortable="false"
-      css-class="w-1/6"
-    />
-    <AppDataTableColumn
-      key="country"
-      field="country"
-      header="Country"
-      css-class="w-1/6"
-      :is-sortable="true"
-      :is-filterable="true"
-      :filter-options="countries"
-      :is-filter-options-multi-select="true"
-    />
-  </AppDataTable>
+  </Card>
+
+  <Card class="mx-2 my-4">
+    <template #title>
+      <p>
+        This table is using
+        <Tag severity="contrast" value="DataTable" rounded></Tag> and
+        <Tag severity="contrast" value="AppDataTableColumn" rounded></Tag>
+        components.
+      </p>
+    </template>
+    <template #content>
+      <DataTable
+        :value="products"
+        size="small"
+        data-key="id"
+        v-model:filters="filters2"
+        removableSort
+        paginator
+        sort-mode="multiple"
+        filterDisplay="menu"
+        :rows="5"
+        :rowsPerPageOptions="[5, 10, 20, 50]"
+      >
+        <template #header>
+          <div class="flex justify-between">
+            <Button
+              type="button"
+              icon="pi pi-filter-slash"
+              label="Clear Filters"
+              variant="outlined"
+              @click="onClearFilters()"
+            />
+            <Button
+              type="button"
+              label="Toggle Additional Columns"
+              variant="outlined"
+              @click="onToggleColumns()"
+            />
+          </div>
+        </template>
+        <template #empty> No products found. </template>
+        <AppDataTableColumn
+          key="firstName"
+          field="firstName"
+          header="First Name"
+          css-class="w-1/6"
+          :is-sortable="true"
+          :is-filterable="true"
+        />
+        <AppDataTableColumn
+          key="middleName"
+          field="middleName"
+          header="Middle Name"
+          css-class="w-1/6"
+          :is-sortable="true"
+          :is-hidden="hideAdditionalColumns"
+          :is-filterable="true"
+        />
+        <AppDataTableColumn
+          key="lastName"
+          field="lastName"
+          header="Last Name"
+          css-class="w-1/6"
+          :is-sortable="true"
+          :is-filterable="true"
+        />
+        <AppDataTableColumn
+          key="email"
+          field="email"
+          header="Email"
+          css-class="w-1/6"
+          :is-sortable="true"
+        >
+          <template #body="{ data }">
+            <i class="pi pi-envelope"></i>
+            {{ data.email }}
+          </template>
+        </AppDataTableColumn>
+        <AppDataTableColumn
+          key="jobType"
+          field="jobType"
+          header="Job Type"
+          :is-sortable="false"
+          css-class="w-1/6"
+        />
+        <AppDataTableColumn
+          key="country"
+          field="country"
+          header="Country"
+          css-class="w-1/6"
+          :is-sortable="true"
+          :is-filterable="true"
+          :filter-options="countries"
+          :is-filter-options-multi-select="true"
+        />
+      </DataTable>
+    </template>
+  </Card>
+
+  <Card class="mx-2 my-4">
+    <template #title>
+      <p class="my-3">
+        This table is using
+        <Tag severity="contrast" value="AppDataTable" rounded></Tag> and
+        <Tag severity="contrast" value="AppDataTableColumn" rounded></Tag>
+        components.
+      </p>
+    </template>
+    <template #content>
+      <AppDataTable :data="products" v-model:filters="filters3">
+        <AppDataTableColumn
+          key="firstName"
+          field="firstName"
+          header="First Name"
+          css-class="w-1/6"
+          :is-sortable="true"
+          :is-filterable="true"
+        />
+        <AppDataTableColumn
+          key="middleName"
+          field="middleName"
+          header="Middle Name"
+          css-class="w-1/6"
+          :is-hidden="hideAdditionalColumns"
+          :is-sortable="true"
+          :is-filterable="true"
+        />
+        <AppDataTableColumn
+          key="lastName"
+          field="lastName"
+          header="Last Name"
+          css-class="w-1/6"
+          :is-sortable="true"
+          :is-filterable="true"
+        />
+        <AppDataTableColumn
+          key="email"
+          field="email"
+          header="Email"
+          css-class="w-1/6"
+          :is-sortable="true"
+        >
+          <template #body="{ data }">
+            <i class="pi pi-envelope"></i>
+            {{ data.email }}
+          </template>
+        </AppDataTableColumn>
+        <AppDataTableColumn
+          key="jobType"
+          field="jobType"
+          header="Job Type"
+          :is-sortable="false"
+          css-class="w-1/6"
+        />
+        <AppDataTableColumn
+          key="country"
+          field="country"
+          header="Country"
+          css-class="w-1/6"
+          :is-sortable="true"
+          :is-filterable="true"
+          :filter-options="countries"
+          :is-filter-options-multi-select="true"
+        />
+      </AppDataTable>
+    </template>
+  </Card>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import AppDataTableColumn from '@/components/tables/app-data-table-column.vue'
+import AppDataTable from '@/components/tables/app-data-table.vue'
 import type { Product } from '@/types'
 import { FilterMatchMode } from '@primevue/core/api'
-import AppDataTable from '@/components/tables/app-data-table.vue'
 import { useFetch } from '@vueuse/core'
+import { onMounted, ref } from 'vue'
 
 onMounted(async () => {
   initFilters()
