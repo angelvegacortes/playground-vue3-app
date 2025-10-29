@@ -1,6 +1,6 @@
+import { useUserStore } from '@/stores/user'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home-view.vue'
-import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -66,6 +66,12 @@ const router = createRouter({
       path: '/test/4',
       name: 'test4',
       component: () => import('../views/examples/test4-view.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/test/5',
+      name: 'test5',
+      component: () => import('../views/examples/test5-view.vue'),
       meta: { requiresAuth: true },
     },
     {
