@@ -10,16 +10,16 @@
     </template>
     <template #content>
       <DataTable
+        v-model:filters="filters1"
         :value="products"
         size="small"
         data-key="id"
-        v-model:filters="filters1"
-        removableSort
+        removable-sort
         paginator
         sort-mode="multiple"
-        filterDisplay="menu"
+        filter-display="menu"
         :rows="5"
-        :rowsPerPageOptions="[5, 10, 20, 50]"
+        :rows-per-page-options="[5, 10, 20, 50]"
       >
         <template #header>
           <div class="flex justify-between">
@@ -50,8 +50,8 @@
             <InputText
               v-model="filterModel.value"
               type="text"
-              @input="filterCallback()"
               placeholder="Filter by First Name"
+              @input="filterCallback()"
             />
           </template>
         </Column>
@@ -67,8 +67,8 @@
             <InputText
               v-model="filterModel.value"
               type="text"
-              @input="filterCallback()"
               placeholder="Filter by Middle Name"
+              @input="filterCallback()"
             />
           </template>
         </Column>
@@ -83,8 +83,8 @@
             <InputText
               v-model="filterModel.value"
               type="text"
-              @input="filterCallback()"
               placeholder="Filter by Last Name"
+              @input="filterCallback()"
             />
           </template>
         </Column>
@@ -139,16 +139,16 @@
     </template>
     <template #content>
       <DataTable
+        v-model:filters="filters2"
         :value="products"
         size="small"
         data-key="id"
-        v-model:filters="filters2"
-        removableSort
+        removable-sort
         paginator
         sort-mode="multiple"
-        filterDisplay="menu"
+        filter-display="menu"
         :rows="5"
-        :rowsPerPageOptions="[5, 10, 20, 50]"
+        :rows-per-page-options="[5, 10, 20, 50]"
       >
         <template #header>
           <div class="flex justify-between">
@@ -236,7 +236,7 @@
       </p>
     </template>
     <template #content>
-      <AppDataTable :data="products" v-model:filters="filters3">
+      <AppDataTable v-model:filters="filters3" :data="products">
         <AppDataTableColumn
           key="firstName"
           field="firstName"

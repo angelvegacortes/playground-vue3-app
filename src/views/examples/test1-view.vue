@@ -31,21 +31,21 @@ onMounted(async () => {
 
 <template>
   <div class="grid grid-cols-3 gap-3">
-    <Card class="mb-5" v-if="can('read', 'featureA')">
+    <Card v-if="can('read', 'featureA')" class="mb-5">
       <template #title>Feature A Test</template>
       <template #content>
         <ATestParent />
       </template>
     </Card>
 
-    <Card class="mb-5" v-if="can('read', 'featureB')">
+    <Card v-if="can('read', 'featureB')" class="mb-5">
       <template #title>Feature B Test</template>
       <template #content>
         <BTestParent />
       </template>
     </Card>
 
-    <Card class="mb-5" v-if="can('read', 'featureC')">
+    <Card v-if="can('read', 'featureC')" class="mb-5">
       <template #title>Feature C Test</template>
       <template #content>
         <CTestParent />

@@ -1,17 +1,17 @@
 <template>
   <DataTable
+    v-model:filters="filtersModel"
     :value="data"
     :size="size"
     :data-key="dataKey"
-    v-model:filters="filtersModel"
-    removableSort
+    removable-sort
     paginator
     sort-mode="multiple"
-    filterDisplay="menu"
+    filter-display="menu"
     :rows="rows"
-    :rowsPerPageOptions="rowsPerPageOptions"
+    :rows-per-page-options="rowsPerPageOptions"
   >
-    <template #header v-if="filtersModel">
+    <template v-if="filtersModel" #header>
       <div class="flex justify-between">
         <Button
           type="button"

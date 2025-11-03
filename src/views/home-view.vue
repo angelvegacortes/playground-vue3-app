@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-4xl">Welcome to home page!</h1>
+  <h1 class="text-4xl">Welcome to the home page!</h1>
   <AppDummyText class="my-5" />
   <AppDummyText class="my-5" />
   <AppDummyText class="my-5" />

@@ -14,7 +14,18 @@ export default defineConfigWithVueTs(
     name: 'app/files-to-ignore',
     ignores: ['dist/**', 'coverage/**', 'docker/**'],
   },
-  pluginVue.configs['flat/essential'],
+  pluginVue.configs['flat/recommended'],
+  {
+    rules: {
+      'vue/component-api-style': ['error', ['script-setup']],
+      'vue/block-order': [
+        'error',
+        {
+          order: [['template', 'script'], 'style'],
+        },
+      ],
+    },
+  },
   vueTsConfigs.recommended,
   {
     plugins: {

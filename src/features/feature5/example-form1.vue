@@ -2,10 +2,10 @@
   <Form
     ref="formApi"
     v-slot="$form"
-    :initialValues
+    :initial-values
     :resolver="resolver"
-    @submit="onFormSubmit"
     class="flex flex-col gap-4 w-full sm:w-56"
+    @submit="onFormSubmit"
   >
     <div class="flex flex-col gap-1">
       <div>

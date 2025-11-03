@@ -2,8 +2,8 @@
   <div>
     <FloatLabel variant="on">
       <InputText
-        v-model="value"
         :id="field"
+        v-model="value"
         :name="field"
         type="text"
         :invalid="errorMessage ? true : false"

@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-2 gap-2">
     <div>
-      <form @submit="onSubmit" class="flex flex-col gap-4 w-full sm:w-56">
+      <form class="flex flex-col gap-4 w-full sm:w-56" @submit="onSubmit">
         <div class="flex flex-col gap-1">
           <AppInputText field="email" label="Email" />
           <Fieldset>

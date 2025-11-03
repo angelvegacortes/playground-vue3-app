@@ -14,21 +14,21 @@
         <span>{{ slotProps.data[field] ?? EMPTY_VALUE_PLACEHOLDER }}</span>
       </slot>
     </template>
-    <template #filter="{ filterModel, filterCallback }" v-if="isFilterable">
+    <template v-if="isFilterable" #filter="{ filterModel, filterCallback }">
       <InputText
         v-if="showFilterByText"
         v-model="filterModel.value"
         type="text"
-        @input="filterCallback()"
         :placeholder="filterPlaceholder"
+        @input="filterCallback()"
       />
       <InputNumber
         v-if="showFilterByNumber"
         v-model="filterModel.value"
         :min="0"
         show-buttons
-        @input="filterCallback()"
         :placeholder="filterPlaceholder"
+        @input="filterCallback()"
       />
       <Select
         v-if="showFilterBySelect"
@@ -52,9 +52,9 @@
 import { computed } from 'vue'
 
 const {
-  field = '',
-  header = '',
-  cssClass = 'w-1/4',
+  field,
+  header,
+  cssClass,
   isHidden = false,
   isSortable = false,
   isFilterable = false,

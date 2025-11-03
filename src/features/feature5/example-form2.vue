@@ -1,13 +1,13 @@
 <template>
-  <form @submit="onSubmit" class="flex flex-col gap-4 w-full sm:w-56">
+  <form class="flex flex-col gap-4 w-full sm:w-56" @submit="onSubmit">
     <div class="flex flex-col gap-1">
       <div>
         <FloatLabel variant="on">
           <InputText
             id="email"
+            v-model="email"
             name="email"
             type="text"
-            v-model="email"
             v-bind="emailAttrs"
             :invalid="errors.email ? true : false"
             fluid

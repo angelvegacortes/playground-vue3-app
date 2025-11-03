@@ -3,49 +3,49 @@
   <Menubar>
     <template #start>
       <div class="mr-5">{{ title }}</div>
-      <Button as="router-link" to="/" class="mr-2" v-tooltip="'Home'" label="Home">
+      <Button v-tooltip="'Home'" as="router-link" to="/" class="mr-2" label="Home">
         <span class="material-symbols-rounded">home</span>
         <span>Home</span>
       </Button>
       <Button
+        v-tooltip="'Test 1'"
         as="RouterLink"
         to="/test/1"
         class="mr-2"
         icon="pi pi-chart-scatter"
         label="Test 1"
-        v-tooltip="'Test 1'"
       />
       <Button
+        v-tooltip="'Test 2'"
         as="RouterLink"
         to="/test/2"
         class="mr-2"
         icon="pi pi-chart-scatter"
         label="Test 2"
-        v-tooltip="'Test 2'"
       />
       <Button
+        v-tooltip="'Test 3'"
         as="RouterLink"
         to="/test/3"
         class="mr-2"
         icon="pi pi-chart-scatter"
         label="Test 3"
-        v-tooltip="'Test 3'"
       />
       <Button
+        v-tooltip="'Test 4'"
         as="RouterLink"
         to="/test/4"
         class="mr-2"
         icon="pi pi-chart-scatter"
         label="Test 4"
-        v-tooltip="'Test 4'"
       />
       <Button
+        v-tooltip="'Test 5'"
         as="RouterLink"
         to="/test/5"
         class="mr-2"
         icon="pi pi-chart-scatter"
         label="Test 5"
-        v-tooltip="'Test 5'"
       />
     </template>
     <template #end>
