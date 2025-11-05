@@ -9,7 +9,10 @@
         :invalid="errorMessage ? true : false"
         fluid
       />
-      <label :for="field">{{ label }}</label>
+      <label :for="field">
+        <span v-if="isRequired" class="mr-1 text-red-700">*</span>
+        {{ label }}
+      </label>
     </FloatLabel>
     <Message v-if="errorMessage" severity="error" size="small" variant="simple">{{
       errorMessage
@@ -20,9 +23,14 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate'
 
-const { field, label } = defineProps<{
+const {
+  field,
+  label,
+  isRequired = false,
+} = defineProps<{
   field: string
   label: string
+  isRequired?: boolean
 }>()
 
 const { value, errorMessage } = useField<string>(() => field)

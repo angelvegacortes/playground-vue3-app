@@ -2,8 +2,9 @@ import { vi } from 'vitest'
 import { config } from '@vue/test-utils'
 import { abilitiesPlugin } from '@casl/vue'
 import ability from './src/auth/ability-config-advanced'
+import PrimeVue from 'primevue/config'
 
-config.global.plugins = [[abilitiesPlugin, ability]]
+config.global.plugins = [[abilitiesPlugin, ability], PrimeVue]
 
 // In your setupTests.js or a similar setup file
 Object.defineProperty(window, 'matchMedia', {

@@ -1,17 +1,12 @@
 <template>
-  <Dialog :visible="isVisible" modal :header="header" :closable="isClosable" append-to="self">
+  <Dialog :visible="isVisible" modal :header="header" :closable="false" append-to="self">
     <slot></slot>
   </Dialog>
 </template>
 
 <script setup lang="ts">
-const {
-  header,
-  isVisible,
-  isClosable = false,
-} = defineProps<{
+const { header, isVisible } = defineProps<{
   header: string
   isVisible: boolean
-  isClosable?: boolean
 }>()
 </script>

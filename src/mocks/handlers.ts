@@ -1,6 +1,6 @@
-import { http, HttpResponse } from 'msw'
 import { type CalendarEvent, type Product, type User } from '@/types'
 import { faker } from '@faker-js/faker'
+import { http, HttpResponse } from 'msw'
 
 const getUserData = (): User => {
   const user: User = {
@@ -37,8 +37,8 @@ const getCalendarEvents = (limit: number): CalendarEvent[] => {
   for (let i = 0; i < limit; i++) {
     calendarEvents.push({
       title: faker.book.title(),
-      start: faker.date.between({ from: '2025-10-01', to: '2025-10-15' }),
-      end: faker.date.between({ from: '2025-10-16', to: '2025-10-31' }),
+      start: faker.date.recent({ days: 1 }),
+      end: faker.date.soon({ days: 10 }),
     })
   }
   return calendarEvents

@@ -24,6 +24,14 @@ export default defineConfigWithVueTs(
           order: [['template', 'script'], 'style'],
         },
       ],
+      'vue/component-name-in-template-casing': [
+        'error',
+        'PascalCase',
+        {
+          registeredComponentsOnly: false,
+          ignores: [],
+        },
+      ],
     },
   },
   vueTsConfigs.recommended,

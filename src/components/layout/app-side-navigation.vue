@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useUserStore } from '@/stores/user'
+import { ref } from 'vue'
 const userStore = useUserStore()
 const visible = ref(false)
 </script>

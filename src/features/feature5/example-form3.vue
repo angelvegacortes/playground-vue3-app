@@ -1,7 +1,7 @@
 <template>
   <form class="flex flex-col gap-4 w-full sm:w-56" @submit="onSubmit">
     <div class="flex flex-col gap-1">
-      <AppInputText field="email" label="Email" />
+      <AppInputText field="email" label="Email" :is-required="true" />
     </div>
     <Button severity="secondary" label="Clear" @click="resetForm()" />
     <Button type="submit" label="Submit" />

@@ -1,6 +1,10 @@
 <template>
   <div class="footer-bg-color text-center text-black">
-    {{ title }} | Version: {{ version }} | {{ date }}
+    <span>{{ title }}</span>
+    <span class="mx-4">|</span>
+    <span>Version: {{ version }}</span>
+    <span class="mx-4">|</span>
+    <span>{{ date }}</span>
   </div>
 </template>
 
