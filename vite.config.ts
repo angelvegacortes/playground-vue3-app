@@ -1,12 +1,12 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { runtimeEnv } from 'vite-plugin-runtime'
-import { defineConfig, mergeConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import Components from 'unplugin-vue-components/vite'
 import { PrimeVueResolver } from '@primevue/auto-import-resolver'
 import tailwindcss from '@tailwindcss/vite'
+import vue from '@vitejs/plugin-vue'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig, mergeConfig } from 'vite'
+import { runtimeEnv } from 'vite-plugin-runtime'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -26,7 +26,7 @@ export default defineConfig(({ command, mode }) => {
     ],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@app': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
   }

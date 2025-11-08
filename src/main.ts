@@ -1,8 +1,9 @@
 import './assets/main.css'
 
-import ability from '@/auth/ability-config-advanced'
-import { worker } from '@/mocks/browser'
+import ability from '@app/auth/ability-config-advanced'
+import { worker } from '@app/mocks/browser'
 import { abilitiesPlugin } from '@casl/vue'
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import PrimeVue from 'primevue/config'
@@ -30,6 +31,7 @@ prepare().then(() => {
   const pinia = createPinia()
   pinia.use(piniaPluginPersistedstate)
 
+  app.use(VueQueryPlugin)
   app.use(ToastService)
   app.use(pinia)
   app.use(router)

@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import DummyText from '@/components/text/app-dummy-text.vue'
-import { useUserStore } from '@/stores/user'
+import DummyText from '@app/components/text/app-dummy-text.vue'
+import { useUserStore } from '@app/stores/user'
 import { onMounted, onUnmounted } from 'vue'
 
 const userStore = useUserStore()

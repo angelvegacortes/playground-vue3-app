@@ -1,5 +1,5 @@
-import { server } from '@/mocks/node'
-import router from '@/router'
+import { server } from '@app/mocks/node'
+import router from '@app/router'
 import { createTestingPinia } from '@pinia/testing'
 import { render } from '@testing-library/vue'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'

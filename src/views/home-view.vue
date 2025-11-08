@@ -6,5 +6,5 @@
 </template>
 
 <script setup lang="ts">
-import AppDummyText from '@/components/text/app-dummy-text.vue'
+import AppDummyText from '@app/components/text/app-dummy-text.vue'
 </script>

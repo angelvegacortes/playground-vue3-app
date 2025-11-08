@@ -1,8 +1,7 @@
-import ability from '@/auth/ability-config-advanced'
-import { server } from '@/mocks/node'
-import type { CalendarEvent } from '@/types'
+import ability from '@app/auth/ability-config-advanced'
+import mockData from '@app/mocks/data'
+import { server } from '@app/mocks/node'
 import { render } from '@testing-library/vue'
-import { useFetch } from '@vueuse/core'
 import { DateTime } from 'luxon'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import AppCalendar from './app-calendar.vue'
@@ -40,15 +39,14 @@ describe('app-calendar', () => {
   })
 
   it('shows events', async () => {
-    const { data } = await useFetch<CalendarEvent[]>('api/calendar/events').get().json()
+    const events = mockData.getCalendarEvents(1)
 
     const { queryAllByText } = render(AppCalendar, {
       props: {
-        events: data.value,
+        events: events,
       },
     })
 
-    expect(queryAllByText(data.value[0].title).length).toBeGreaterThanOrEqual(1)
-    expect(queryAllByText(data.value[1].title).length).toBeGreaterThanOrEqual(1)
+    expect(queryAllByText(events[0]!.title).length).toBeGreaterThanOrEqual(1)
   })
 })

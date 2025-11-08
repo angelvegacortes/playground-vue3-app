@@ -1,8 +1,8 @@
-import { ref } from 'vue'
-import 'pinia-plugin-persistedstate'
+import apiService from '@app/services'
+import { type User } from '@app/types'
 import { defineStore } from 'pinia'
-import { type User } from '@/types'
-import { useFetch } from '@vueuse/core'
+import 'pinia-plugin-persistedstate'
+import { ref } from 'vue'
 
 export const useUserStore = defineStore(
   'user',
@@ -10,9 +10,14 @@ export const useUserStore = defineStore(
     const user = ref<User | null>(null)
 
     const init = async () => {
-      if (user.value == null) {
-        const { data } = await useFetch<User>('api/user').get().json()
-        user.value = data.value
+      if (user.value === null) {
+        const { data, error } = apiService.getUser()
+
+        if (error) {
+          console.error(error.value?.message)
+        } else {
+          user.value = data.value!
+        }
       }
     }
 

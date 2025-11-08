@@ -1,32 +1,13 @@
 <script setup lang="ts">
-import ATestParent from '@/features/featureA/ATestParent.vue'
-import BTestParent from '@/features/featureB/BTestParent.vue'
-import CTestParent from '@/features/featureC/CTestParent.vue'
-import { useFetch } from '@vueuse/core'
-import { onMounted, ref } from 'vue'
-import { useAppAbility } from '@/auth/use-app-ability'
+import { useAppAbility } from '@app/auth/use-app-ability'
+import ATestParent from '@app/features/featureA/ATestParent.vue'
+import BTestParent from '@app/features/featureB/BTestParent.vue'
+import CTestParent from '@app/features/featureC/CTestParent.vue'
+import apiService from '@app/services'
 
 const { can } = useAppAbility()
-const url = ref('api/test/200')
-const isFetching = ref(false)
-const data = ref()
-const error = ref(null)
 
-onMounted(async () => {
-  const {
-    isFetching: fetchingStatus,
-    error: fetchedError,
-    data: fetchedData,
-  } = await useFetch(url, {
-    refetch: true,
-  })
-    .get()
-    .json()
-
-  isFetching.value = fetchingStatus.value
-  data.value = fetchedData.value
-  error.value = fetchedError.value
-})
+const { data, error, isFetching } = apiService.getTestData()
 </script>
 
 <template>
@@ -64,7 +45,6 @@ onMounted(async () => {
         <span v-if="error"> Error: {{ error }}</span>
         <p>Is data null? {{ data === null }}</p>
         <p>Is data undefined? {{ data === undefined }}</p>
-        <p>Is data an empty string? {{ data === '' }}</p>
       </div>
     </template>
   </Card>

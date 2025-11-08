@@ -1,4 +1,4 @@
-import router from '@/router'
+import router from '@app/router'
 import { createTestingPinia } from '@pinia/testing'
 import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'

@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import AppDialog from '@/components/layout/app-dialog.vue'
-import { useUserStore } from '@/stores/user'
+import AppDialog from '@app/components/layout/app-dialog.vue'
+import { useUserStore } from '@app/stores/user'
 
 const userStore = useUserStore()
 </script>

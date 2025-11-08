@@ -1,4 +1,4 @@
-import ability from '@/auth/ability-config-advanced'
+import ability from '@app/auth/ability-config-advanced'
 import { render } from '@testing-library/vue'
 import { beforeEach, describe, expect, it } from 'vitest'
 import Test1View from './test1-view.vue'
@@ -9,8 +9,8 @@ describe('test1-view', () => {
     ability.update([])
   })
 
-  it('shows no features without permissions', () => {
-    const { queryByText } = render(Test1View)
+  it('shows no features without permissions', async () => {
+    const { queryByText } = await render(Test1View)
 
     expect(queryByText('Feature A Test')).toBeNull()
     expect(queryByText('Feature B Test')).toBeNull()

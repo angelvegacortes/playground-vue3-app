@@ -11,7 +11,7 @@
       />
       <label :for="field">
         <span v-if="isRequired" class="mr-1 text-red-700">*</span>
-        {{ label }}
+        <span>{{ label }}</span>
       </label>
     </FloatLabel>
     <Message v-if="errorMessage" severity="error" size="small" variant="simple">{{

@@ -11,7 +11,7 @@
     <template #content>
       <DataTable
         v-model:filters="filters1"
-        :value="products"
+        :value="products!"
         size="small"
         data-key="id"
         removable-sort
@@ -140,7 +140,7 @@
     <template #content>
       <DataTable
         v-model:filters="filters2"
-        :value="products"
+        :value="products!"
         size="small"
         data-key="id"
         removable-sort
@@ -236,7 +236,7 @@
       </p>
     </template>
     <template #content>
-      <AppDataTable v-model:filters="filters3" :data="products">
+      <AppDataTable v-model:filters="filters3" :data="products!">
         <AppDataTableColumn
           key="firstName"
           field="firstName"
@@ -297,16 +297,17 @@
 </template>
 
 <script setup lang="ts">
-import AppDataTableColumn from '@/components/tables/app-data-table-column.vue'
-import AppDataTable from '@/components/tables/app-data-table.vue'
-import type { Product } from '@/types'
+import AppDataTableColumn from '@app/components/tables/app-data-table-column.vue'
+import AppDataTable from '@app/components/tables/app-data-table.vue'
+import apiService from '@app/services'
+import type { Product } from '@app/types'
 import { FilterMatchMode } from '@primevue/core/api'
-import { useFetch } from '@vueuse/core'
 import { onMounted, ref } from 'vue'
+
+const { data: products } = apiService.getProducts()
 
 onMounted(async () => {
   initFilters()
-  await getProducts()
   getCountries()
 })
 
@@ -320,18 +321,6 @@ const baseFilters = ref({
 const filters1 = ref()
 const filters2 = ref()
 const filters3 = ref()
-
-const products = ref<Product[]>([])
-
-const getProducts = async () => {
-  const { data, error } = await useFetch<Product[]>('api/products').get().json()
-
-  if (error.value) {
-    console.error(error.value)
-  } else {
-    products.value = data.value!
-  }
-}
 
 const countries = ref<string[]>([])
 

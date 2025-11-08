@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CalendarEvent } from '@/types'
+import type { CalendarEvent } from '@app/types'
 import { type CalendarOptions } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'

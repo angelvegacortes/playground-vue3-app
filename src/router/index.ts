@@ -1,4 +1,4 @@
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@app/stores/user'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home-view.vue'
 
@@ -37,22 +37,22 @@ const router = createRouter({
         {
           path: '',
           name: 'test2',
-          component: () => import('@/features/featureA/ATestParent.vue'),
+          component: () => import('@app/features/featureA/ATestParent.vue'),
         },
         {
           path: 'feature/a',
           name: 'feature/a',
-          component: () => import('@/features/featureA/ATestParent.vue'),
+          component: () => import('@app/features/featureA/ATestParent.vue'),
         },
         {
           path: 'feature/b',
           name: 'feature/b',
-          component: () => import('@/features/featureB/BTestParent.vue'),
+          component: () => import('@app/features/featureB/BTestParent.vue'),
         },
         {
           path: 'feature/c',
           name: 'feature/c',
-          component: () => import('@/features/featureC/CTestParent.vue'),
+          component: () => import('@app/features/featureC/CTestParent.vue'),
         },
       ],
     },

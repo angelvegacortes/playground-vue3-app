@@ -1,28 +1,6 @@
 <script setup lang="ts">
-import { useFetch } from '@vueuse/core'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-
-const url = ref('api/test/200')
-const isFetching = ref(false)
-const data = ref()
-const error = ref(null)
-
-onMounted(async () => {
-  const {
-    isFetching: fetchingStatus,
-    error: fetchedError,
-    data: fetchedData,
-  } = await useFetch(url, {
-    refetch: true,
-  })
-    .get()
-    .json()
-
-  isFetching.value = fetchingStatus.value
-  data.value = fetchedData.value
-  error.value = fetchedError.value
-})
 
 const tabs = ref([
   { route: '/test/2/feature/a', label: 'Feature A', icon: 'pi pi-chart-line' },

@@ -1,10 +1,19 @@
-import { vi } from 'vitest'
-import { config } from '@vue/test-utils'
 import { abilitiesPlugin } from '@casl/vue'
-import ability from './src/auth/ability-config-advanced'
+import { QueryClient, VueQueryPlugin } from '@tanstack/vue-query'
+import { config } from '@vue/test-utils'
 import PrimeVue from 'primevue/config'
+import ToastService from 'primevue/toastservice'
+import { vi } from 'vitest'
+import ability from './src/auth/ability-config-advanced'
 
-config.global.plugins = [[abilitiesPlugin, ability], PrimeVue]
+const queryClient = new QueryClient()
+
+config.global.plugins = [
+  [abilitiesPlugin, ability],
+  PrimeVue,
+  ToastService,
+  [VueQueryPlugin, { queryClient }],
+]
 
 // In your setupTests.js or a similar setup file
 Object.defineProperty(window, 'matchMedia', {

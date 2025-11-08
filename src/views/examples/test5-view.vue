@@ -111,10 +111,10 @@
 </template>
 
 <script setup lang="ts">
-import ExampleForm1 from '@/features/feature5/example-form1.vue'
-import ExampleForm2 from '@/features/feature5/example-form2.vue'
-import ExampleForm3 from '@/features/feature5/example-form3.vue'
-import ExampleForm4 from '@/features/feature5/example-form4.vue'
-import ExampleForm5 from '@/features/feature5/example-form5.vue'
-import ExampleForm6 from '@/features/feature5/example-form6.vue'
+import ExampleForm1 from '@app/features/feature5/example-form1.vue'
+import ExampleForm2 from '@app/features/feature5/example-form2.vue'
+import ExampleForm3 from '@app/features/feature5/example-form3.vue'
+import ExampleForm4 from '@app/features/feature5/example-form4.vue'
+import ExampleForm5 from '@app/features/feature5/example-form5.vue'
+import ExampleForm6 from '@app/features/feature5/example-form6.vue'
 </script>

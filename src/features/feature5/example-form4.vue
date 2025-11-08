@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import AppInputText from '@/components/forms/app-input-text.vue'
+import AppInputText from '@app/components/forms/app-input-text.vue'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 import { formSchema2 } from './schemas'

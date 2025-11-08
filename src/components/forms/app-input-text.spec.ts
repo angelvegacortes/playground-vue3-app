@@ -26,6 +26,6 @@ describe('app-input-text', () => {
       },
     })
 
-    expect(getByRole('textbox', { name: `* ${inputLabel}` })).toBeTruthy()
+    expect(getByRole('textbox', { name: `*${inputLabel}` })).toBeTruthy()
   })
 })

@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@app/stores/user'
 
 const userStore = useUserStore()
 const title = import.meta.env.VITE_APP_TITLE
