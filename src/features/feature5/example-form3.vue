@@ -13,6 +13,7 @@ import AppInputText from '@app/components/forms/app-input-text.vue'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 import { formSchema1 } from './schemas'
+import { scrollToFieldError } from './utils'
 
 const toast = useToast()
 
@@ -22,14 +23,6 @@ const { handleSubmit, resetForm, errors } = useForm({
     email: '',
   },
 })
-
-const scrollToFieldError = (fieldName: string) => {
-  const el = document.querySelector(`[name="${fieldName}"]`) as HTMLElement
-  el?.scrollIntoView({
-    behavior: 'smooth',
-  })
-  el?.focus()
-}
 
 const onSubmitSuccess = () => {
   toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })

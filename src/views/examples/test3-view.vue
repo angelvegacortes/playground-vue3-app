@@ -11,6 +11,7 @@
     <template #content>
       <DataTable
         v-model:filters="filters1"
+        :loading="isLoading"
         :value="products!"
         size="small"
         data-key="id"
@@ -141,6 +142,7 @@
       <DataTable
         v-model:filters="filters2"
         :value="products!"
+        :loading="isLoading"
         size="small"
         data-key="id"
         removable-sort
@@ -236,7 +238,7 @@
       </p>
     </template>
     <template #content>
-      <AppDataTable v-model:filters="filters3" :data="products!">
+      <AppDataTable v-model:filters="filters3" :data="products!" :is-loading="isLoading">
         <AppDataTableColumn
           key="firstName"
           field="firstName"
@@ -302,13 +304,18 @@ import AppDataTable from '@app/components/tables/app-data-table.vue'
 import apiService from '@app/services'
 import type { Product } from '@app/types'
 import { FilterMatchMode } from '@primevue/core/api'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
-const { data: products } = apiService.getProducts()
+const { data: products, isLoading } = apiService.getProducts()
+
+watch(isLoading, (newValue) => {
+  if (newValue) {
+    getCountries()
+  }
+})
 
 onMounted(async () => {
   initFilters()
-  getCountries()
 })
 
 const baseFilters = ref({

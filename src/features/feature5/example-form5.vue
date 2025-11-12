@@ -46,6 +46,7 @@ import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 import { computed } from 'vue'
 import { formSchema3 } from './schemas'
+import { scrollToFieldError } from './utils'
 
 const toast = useToast()
 
@@ -63,14 +64,6 @@ const { handleSubmit, resetForm, values, errors } = useForm({
   },
 })
 
-const scrollToFieldError = (fieldName: string) => {
-  const el = document.querySelector(`[name="${fieldName}"]`) as HTMLElement
-  el?.scrollIntoView({
-    behavior: 'smooth',
-  })
-  el?.focus()
-}
-
 const onSubmitSuccess = () => {
   toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })
   resetForm()
@@ -78,10 +71,7 @@ const onSubmitSuccess = () => {
 
 const onSubmitError = () => {
   const errorKeys = Object.keys(errors.value)
-  // TODO Need to select closest error to parent form element when multiple errors are present
-  if (errorKeys.length === 1) {
-    scrollToFieldError(errorKeys[0]!)
-  }
+  scrollToFieldError(errorKeys[0]!)
 }
 
 const onSubmit = handleSubmit(onSubmitSuccess, onSubmitError)

@@ -1,7 +1,8 @@
 <template>
   <DataTable
     v-model:filters="filtersModel"
-    :value="data"
+    :value="value"
+    :loading="loading"
     :size="size"
     :data-key="dataKey"
     removable-sort
@@ -22,30 +23,41 @@
         />
       </div>
     </template>
-    <template #empty> No products found.</template>
+    <template #loading>Loading data...</template>
+    <template #empty>No data available.</template>
     <slot></slot>
   </DataTable>
 </template>
 
 <script setup lang="ts">
 import type { DataTableFilterMeta } from 'primevue/datatable'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const {
   data,
   size = 'small',
   dataKey = 'id',
   filters = undefined,
+  isLoading = false,
 } = defineProps<{
-  data: unknown[]
+  data: unknown[] | undefined
   size?: 'small' | 'large'
   dataKey?: string
   filters?: DataTableFilterMeta
+  isLoading?: boolean
 }>()
 
 const rows = ref(5)
 const rowsPerPageOptions = ref([5, 10, 20, 50])
 const filtersModel = ref()
+
+const value = computed(() => {
+  return data
+})
+
+const loading = computed(() => {
+  return isLoading
+})
 
 onMounted(() => {
   initFilters()

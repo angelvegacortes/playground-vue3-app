@@ -8,6 +8,7 @@
       <Tab value="3">Example 4</Tab>
       <Tab value="4">Example 5</Tab>
       <Tab value="5">Example 6</Tab>
+      <Tab value="6">Example 7</Tab>
     </TabList>
     <TabPanels>
       <TabPanel value="0">
@@ -106,6 +107,25 @@
           </template>
         </Card>
       </TabPanel>
+      <TabPanel value="6">
+        <Card class="mx-2 my-4">
+          <template #title>
+            <p>
+              This form is using
+              <Tag severity="contrast" value="AppInputText" rounded />,
+              <Tag severity="contrast" value="AppInputNumber" rounded />,
+              <Tag severity="contrast" value="AppSelect" rounded />,
+              <Tag severity="contrast" value="AppMultiSelect" rounded />,
+              <Tag severity="contrast" value="VeeValidate Forms" rounded />, and
+              <Tag severity="contrast" value="Zod Schema Validation" rounded />.
+            </p>
+            <p>It contains various required and optional form elements.</p>
+          </template>
+          <template #content>
+            <ExampleForm7 />
+          </template>
+        </Card>
+      </TabPanel>
     </TabPanels>
   </Tabs>
 </template>
@@ -117,4 +137,5 @@ import ExampleForm3 from '@app/features/feature5/example-form3.vue'
 import ExampleForm4 from '@app/features/feature5/example-form4.vue'
 import ExampleForm5 from '@app/features/feature5/example-form5.vue'
 import ExampleForm6 from '@app/features/feature5/example-form6.vue'
+import ExampleForm7 from '@app/features/feature5/example-form7.vue'
 </script>

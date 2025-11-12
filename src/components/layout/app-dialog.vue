@@ -1,5 +1,12 @@
 <template>
-  <Dialog :visible="isVisible" modal :header="header" :closable="false" append-to="self">
+  <Dialog
+    :visible="isVisible"
+    modal
+    :header="header"
+    :closable="false"
+    append-to="self"
+    v-bind="$attrs"
+  >
     <slot></slot>
   </Dialog>
 </template>
