@@ -2,45 +2,77 @@
   <div>
     <FloatLabel variant="on">
       <Select
+        v-if="isObjectArray"
         v-model="value"
-        :input-id="field"
-        :name="field"
-        :invalid="errorMessage ? true : false"
         fluid
+        :disabled="isDisabled"
+        :aria-label="ariaLabel"
+        :input-id="fieldName"
+        :name="fieldName"
+        :invalid="errorMessage ? true : false"
         :options="options"
         :option-value="optionValue"
         :option-label="optionLabel"
+        @change="emit('change')"
       />
-      <label :for="field">
-        <span v-if="isRequired" class="mr-1 text-red-700">*</span>
-        <span>{{ label }}</span>
-      </label>
+      <Select
+        v-else
+        v-model="value"
+        fluid
+        :disabled="isDisabled"
+        :aria-label="ariaLabel"
+        :input-id="fieldName"
+        :name="fieldName"
+        :invalid="errorMessage ? true : false"
+        :options="options"
+        @change="emit('change')"
+      />
+      <AppLabel :field="fieldName" :label="label" :is-required="isRequired" />
     </FloatLabel>
-    <Message v-if="errorMessage" severity="error" size="small" variant="simple">{{
-      errorMessage
-    }}</Message>
+    <AppErrorMessage :error="errorMessage" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useField } from 'vee-validate'
-import type { SelectOption } from './types'
+import { computed } from 'vue'
+import AppErrorMessage from './app-error-message.vue'
+import AppLabel from './app-label.vue'
+import type { AppSelectProps } from './types'
+import { DEFAULT_REQUIRED_INDICATOR, isObject } from './utils'
 
 const {
-  field,
   label,
   options,
+  field = undefined,
   optionLabel = 'label',
   optionValue = 'value',
   isRequired = false,
-} = defineProps<{
-  field: string
-  label: string
-  options: string[] | number[] | SelectOption[]
-  optionLabel?: string
-  optionValue?: string
-  isRequired?: boolean
+  isDisabled = false,
+} = defineProps<AppSelectProps>()
+
+defineModel<string | number>()
+
+const emit = defineEmits<{
+  change: []
 }>()
 
-const { value, errorMessage } = useField<string>(() => field)
+/**
+ * Account for field being used inside or outside of forms
+ */
+const fieldName = computed(() => {
+  return field ? field : label.replaceAll(' ', '')
+})
+
+const { value, errorMessage } = useField<string>(() => fieldName.value, undefined, {
+  syncVModel: true,
+})
+
+const isObjectArray = computed(() => {
+  return isObject(options[0])
+})
+
+const ariaLabel = computed(() => {
+  return isRequired ? `${DEFAULT_REQUIRED_INDICATOR}${label}` : label
+})
 </script>

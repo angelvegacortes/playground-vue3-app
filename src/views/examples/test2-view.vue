@@ -1,3 +1,15 @@
+<template>
+  <h1 class="text-2xl">Tabs</h1>
+  <Tabs :value="activeTab">
+    <TabList>
+      <Tab v-for="tab in tabs" :key="tab.label" :value="tab.route" as="RouterLink" :to="tab.route">
+        {{ tab.label }}
+      </Tab>
+    </TabList>
+  </Tabs>
+  <RouterView class="my-3" />
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -19,14 +31,3 @@ const getActiveTab = () => {
 
 const activeTab = ref(getActiveTab())
 </script>
-
-<template>
-  <Tabs :value="activeTab">
-    <TabList>
-      <Tab v-for="tab in tabs" :key="tab.label" :value="tab.route" as="RouterLink" :to="tab.route">
-        {{ tab.label }}
-      </Tab>
-    </TabList>
-  </Tabs>
-  <RouterView class="my-3" />
-</template>

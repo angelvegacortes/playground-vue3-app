@@ -4,7 +4,7 @@ import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import NotAuthorizedView from './not-authorized.vue'
 
-describe('consent-view', () => {
+describe('not-authorized', () => {
   it('shows title', () => {
     const { getByText } = render(NotAuthorizedView)
 

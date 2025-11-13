@@ -1,21 +1,12 @@
-import { faker } from '@faker-js/faker'
 import { render } from '@testing-library/vue'
 import Column from 'primevue/column'
 import { describe, expect, it } from 'vitest'
+import { createMockTableData } from '../mocks/data'
 import AppDataTable from './app-data-table.vue'
 
-const data = [
-  {
-    book: faker.book.title(),
-    color: faker.color.human(),
-  },
-  {
-    book: faker.book.title(),
-    color: faker.color.human(),
-  },
-]
-
 describe('app-data-table', () => {
+  const data = createMockTableData()
+
   it('should display column headers by default', async () => {
     const { getByRole } = render(AppDataTable, {
       global: {

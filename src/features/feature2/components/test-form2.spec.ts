@@ -3,24 +3,24 @@ import { render } from '@testing-library/vue'
 import flushPromises from 'flush-promises'
 import { describe, expect, it } from 'vitest'
 import waitForExpect from 'wait-for-expect'
-import ExampleForm3 from './example-form3.vue'
+import TestForm2 from './test-form2.vue'
 
-describe('example-form-3', () => {
+describe('test-form-2', () => {
   it('shows the form fields', () => {
-    const { getByRole } = render(ExampleForm3)
+    const { getByRole } = render(TestForm2)
 
-    expect(getByRole('textbox', { name: '*Email' })).toBeTruthy()
+    expect(getByRole('textbox', { name: 'Email' })).toBeTruthy()
   })
 
   it('shows the form buttons', () => {
-    const { getByRole } = render(ExampleForm3)
+    const { getByRole } = render(TestForm2)
 
     expect(getByRole('button', { name: 'Clear' })).toBeTruthy()
     expect(getByRole('button', { name: 'Submit' })).toBeTruthy()
   })
 
   it('shows errors when submitting an empty form', async () => {
-    const { getByRole, getByText } = render(ExampleForm3)
+    const { getByRole, getByText } = render(TestForm2)
     const user = userEvent.setup()
 
     const submitButton = getByRole('button', { name: 'Submit' })
@@ -33,10 +33,10 @@ describe('example-form-3', () => {
   })
 
   it('shows errors when inputting invalid values', async () => {
-    const { getByRole, getByText } = render(ExampleForm3)
+    const { getByRole, getByText } = render(TestForm2)
     const user = userEvent.setup()
 
-    const emailField = getByRole<HTMLInputElement>('textbox', { name: '*Email' })
+    const emailField = getByRole<HTMLInputElement>('textbox', { name: 'Email' })
     await user.type(emailField, 'test')
 
     await flushPromises()
@@ -47,10 +47,10 @@ describe('example-form-3', () => {
   })
 
   it('shows no errors when inputting valid values', async () => {
-    const { getByRole, queryByText } = render(ExampleForm3)
+    const { getByRole, queryByText } = render(TestForm2)
     const user = userEvent.setup()
 
-    const emailField = getByRole<HTMLInputElement>('textbox', { name: '*Email' })
+    const emailField = getByRole<HTMLInputElement>('textbox', { name: 'Email' })
     await user.type(emailField, 'test@test.gov')
 
     await flushPromises()
@@ -61,10 +61,10 @@ describe('example-form-3', () => {
   })
 
   it('clears the form', async () => {
-    const { getByRole } = render(ExampleForm3)
+    const { getByRole } = render(TestForm2)
     const user = userEvent.setup()
 
-    const emailField = getByRole<HTMLInputElement>('textbox', { name: '*Email' })
+    const emailField = getByRole<HTMLInputElement>('textbox', { name: 'Email' })
     await user.type(emailField, 'test')
     expect(emailField.value).toBe('test')
 

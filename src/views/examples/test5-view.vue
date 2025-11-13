@@ -1,5 +1,6 @@
 <template>
   <Toast />
+  <h1 class="text-2xl">Forms</h1>
   <Tabs value="0" :lazy="true">
     <TabList>
       <Tab value="0">Example 1</Tab>
@@ -23,7 +24,7 @@
             <p>It contains a single input text.</p>
           </template>
           <template #content>
-            <ExampleForm1 />
+            <TestForm1 />
           </template>
         </Card>
       </TabPanel>
@@ -39,7 +40,7 @@
             <p>It contains a single input text.</p>
           </template>
           <template #content>
-            <ExampleForm2 />
+            <TestForm2 />
           </template>
         </Card>
       </TabPanel>
@@ -55,7 +56,7 @@
             <p>It contains a single input text.</p>
           </template>
           <template #content>
-            <ExampleForm3 />
+            <TestForm3 />
           </template>
         </Card>
       </TabPanel>
@@ -71,7 +72,7 @@
             <p>It contains a single input text and a single nested object.</p>
           </template>
           <template #content>
-            <ExampleForm4 />
+            <TestForm4 />
           </template>
         </Card>
       </TabPanel>
@@ -87,7 +88,7 @@
             <p>It contains a single input text and a static array of nested objects.</p>
           </template>
           <template #content>
-            <ExampleForm5 />
+            <TestForm5 />
           </template>
         </Card>
       </TabPanel>
@@ -103,7 +104,7 @@
             <p>It contains a single input text and a dynamic array of nested objects.</p>
           </template>
           <template #content>
-            <ExampleForm6 />
+            <TestForm6 />
           </template>
         </Card>
       </TabPanel>
@@ -122,7 +123,7 @@
             <p>It contains various required and optional form elements.</p>
           </template>
           <template #content>
-            <ExampleForm7 />
+            <TestForm7 />
           </template>
         </Card>
       </TabPanel>
@@ -131,11 +132,11 @@
 </template>
 
 <script setup lang="ts">
-import ExampleForm1 from '@app/features/feature5/example-form1.vue'
-import ExampleForm2 from '@app/features/feature5/example-form2.vue'
-import ExampleForm3 from '@app/features/feature5/example-form3.vue'
-import ExampleForm4 from '@app/features/feature5/example-form4.vue'
-import ExampleForm5 from '@app/features/feature5/example-form5.vue'
-import ExampleForm6 from '@app/features/feature5/example-form6.vue'
-import ExampleForm7 from '@app/features/feature5/example-form7.vue'
+import TestForm1 from '@app/features/feature2/components/test-form1.vue'
+import TestForm2 from '@app/features/feature2/components/test-form2.vue'
+import TestForm3 from '@app/features/feature2/components/test-form3.vue'
+import TestForm4 from '@app/features/feature2/components/test-form4.vue'
+import TestForm5 from '@app/features/feature2/components/test-form5.vue'
+import TestForm6 from '@app/features/feature2/components/test-form6.vue'
+import TestForm7 from '@app/features/feature2/components/test-form7.vue'
 </script>

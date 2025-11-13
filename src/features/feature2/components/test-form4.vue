@@ -29,8 +29,8 @@
 import AppInputText from '@app/components/forms/app-input-text.vue'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
-import { formSchema2 } from './schemas'
-import { scrollToFieldError } from './utils'
+import { formSchema2 } from '../schemas'
+import { scrollToFieldError } from '../utils'
 
 const toast = useToast()
 

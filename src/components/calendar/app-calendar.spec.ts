@@ -1,6 +1,6 @@
 import ability from '@app/auth/ability-config-advanced'
-import mockData from '@app/mocks/data'
-import { server } from '@app/mocks/node'
+import mockData from '@app/services/mocks/data'
+import { server } from '@app/services/mocks/node'
 import { render } from '@testing-library/vue'
 import { DateTime } from 'luxon'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'

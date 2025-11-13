@@ -1,7 +1,7 @@
 import './assets/main.css'
 
 import ability from '@app/auth/ability-config-advanced'
-import { worker } from '@app/mocks/browser'
+import { worker } from '@app/services/mocks/browser'
 import { abilitiesPlugin } from '@casl/vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'

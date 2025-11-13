@@ -47,6 +47,14 @@
         icon="pi pi-chart-scatter"
         label="Test 5"
       />
+      <Button
+        v-tooltip="'Test 6'"
+        as="RouterLink"
+        to="/test/6"
+        class="mr-2"
+        icon="pi pi-chart-scatter"
+        label="Test 6"
+      />
     </template>
     <template #end>
       <span class="mr-2">Logged in as {{ userStore.getName() }}</span>

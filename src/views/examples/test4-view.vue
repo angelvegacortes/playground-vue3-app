@@ -1,4 +1,5 @@
 <template>
+  <h1 class="text-2xl">Calendar</h1>
   <p class="my-3">
     This calendar is using the
     <Tag severity="contrast" value="FullCalendar" rounded></Tag> component.
@@ -8,7 +9,7 @@
 
 <script setup lang="ts">
 import AppCalendar from '@app/components/calendar/app-calendar.vue'
-import apiService from '@app/services'
+import apiService from '@app/services/api'
 
 const { data, isSuccess } = await apiService.getCalendarEvents()
 </script>

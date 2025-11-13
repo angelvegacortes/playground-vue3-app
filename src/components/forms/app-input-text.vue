@@ -2,36 +2,59 @@
   <div>
     <FloatLabel variant="on">
       <InputText
-        :id="field"
+        :id="fieldName"
         v-model="value"
-        :name="field"
-        type="text"
-        :invalid="errorMessage ? true : false"
         fluid
+        type="text"
+        :name="fieldName"
+        :disabled="isDisabled"
+        :maxlength="maxLength"
+        :invalid="errorMessage ? true : false"
+        @input="emit('input')"
       />
-      <label :for="field">
-        <span v-if="isRequired" class="mr-1 text-red-700">*</span>
-        <span>{{ label }}</span>
-      </label>
+      <AppLabel :field="fieldName" :label="label" :is-required="isRequired" />
     </FloatLabel>
-    <Message v-if="errorMessage" severity="error" size="small" variant="simple">{{
-      errorMessage
-    }}</Message>
+    <div class="flex justify-between">
+      <div>
+        <AppErrorMessage :error="errorMessage" />
+      </div>
+      <div>
+        <AppCharacterCounter :value="value" :max-length="maxLength" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useField } from 'vee-validate'
+import { computed } from 'vue'
+import AppCharacterCounter from './app-character-counter.vue'
+import AppErrorMessage from './app-error-message.vue'
+import AppLabel from './app-label.vue'
+import type { AppInputTextProps } from './types'
 
 const {
-  field,
   label,
+  field = undefined,
   isRequired = false,
-} = defineProps<{
-  field: string
-  label: string
-  isRequired?: boolean
+  isDisabled = false,
+  maxLength = undefined,
+} = defineProps<AppInputTextProps>()
+
+defineModel<string>()
+
+const emit = defineEmits<{
+  input: []
 }>()
 
-const { value, errorMessage } = useField<string>(() => field)
+/**
+ * Account for field being used inside or outside of forms
+ */
+const fieldName = computed(() => {
+  return field ? field : label.replaceAll(' ', '')
+})
+
+const { value, errorMessage } = useField<string>(() => fieldName.value, undefined, {
+  syncVModel: true,
+})
 </script>

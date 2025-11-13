@@ -1,16 +1,34 @@
 <template>
   <div class="grid grid-cols-2 gap-2">
     <form class="flex flex-col gap-4 w-full" @submit="onSubmit">
-      <AppInputText field="optional.text" label="Optional Text" />
-      <AppInputText field="required.text" label="Required Text" :is-required="true" />
+      <AppInputText field="optional.text" label="Optional Text" :max-length="10" />
+      <AppInputText
+        field="required.text"
+        label="Required Text"
+        :is-required="true"
+        :max-length="10"
+      />
       <AppInputNumber field="optional.number" label="Optional Number" />
-      <AppInputNumber field="required.number" label="Required Number" :is-required="true" />
-      <AppTextArea field="optional.textarea" label="Optional Textarea" :rows="3" :cols="5" />
+      <AppInputNumber
+        field="required.number"
+        label="Required Number"
+        :is-required="true"
+        :max="10"
+        :min="0"
+      />
+      <AppTextArea
+        field="optional.textarea"
+        label="Optional Textarea"
+        :rows="3"
+        :cols="5"
+        :max-length="100"
+      />
       <AppTextArea
         field="required.textarea"
         label="Required Textarea"
         :rows="3"
         :cols="5"
+        :max-length="100"
         :is-required="true"
       />
       <AppSelect field="optional.select" label="Optional Select" :options="selectOptions" />
@@ -51,8 +69,8 @@ import AppSelect from '@app/components/forms/app-select.vue'
 import AppTextArea from '@app/components/forms/app-text-area.vue'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
-import { formSchema4 } from './schemas'
-import { scrollToFieldError } from './utils'
+import { formSchema4 } from '../schemas'
+import { scrollToFieldError } from '../utils'
 
 const toast = useToast()
 

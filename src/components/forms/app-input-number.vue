@@ -3,41 +3,51 @@
     <FloatLabel variant="on">
       <InputNumber
         v-model="value"
-        :input-id="field"
-        :name="field"
-        :invalid="errorMessage ? true : false"
-        show-buttons
         fluid
+        :input-id="fieldName"
+        :name="fieldName"
+        :invalid="errorMessage ? true : false"
         :min="min"
         :max="max"
+        :disabled="isDisabled"
+        @input="emit('input')"
       />
-      <label :for="field">
-        <span v-if="isRequired" class="mr-1 text-red-700">*</span>
-        <span>{{ label }}</span>
-      </label>
+      <AppLabel :field="fieldName" :label="label" :is-required="isRequired" />
     </FloatLabel>
-    <Message v-if="errorMessage" severity="error" size="small" variant="simple">{{
-      errorMessage
-    }}</Message>
+    <AppErrorMessage :error="errorMessage" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useField } from 'vee-validate'
+import { computed } from 'vue'
+import AppErrorMessage from './app-error-message.vue'
+import AppLabel from './app-label.vue'
+import type { AppInputNumberProps } from './types'
 
 const {
-  field,
   label,
+  field = undefined,
   min = undefined,
   max = undefined,
   isRequired = false,
-} = defineProps<{
-  field: string
-  label: string
-  min?: number | undefined
-  max?: number | undefined
-  isRequired?: boolean
+  isDisabled = false,
+} = defineProps<AppInputNumberProps>()
+
+defineModel<number>()
+
+const emit = defineEmits<{
+  input: []
 }>()
 
-const { value, errorMessage } = useField<number>(() => field)
+/**
+ * Account for field being used inside or outside of forms
+ */
+const fieldName = computed(() => {
+  return field ? field : label.replaceAll(' ', '')
+})
+
+const { value, errorMessage } = useField<number>(() => fieldName.value, undefined, {
+  syncVModel: true,
+})
 </script>

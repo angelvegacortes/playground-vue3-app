@@ -1,5 +1,8 @@
 import Aura from '@primeuix/themes/aura'
 
+/**
+ * Custom theme configuration for PrimeVue.
+ */
 export const themeOptions = {
   // Default theme configuration
   theme: {

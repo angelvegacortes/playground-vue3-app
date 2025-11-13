@@ -52,6 +52,7 @@ export default defineConfigWithVueTs(
             'src/config/**',
             'src/mocks/**',
             'src/router/**',
+            'src/schemas/**',
             'src/services/**',
             'src/stores/**',
             'src/types/**',
