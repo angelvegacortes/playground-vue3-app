@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ATestChild from './ATestChild.vue'
+import TestChildA from './test-child-a.vue'
 </script>
 
 <template>
   <div>
     <span>Feature A parent component.</span>
-    <ATestChild />
+    <TestChildA />
   </div>
 </template>

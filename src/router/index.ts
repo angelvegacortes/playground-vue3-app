@@ -1,86 +1,10 @@
 import { useUserStore } from '@app/stores/user'
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/home-view.vue'
+import routes from './routes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/login-view.vue'),
-      meta: { requiresAuth: false },
-    },
-    {
-      path: '/consent',
-      name: 'consent',
-      component: () => import('../views/consent-view.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/test/1',
-      name: 'test1',
-      component: () => import('../views/examples/test1-view.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/test/2',
-      component: () => import('../views/examples/test2-view.vue'),
-      meta: { requiresAuth: true },
-      children: [
-        {
-          path: '',
-          name: 'test2',
-          component: () => import('@app/features/featureA/ATestParent.vue'),
-        },
-        {
-          path: 'feature/a',
-          name: 'feature/a',
-          component: () => import('@app/features/featureA/ATestParent.vue'),
-        },
-        {
-          path: 'feature/b',
-          name: 'feature/b',
-          component: () => import('@app/features/featureB/BTestParent.vue'),
-        },
-        {
-          path: 'feature/c',
-          name: 'feature/c',
-          component: () => import('@app/features/featureC/CTestParent.vue'),
-        },
-      ],
-    },
-    {
-      path: '/test/3',
-      name: 'test3',
-      component: () => import('../views/examples/test3-view.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/test/4',
-      name: 'test4',
-      component: () => import('../views/examples/test4-view.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/test/5',
-      name: 'test5',
-      component: () => import('../views/examples/test5-view.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/unauthorized',
-      name: 'unauthorized',
-      component: () => import('../views/errors/not-authorized.vue'),
-      meta: { requiresAuth: false },
-    },
-  ],
+  routes: routes,
 })
 
 router.beforeEach((to) => {

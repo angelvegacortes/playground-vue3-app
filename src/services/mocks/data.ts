@@ -1,6 +1,8 @@
 import { type CalendarEvent, type Product, type User } from '@app/types'
 import { faker } from '@faker-js/faker'
 
+faker.seed(1234)
+
 const getUserData = (): User => {
   const user: User = {
     id: 1,

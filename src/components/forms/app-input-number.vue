@@ -3,27 +3,24 @@
     <FloatLabel variant="on">
       <InputNumber
         v-model="value"
+        fluid
         :input-id="field"
         :name="field"
         :invalid="errorMessage ? true : false"
-        show-buttons
-        fluid
         :min="min"
         :max="max"
+        @input="emit('input')"
       />
-      <label :for="field">
-        <span v-if="isRequired" class="mr-1 text-red-700">*</span>
-        <span>{{ label }}</span>
-      </label>
+      <AppLabel :field="field" :label="label" :is-required="isRequired" />
     </FloatLabel>
-    <Message v-if="errorMessage" severity="error" size="small" variant="simple">{{
-      errorMessage
-    }}</Message>
+    <AppErrorMessage :error="errorMessage" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useField } from 'vee-validate'
+import AppErrorMessage from './app-error-message.vue'
+import AppLabel from './app-label.vue'
 
 const {
   field,
@@ -37,6 +34,10 @@ const {
   min?: number | undefined
   max?: number | undefined
   isRequired?: boolean
+}>()
+
+const emit = defineEmits<{
+  input: []
 }>()
 
 const { value, errorMessage } = useField<number>(() => field)

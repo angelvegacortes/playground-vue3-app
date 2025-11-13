@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useAppAbility } from '@app/auth/use-app-ability'
-import ATestParent from '@app/features/featureA/ATestParent.vue'
-import BTestParent from '@app/features/featureB/BTestParent.vue'
-import CTestParent from '@app/features/featureC/CTestParent.vue'
-import apiService from '@app/services'
+import TestParentA from '@app/features/feature1/components/test-parent-a.vue'
+import TestParentB from '@app/features/feature1/components/test-parent-b.vue'
+import TestParentC from '@app/features/feature1/components/test-parent-c.vue'
+import apiService from '@app/services/api'
 
 const { can } = useAppAbility()
 
@@ -15,21 +15,21 @@ const { data, error, isFetching } = apiService.getTestData()
     <Card v-if="can('read', 'featureA')" class="mb-5">
       <template #title>Feature A Test</template>
       <template #content>
-        <ATestParent />
+        <TestParentA />
       </template>
     </Card>
 
     <Card v-if="can('read', 'featureB')" class="mb-5">
       <template #title>Feature B Test</template>
       <template #content>
-        <BTestParent />
+        <TestParentB />
       </template>
     </Card>
 
     <Card v-if="can('read', 'featureC')" class="mb-5">
       <template #title>Feature C Test</template>
       <template #content>
-        <CTestParent />
+        <TestParentC />
       </template>
     </Card>
   </div>

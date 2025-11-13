@@ -1,9 +1,9 @@
-import { describe, expect, it, vi } from 'vitest'
-import { mount } from '@vue/test-utils'
-import AppSideNavigation from './app-side-navigation.vue'
 import { createTestingPinia } from '@pinia/testing'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+import AppSideNavigation from './app-side-navigation.vue'
 
-describe('side-navigation', () => {
+describe('app-side-navigation', () => {
   it('can view drawer', () => {
     const wrapper = mount(AppSideNavigation, {
       global: {

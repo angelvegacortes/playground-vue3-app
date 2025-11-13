@@ -28,7 +28,7 @@ import type { FormInstance, FormSubmitEvent } from '@primevue/forms/form'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
 import { useToast } from 'primevue/usetoast'
 import { ref } from 'vue'
-import { formSchema1 } from './schemas'
+import { formSchema1 } from '../schemas'
 
 const toast = useToast()
 

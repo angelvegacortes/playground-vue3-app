@@ -1,23 +1,14 @@
-import { faker } from '@faker-js/faker'
 import { FilterMatchMode } from '@primevue/core/api'
 import { render } from '@testing-library/vue'
 import DataTable from 'primevue/datatable'
 import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
+import { createMockTableData } from '../mocks/data'
 import AppDataTableColumn from './app-data-table-column.vue'
 
-const data = [
-  {
-    book: faker.book.title(),
-    color: faker.color.human(),
-  },
-  {
-    book: faker.book.title(),
-    color: faker.color.human(),
-  },
-]
-
 describe('app-data-table-column', () => {
+  const data = createMockTableData()
+
   it('should display column headers by default', async () => {
     const { getByRole } = render(DataTable, {
       global: {

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import CTestChild from './CTestChild.vue'
+import TestChildC from './test-child-c.vue'
 </script>
 
 <template>
   <div>
     <span>Feature C parent component.</span>
-    <CTestChild />
+    <TestChildC />
   </div>
 </template>

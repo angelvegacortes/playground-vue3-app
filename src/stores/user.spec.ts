@@ -1,6 +1,6 @@
 // stores/counter.spec.ts
-import mockData from '@app/mocks/data'
-import { server } from '@app/mocks/node'
+import mockData from '@app/services/mocks/data'
+import { server } from '@app/services/mocks/node'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { useUserStore } from './user'

@@ -301,7 +301,7 @@
 <script setup lang="ts">
 import AppDataTableColumn from '@app/components/tables/app-data-table-column.vue'
 import AppDataTable from '@app/components/tables/app-data-table.vue'
-import apiService from '@app/services'
+import apiService from '@app/services/api'
 import type { Product } from '@app/types'
 import { FilterMatchMode } from '@primevue/core/api'
 import { onMounted, ref, watch } from 'vue'

@@ -4,25 +4,32 @@
       <Textarea
         :id="field"
         v-model="value"
+        fluid
         :name="field"
         :rows="rows"
         :cols="cols"
+        :maxlength="maxLength"
         :invalid="errorMessage ? true : false"
-        fluid
+        @input="emit('input')"
       />
-      <label :for="field">
-        <span v-if="isRequired" class="mr-1 text-red-700">*</span>
-        <span>{{ label }}</span>
-      </label>
+      <AppLabel :field="field" :label="label" :is-required="isRequired" />
     </FloatLabel>
-    <Message v-if="errorMessage" severity="error" size="small" variant="simple">{{
-      errorMessage
-    }}</Message>
+    <div class="flex justify-between">
+      <div>
+        <AppErrorMessage :error="errorMessage" />
+      </div>
+      <div>
+        <AppCharacterCounter :value="value" :max-length="maxLength" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useField } from 'vee-validate'
+import AppCharacterCounter from './app-character-counter.vue'
+import AppErrorMessage from './app-error-message.vue'
+import AppLabel from './app-label.vue'
 
 const {
   field,
@@ -30,12 +37,18 @@ const {
   rows,
   cols,
   isRequired = false,
+  maxLength = undefined,
 } = defineProps<{
   field: string
   label: string
   rows: number
   cols: number
   isRequired?: boolean
+  maxLength?: number | undefined
+}>()
+
+const emit = defineEmits<{
+  input: []
 }>()
 
 const { value, errorMessage } = useField<string>(() => field)

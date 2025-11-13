@@ -1,4 +1,4 @@
-import apiService from '@app/services'
+import apiService from '@app/services/api'
 import { type User } from '@app/types'
 import { defineStore } from 'pinia'
 import 'pinia-plugin-persistedstate'

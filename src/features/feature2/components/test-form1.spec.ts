@@ -1,24 +1,24 @@
 import userEvent from '@testing-library/user-event'
 import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
-import ExampleForm1 from './example-form1.vue'
+import TestForm1 from './test-form1.vue'
 
-describe('example-form-1', () => {
+describe('test-form-1', () => {
   it('shows the form fields', () => {
-    const { getByRole } = render(ExampleForm1)
+    const { getByRole } = render(TestForm1)
 
     expect(getByRole('textbox', { name: 'Email' })).toBeTruthy()
   })
 
   it('shows the form buttons', () => {
-    const { getByRole } = render(ExampleForm1)
+    const { getByRole } = render(TestForm1)
 
     expect(getByRole('button', { name: 'Clear' })).toBeTruthy()
     expect(getByRole('button', { name: 'Submit' })).toBeTruthy()
   })
 
   it('shows errors when submitting an empty form', async () => {
-    const { getByRole, getByText } = render(ExampleForm1)
+    const { getByRole, getByText } = render(TestForm1)
     const user = userEvent.setup()
 
     const submitButton = getByRole('button', { name: 'Submit' })
@@ -28,7 +28,7 @@ describe('example-form-1', () => {
   })
 
   it('shows errors when inputting invalid values', async () => {
-    const { getByRole, getByText } = render(ExampleForm1)
+    const { getByRole, getByText } = render(TestForm1)
     const user = userEvent.setup()
 
     const emailField = getByRole<HTMLInputElement>('textbox', { name: 'Email' })
@@ -39,7 +39,7 @@ describe('example-form-1', () => {
   })
 
   it('shows no errors when inputting valid values', async () => {
-    const { getByRole, queryByText } = render(ExampleForm1)
+    const { getByRole, queryByText } = render(TestForm1)
     const user = userEvent.setup()
 
     const emailField = getByRole<HTMLInputElement>('textbox', { name: 'Email' })
@@ -50,7 +50,7 @@ describe('example-form-1', () => {
   })
 
   it('clears the form', async () => {
-    const { getByRole } = render(ExampleForm1)
+    const { getByRole } = render(TestForm1)
     const user = userEvent.setup()
 
     const emailField = getByRole<HTMLInputElement>('textbox', { name: 'Email' })

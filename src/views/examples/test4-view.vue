@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import AppCalendar from '@app/components/calendar/app-calendar.vue'
-import apiService from '@app/services'
+import apiService from '@app/services/api'
 
 const { data, isSuccess } = await apiService.getCalendarEvents()
 </script>
