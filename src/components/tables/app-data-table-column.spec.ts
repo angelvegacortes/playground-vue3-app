@@ -159,7 +159,7 @@ describe('app-data-table-column', () => {
     expect(queryAllByRole('button', { name: 'Show Filter Menu' })).toHaveLength(0)
   })
 
-  it.skip('should filter columns when enabled', async () => {
+  it.todo('should filter columns when enabled', async () => {
     const { getAllByRole } = render(DataTable, {
       global: {
         components: {
