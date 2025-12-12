@@ -41,9 +41,9 @@
 
 <script setup lang="ts">
 import { useAppAbility } from '@app/auth/use-app-ability'
-import TestParentA from '@app/features/feature1/components/test-parent-a.vue'
-import TestParentB from '@app/features/feature1/components/test-parent-b.vue'
-import TestParentC from '@app/features/feature1/components/test-parent-c.vue'
+import TestParentA from '@app/features/general/components/test-parent-a.vue'
+import TestParentB from '@app/features/general/components/test-parent-b.vue'
+import TestParentC from '@app/features/general/components/test-parent-c.vue'
 import apiService from '@app/services/api'
 
 const { can } = useAppAbility()

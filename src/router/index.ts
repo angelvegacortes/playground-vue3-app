@@ -1,4 +1,4 @@
-import { useUserStore } from '@app/stores/user'
+import { useUserStore } from '@app/stores/user-store'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 

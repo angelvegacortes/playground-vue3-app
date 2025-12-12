@@ -3,7 +3,7 @@ import mockData from '@app/services/mocks/data'
 import { server } from '@app/services/mocks/node'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
-import { useUserStore } from './user'
+import { useUserStore } from './user-store'
 
 describe('user-store', () => {
   beforeAll(() => server.listen())

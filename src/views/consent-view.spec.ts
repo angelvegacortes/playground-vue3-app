@@ -1,5 +1,5 @@
 import router from '@app/router'
-import { useUserStore } from '@app/stores/user'
+import { useUserStore } from '@app/stores/user-store'
 import { createTestingPinia } from '@pinia/testing'
 import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'

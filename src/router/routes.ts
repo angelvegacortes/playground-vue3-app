@@ -1,4 +1,16 @@
+import TestParentA from '@app/features/general/components/test-parent-a.vue'
+import TestParentB from '@app/features/general/components/test-parent-b.vue'
+import TestParentC from '@app/features/general/components/test-parent-c.vue'
+import ConsentView from '../views/consent-view.vue'
+import NotAuthorized from '../views/errors/not-authorized.vue'
+import CalendarsView from '../views/examples/calendars-view.vue'
+import DataTablesView from '../views/examples/data-tables-view.vue'
+import FormsView from '../views/examples/forms-view.vue'
+import InputsView from '../views/examples/inputs-view.vue'
+import PermissionsView from '../views/examples/permissions-view.vue'
+import TabsView from '../views/examples/tabs-view.vue'
 import HomeView from '../views/home-view.vue'
+import LoginView from '../views/login-view.vue'
 
 const routes = [
   {
@@ -10,76 +22,76 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/login-view.vue'),
+    component: LoginView,
     meta: { requiresAuth: false },
   },
   {
     path: '/consent',
     name: 'consent',
-    component: () => import('../views/consent-view.vue'),
+    component: ConsentView,
     meta: { requiresAuth: true },
   },
   {
-    path: '/test/1',
-    name: 'test1',
-    component: () => import('../views/examples/test1-view.vue'),
+    path: '/examples/permissions',
+    name: 'permissions',
+    component: PermissionsView,
     meta: { requiresAuth: true },
   },
   {
-    path: '/test/2',
-    component: () => import('../views/examples/test2-view.vue'),
+    path: '/examples/tabs',
+    component: TabsView,
     meta: { requiresAuth: true },
     children: [
       {
         path: '',
-        name: 'test2',
-        component: () => import('@app/features/feature1/components/test-parent-a.vue'),
+        name: 'tabs',
+        component: TestParentA,
       },
       {
-        path: 'feature/a',
-        name: 'feature/a',
-        component: () => import('@app/features/feature1/components/test-parent-a.vue'),
+        path: 'a',
+        name: 'tabs-a',
+        component: TestParentA,
       },
       {
-        path: 'feature/b',
-        name: 'feature/b',
-        component: () => import('@app/features/feature1/components/test-parent-b.vue'),
+        path: 'b',
+        name: 'tabs-b',
+        component: TestParentB,
       },
       {
-        path: 'feature/c',
-        name: 'feature/c',
-        component: () => import('@app/features/feature1/components/test-parent-c.vue'),
+        path: 'c',
+        name: 'tabs-c',
+        component: TestParentC,
       },
     ],
   },
   {
-    path: '/test/3',
-    name: 'test3',
-    component: () => import('../views/examples/test3-view.vue'),
+    path: '/examples/calendars',
+    name: 'calendars',
+    component: CalendarsView,
     meta: { requiresAuth: true },
   },
   {
-    path: '/test/4',
-    name: 'test4',
-    component: () => import('../views/examples/test4-view.vue'),
+    path: '/examples/data-tables',
+    name: 'data-tables',
+    component: DataTablesView,
     meta: { requiresAuth: true },
   },
   {
-    path: '/test/5',
-    name: 'test5',
-    component: () => import('../views/examples/test5-view.vue'),
+    path: '/examples/forms',
+    name: 'forms',
+    component: FormsView,
     meta: { requiresAuth: true },
   },
   {
-    path: '/test/6',
-    name: 'test6',
-    component: () => import('../views/examples/test6-view.vue'),
+    path: '/examples/inputs',
+    name: 'inputs',
+    component: InputsView,
     meta: { requiresAuth: true },
   },
   {
     path: '/unauthorized',
     name: 'unauthorized',
-    component: () => import('../views/errors/not-authorized.vue'),
+    component: NotAuthorized,
     meta: { requiresAuth: false },
   },
 ]

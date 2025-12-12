@@ -1,9 +1,9 @@
 import ability from '@app/auth/ability-config-advanced'
 import { render } from '@testing-library/vue'
 import { beforeEach, describe, expect, it } from 'vitest'
-import Test1View from './test1-view.vue'
+import Test1View from './permissions-view.vue'
 
-describe('test1-view', () => {
+describe('permissions-view', () => {
   beforeEach(() => {
     // NOTE: disable all permissions before each test
     ability.update([])

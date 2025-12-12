@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import DummyText from '@app/components/text/app-dummy-text.vue'
-import { useUserStore } from '@app/stores/user'
+import { useUserStore } from '@app/stores/user-store'
 import { onMounted, onUnmounted } from 'vue'
 
 const userStore = useUserStore()
