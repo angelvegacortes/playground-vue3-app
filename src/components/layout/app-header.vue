@@ -3,58 +3,70 @@
   <Menubar>
     <template #start>
       <div class="mr-5">{{ title }}</div>
-      <Button v-tooltip="'Home'" as="router-link" to="/" class="mr-2" label="Home">
+      <Button v-tooltip.bottom="'Home'" as="RouterLink" to="/" class="mr-2" label="Home">
         <span class="material-symbols-rounded">home</span>
         <span>Home</span>
       </Button>
       <Button
-        v-tooltip="'Test 1'"
+        v-tooltip.bottom="'Permission Examples'"
         as="RouterLink"
-        to="/test/1"
+        to="/examples/permissions"
         class="mr-2"
-        icon="pi pi-chart-scatter"
-        label="Test 1"
-      />
+        label="Permissions"
+      >
+        <span class="material-symbols-rounded">security</span>
+        <span>Permissions</span>
+      </Button>
       <Button
-        v-tooltip="'Test 2'"
+        v-tooltip.bottom="'Tab Examples'"
         as="RouterLink"
-        to="/test/2"
+        to="/examples/tabs"
         class="mr-2"
-        icon="pi pi-chart-scatter"
-        label="Test 2"
-      />
+        label="Tabs"
+      >
+        <span class="material-symbols-rounded">tabs</span>
+        <span>Tabs</span>
+      </Button>
       <Button
-        v-tooltip="'Test 3'"
+        v-tooltip.bottom="'Data Table Examples'"
         as="RouterLink"
-        to="/test/3"
+        to="/examples/data-tables"
         class="mr-2"
-        icon="pi pi-chart-scatter"
-        label="Test 3"
-      />
+        label="Data Tables"
+      >
+        <span class="material-symbols-rounded">data_table</span>
+        <span>Data Tables</span>
+      </Button>
       <Button
-        v-tooltip="'Test 4'"
+        v-tooltip.bottom="'Calendar Examples'"
         as="RouterLink"
-        to="/test/4"
+        to="/examples/calendars"
         class="mr-2"
-        icon="pi pi-chart-scatter"
-        label="Test 4"
-      />
+        label="Calendars"
+      >
+        <span class="material-symbols-rounded">calendar_month</span>
+        <span>Calendars</span>
+      </Button>
       <Button
-        v-tooltip="'Test 5'"
+        v-tooltip.bottom="'Form Examples'"
         as="RouterLink"
-        to="/test/5"
+        to="/examples/forms"
         class="mr-2"
-        icon="pi pi-chart-scatter"
-        label="Test 5"
-      />
+        label="Forms"
+      >
+        <span class="material-symbols-rounded">forms_add_on</span>
+        <span>Forms</span>
+      </Button>
       <Button
-        v-tooltip="'Test 6'"
+        v-tooltip.bottom="'Input Examples'"
         as="RouterLink"
-        to="/test/6"
+        to="/examples/inputs"
         class="mr-2"
-        icon="pi pi-chart-scatter"
-        label="Test 6"
-      />
+        label="Inputs"
+      >
+        <span class="material-symbols-rounded">input</span>
+        <span>Inputs</span>
+      </Button>
     </template>
     <template #end>
       <span class="mr-2">Logged in as {{ userStore.getName() }}</span>
@@ -62,17 +74,19 @@
         as="RouterLink"
         to="/login"
         class="mr-2"
-        icon="pi pi-sign-out"
         severity="secondary"
         label="Logout"
         @click="userStore.logout"
-      />
+      >
+        <span class="material-symbols-rounded">logout</span>
+        <span>Logout</span>
+      </Button>
     </template>
   </Menubar>
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@app/stores/user'
+import { useUserStore } from '@app/stores/user-store'
 
 const userStore = useUserStore()
 const title = import.meta.env.VITE_APP_TITLE

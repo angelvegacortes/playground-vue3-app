@@ -1,13 +1,13 @@
 <template>
   <h1 class="text-2xl">Data Tables</h1>
-  <Tabs value="0">
+  <Tabs value="1">
     <TabList>
-      <Tab value="0">Example 1</Tab>
-      <Tab value="1">Example 2</Tab>
-      <Tab value="2">Example 3</Tab>
+      <Tab value="1">Basic Data Table</Tab>
+      <Tab value="2">Custom Data Column</Tab>
+      <Tab value="3">Custom Data Table</Tab>
     </TabList>
     <TabPanels>
-      <TabPanel value="0">
+      <TabPanel value="1">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -138,7 +138,7 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="1">
+      <TabPanel value="2">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -238,10 +238,10 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="2">
+      <TabPanel value="3">
         <Card class="mx-2 my-4">
           <template #title>
-            <p class="my-3">
+            <p>
               This table is using
               <Tag severity="contrast" value="AppDataTable" rounded></Tag> and
               <Tag severity="contrast" value="AppDataTableColumn" rounded></Tag>

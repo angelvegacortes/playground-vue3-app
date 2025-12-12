@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import AppFooter from './components/layout/app-footer.vue'
 import AppHeader from './components/layout/app-header.vue'
-import { useUserStore } from './stores/user'
+import { useUserStore } from './stores/user-store'
 
 const userStore = useUserStore()
 

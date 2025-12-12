@@ -15,9 +15,9 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const tabs = ref([
-  { route: '/test/2/feature/a', label: 'Feature A', icon: 'pi pi-chart-line' },
-  { route: '/test/2/feature/b', label: 'Feature B', icon: 'pi pi-chart-line' },
-  { route: '/test/2/feature/c', label: 'Feature C', icon: 'pi pi-chart-line' },
+  { route: '/examples/tabs/a', label: 'Feature A', icon: 'pi pi-chart-line' },
+  { route: '/examples/tabs/b', label: 'Feature B', icon: 'pi pi-chart-line' },
+  { route: '/examples/tabs/c', label: 'Feature C', icon: 'pi pi-chart-line' },
 ])
 
 const getActiveTab = () => {

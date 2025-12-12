@@ -1,16 +1,16 @@
 <template>
   <Toast />
   <h1 class="text-2xl">Forms</h1>
-  <Tabs value="0" :lazy="true">
+  <Tabs value="1" :lazy="true">
     <TabList>
-      <Tab value="1">Example 1</Tab>
-      <Tab value="2">Example 2</Tab>
-      <Tab value="3">Example 3</Tab>
-      <Tab value="4">Example 4</Tab>
-      <Tab value="5">Example 5</Tab>
-      <Tab value="6">Example 6</Tab>
-      <Tab value="7">Example 7</Tab>
-      <Tab value="8">Example 8</Tab>
+      <Tab value="1">Basic Form 1</Tab>
+      <Tab value="2">Basic Form 2</Tab>
+      <Tab value="3">Custom Form 1</Tab>
+      <Tab value="4">Custom Form 2</Tab>
+      <Tab value="5">Custom Form 3</Tab>
+      <Tab value="6">Custom Form 4</Tab>
+      <Tab value="7">Custom Form 5</Tab>
+      <Tab value="8">Custom Form 6</Tab>
     </TabList>
     <TabPanels>
       <TabPanel value="1">
@@ -149,12 +149,12 @@
 </template>
 
 <script setup lang="ts">
-import TestForm1 from '@app/features/feature2/components/test-form1.vue'
-import TestForm2 from '@app/features/feature2/components/test-form2.vue'
-import TestForm3 from '@app/features/feature2/components/test-form3.vue'
-import TestForm4 from '@app/features/feature2/components/test-form4.vue'
-import TestForm5 from '@app/features/feature2/components/test-form5.vue'
-import TestForm6 from '@app/features/feature2/components/test-form6.vue'
-import TestForm7 from '@app/features/feature2/components/test-form7.vue'
-import TestForm8 from '@app/features/feature2/components/test-form8.vue'
+import TestForm1 from '@app/features/forms/components/test-form1.vue'
+import TestForm2 from '@app/features/forms/components/test-form2.vue'
+import TestForm3 from '@app/features/forms/components/test-form3.vue'
+import TestForm4 from '@app/features/forms/components/test-form4.vue'
+import TestForm5 from '@app/features/forms/components/test-form5.vue'
+import TestForm6 from '@app/features/forms/components/test-form6.vue'
+import TestForm7 from '@app/features/forms/components/test-form7.vue'
+import TestForm8 from '@app/features/forms/components/test-form8.vue'
 </script>

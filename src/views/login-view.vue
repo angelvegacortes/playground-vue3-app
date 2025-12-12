@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import AppDialog from '@app/components/layout/app-dialog.vue'
-import { useUserStore } from '@app/stores/user'
+import { useUserStore } from '@app/stores/user-store'
 
 const userStore = useUserStore()
 </script>
