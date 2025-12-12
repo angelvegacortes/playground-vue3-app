@@ -1,21 +1,19 @@
 <template>
   <div class="grid grid-cols-2 gap-2">
-    <div>
-      <form class="flex flex-col gap-4 w-full sm:w-56" @submit="onSubmit">
-        <div class="flex flex-col gap-1">
-          <AppInputText field="email" label="Email" />
-          <Fieldset legend="Contact">
-            <div class="flex flex-col gap-1">
-              <AppInputText field="contact.firstName" label="First Name" />
-              <AppInputText field="contact.middleName" label="Middle Name" />
-              <AppInputText field="contact.lastName" label="Last Name" />
-            </div>
-          </Fieldset>
-        </div>
-        <Button severity="secondary" label="Clear" @click="resetForm()" />
-        <Button type="submit" label="Submit" />
-      </form>
-    </div>
+    <form class="flex flex-col gap-4 w-full sm:w-56" @submit="onSubmit">
+      <div class="flex flex-col gap-1">
+        <AppInputText field="email" label="Email" />
+        <Fieldset legend="Contact">
+          <div class="flex flex-col gap-1">
+            <AppInputText field="contact.firstName" label="First Name" />
+            <AppInputText field="contact.middleName" label="Middle Name" />
+            <AppInputText field="contact.lastName" label="Last Name" />
+          </div>
+        </Fieldset>
+      </div>
+      <Button severity="secondary" label="Clear" @click="resetForm()" />
+      <Button type="submit" label="Submit" />
+    </form>
     <div class="overflow-x-auto whitespace-nowrap">
       <p class="font-bold">Raw Form Values</p>
       <pre>{{ values }}</pre>

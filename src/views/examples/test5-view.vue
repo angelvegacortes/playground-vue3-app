@@ -3,16 +3,17 @@
   <h1 class="text-2xl">Forms</h1>
   <Tabs value="0" :lazy="true">
     <TabList>
-      <Tab value="0">Example 1</Tab>
-      <Tab value="1">Example 2</Tab>
-      <Tab value="2">Example 3</Tab>
-      <Tab value="3">Example 4</Tab>
-      <Tab value="4">Example 5</Tab>
-      <Tab value="5">Example 6</Tab>
-      <Tab value="6">Example 7</Tab>
+      <Tab value="1">Example 1</Tab>
+      <Tab value="2">Example 2</Tab>
+      <Tab value="3">Example 3</Tab>
+      <Tab value="4">Example 4</Tab>
+      <Tab value="5">Example 5</Tab>
+      <Tab value="6">Example 6</Tab>
+      <Tab value="7">Example 7</Tab>
+      <Tab value="8">Example 8</Tab>
     </TabList>
     <TabPanels>
-      <TabPanel value="0">
+      <TabPanel value="1">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -28,7 +29,7 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="1">
+      <TabPanel value="2">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -44,7 +45,7 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="2">
+      <TabPanel value="3">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -60,7 +61,7 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="3">
+      <TabPanel value="4">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -76,7 +77,7 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="4">
+      <TabPanel value="5">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -92,7 +93,7 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="5">
+      <TabPanel value="6">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -108,7 +109,7 @@
           </template>
         </Card>
       </TabPanel>
-      <TabPanel value="6">
+      <TabPanel value="7">
         <Card class="mx-2 my-4">
           <template #title>
             <p>
@@ -127,6 +128,22 @@
           </template>
         </Card>
       </TabPanel>
+      <TabPanel value="8">
+        <Card class="mx-2 my-4">
+          <template #title>
+            <p>
+              This form is using
+              <Tag severity="contrast" value="AppInputText" rounded />,
+              <Tag severity="contrast" value="VeeValidate Forms" rounded />, and
+              <Tag severity="contrast" value="Zod Schema Validation" rounded />.
+            </p>
+            <p>It contains a single input text and hidden input data.</p>
+          </template>
+          <template #content>
+            <TestForm8 />
+          </template>
+        </Card>
+      </TabPanel>
     </TabPanels>
   </Tabs>
 </template>
@@ -139,4 +156,5 @@ import TestForm4 from '@app/features/feature2/components/test-form4.vue'
 import TestForm5 from '@app/features/feature2/components/test-form5.vue'
 import TestForm6 from '@app/features/feature2/components/test-form6.vue'
 import TestForm7 from '@app/features/feature2/components/test-form7.vue'
+import TestForm8 from '@app/features/feature2/components/test-form8.vue'
 </script>

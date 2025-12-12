@@ -20,20 +20,22 @@
 import AppInputText from '@app/components/forms/app-input-text.vue'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
-import { formSchema1 } from '../schemas'
+import { formSchema5 } from '../schemas'
 import { scrollToFieldError } from '../utils'
 
 const toast = useToast()
 
 const { handleSubmit, resetForm, errors, values } = useForm({
-  validationSchema: formSchema1,
+  validationSchema: formSchema5,
   initialValues: {
+    userId: 'id123',
     email: '',
   },
 })
 
 const onSubmitSuccess = () => {
-  toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })
+  const message = `Form submitted. email is ${values.email} and userId is ${values.userId}`
+  toast.add({ severity: 'success', summary: message, life: 3000 })
   resetForm()
 }
 

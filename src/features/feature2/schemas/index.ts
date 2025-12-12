@@ -37,3 +37,7 @@ export const formSchema4 = z.object({
     multiselect: schemaUtils.getStringArray(),
   }),
 })
+
+export const formSchema5 = formSchema1.extend({
+  userId: schemaUtils.getString(true),
+})
