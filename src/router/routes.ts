@@ -7,6 +7,7 @@ import CalendarsView from '../views/examples/calendars-view.vue'
 import DataTablesView from '../views/examples/data-tables-view.vue'
 import FormsView from '../views/examples/forms-view.vue'
 import InputsView from '../views/examples/inputs-view.vue'
+import PdfsView from '../views/examples/pdfs-view.vue'
 import PermissionsView from '../views/examples/permissions-view.vue'
 import TabsView from '../views/examples/tabs-view.vue'
 import HomeView from '../views/home-view.vue'
@@ -80,6 +81,12 @@ const routes = [
     path: '/examples/forms',
     name: 'forms',
     component: FormsView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/examples/pdfs',
+    name: 'pdfs',
+    component: PdfsView,
     meta: { requiresAuth: true },
   },
   {

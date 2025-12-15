@@ -3,12 +3,20 @@
   <Menubar>
     <template #start>
       <div class="mr-5">{{ title }}</div>
-      <Button v-tooltip.bottom="'Home'" as="RouterLink" to="/" class="mr-2" label="Home">
+      <Button
+        v-tooltip.bottom="'Home'"
+        size="small"
+        as="RouterLink"
+        to="/"
+        class="mr-2"
+        label="Home"
+      >
         <span class="material-symbols-rounded">home</span>
         <span>Home</span>
       </Button>
       <Button
         v-tooltip.bottom="'Permission Examples'"
+        size="small"
         as="RouterLink"
         to="/examples/permissions"
         class="mr-2"
@@ -19,6 +27,7 @@
       </Button>
       <Button
         v-tooltip.bottom="'Tab Examples'"
+        size="small"
         as="RouterLink"
         to="/examples/tabs"
         class="mr-2"
@@ -29,6 +38,7 @@
       </Button>
       <Button
         v-tooltip.bottom="'Data Table Examples'"
+        size="small"
         as="RouterLink"
         to="/examples/data-tables"
         class="mr-2"
@@ -41,6 +51,7 @@
         v-tooltip.bottom="'Calendar Examples'"
         as="RouterLink"
         to="/examples/calendars"
+        size="small"
         class="mr-2"
         label="Calendars"
       >
@@ -51,6 +62,7 @@
         v-tooltip.bottom="'Form Examples'"
         as="RouterLink"
         to="/examples/forms"
+        size="small"
         class="mr-2"
         label="Forms"
       >
@@ -61,11 +73,23 @@
         v-tooltip.bottom="'Input Examples'"
         as="RouterLink"
         to="/examples/inputs"
+        size="small"
         class="mr-2"
         label="Inputs"
       >
         <span class="material-symbols-rounded">input</span>
         <span>Inputs</span>
+      </Button>
+      <Button
+        v-tooltip.bottom="'PDF Examples'"
+        as="RouterLink"
+        to="/examples/pdfs"
+        size="small"
+        class="mr-2"
+        label="PDFs"
+      >
+        <span class="material-symbols-rounded">picture_as_pdf</span>
+        <span>PDFs</span>
       </Button>
     </template>
     <template #end>
@@ -74,6 +98,7 @@
         as="RouterLink"
         to="/login"
         class="mr-2"
+        size="small"
         severity="secondary"
         label="Logout"
         @click="userStore.logout"
