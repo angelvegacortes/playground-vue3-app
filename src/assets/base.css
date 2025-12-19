@@ -1,3 +1,10 @@
+html {
+  /* Preferred font with fallbacks */
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+  /* Minimum standard body size */
+  font-size: 1rem;
+}
+
 .consent-alternate-background-color {
   background-color: black;
 }
