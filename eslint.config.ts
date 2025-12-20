@@ -36,22 +36,20 @@ export default defineConfigWithVueTs(
   },
   vueTsConfigs.recommended,
   {
+    files: ['src/**/*'],
     plugins: {
       boundaries,
     },
     settings: {
-      'boundaries/include': ['src/**/*'],
       'boundaries/elements': [
         {
-          mode: 'full',
-          type: 'global-level-resource',
+          type: 'global-resources',
           pattern: [
             'src/assets/**',
             'src/auth/**',
             'src/components/**',
             'src/config/**',
             'src/mocks/**',
-            'src/router/**',
             'src/schemas/**',
             'src/services/**',
             'src/stores/**',
@@ -59,39 +57,73 @@ export default defineConfigWithVueTs(
           ],
         },
         {
-          mode: 'full',
-          type: 'app-level-resource',
-          pattern: ['src/views/**', 'src/*'],
+          type: 'router-resources',
+          pattern: ['src/router/**'],
         },
         {
           mode: 'full',
-          type: 'feature-level-resource',
+          type: 'app-root-resources',
+          pattern: ['src/app.vue', 'src/main.ts'],
+        },
+        {
+          mode: 'full',
+          type: 'view-resources',
+          pattern: ['src/views/**'],
+        },
+        {
+          mode: 'full',
+          type: 'feature-resources',
           capture: ['featureName'],
-          pattern: 'src/features/*/**/*',
+          pattern: ['src/features/*/**/*'],
         },
       ],
+      'import/resolver': {
+        alias: {
+          map: [['@app', './src']],
+        },
+      },
     },
     rules: {
-      'boundaries/no-unknown': ['error'],
-      'boundaries/no-unknown-files': ['error'],
+      ...boundaries.configs.recommended.rules,
+      'boundaries/no-private': 'off',
+      'boundaries/no-unknown': 'error',
+      'boundaries/no-unknown-files': 'error',
       'boundaries/element-types': [
         'error',
         {
           default: 'disallow',
           rules: [
             {
-              from: ['global-level-resource'],
-              allow: ['app-level-resource', 'global-level-resource'],
+              from: 'global-resources',
+              allow: ['global-resources'],
             },
             {
-              from: ['app-level-resource'],
-              allow: ['app-level-resource', 'global-level-resource'],
-            },
-            {
-              from: ['feature-level-resource'],
+              from: 'router-resources',
               allow: [
-                'global-level-resource',
-                ['feature-level-resource', { featureName: '${from.featureName}' }],
+                'router-resources',
+                'global-resources',
+                'feature-resources',
+                'view-resources',
+              ],
+            },
+            {
+              from: 'view-resources',
+              allow: ['view-resources', 'global-resources', 'feature-resources'],
+            },
+            {
+              from: 'app-root-resources',
+              allow: [
+                'app-root-resources',
+                'global-resources',
+                'router-resources',
+                ['feature-resources', { featureName: 'notifications' }],
+              ],
+            },
+            {
+              from: 'feature-resources',
+              allow: [
+                'global-resources',
+                ['feature-resources', { featureName: '${from.featureName}' }],
               ],
             },
           ],

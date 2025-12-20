@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NotificationsCounter from '@app/features/notifications/notifications-counter.vue'
 import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import AppFooter from './components/layout/app-footer.vue'
@@ -14,7 +15,11 @@ onMounted(() => {
 
 <template>
   <header class="sticky top-0 z-50">
-    <AppHeader />
+    <AppHeader>
+      <template #notificationsButton>
+        <NotificationsCounter />
+      </template>
+    </AppHeader>
   </header>
   <nav>
     <!-- NOTE disable sidenav for now -->
