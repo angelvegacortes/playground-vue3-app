@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { AppDataTableColumnProperties } from './types'
 
 const {
   field,
@@ -58,18 +59,9 @@ const {
   isHidden = false,
   isSortable = false,
   isFilterable = false,
-  filterOptions = undefined,
   filterType = 'text',
-} = defineProps<{
-  field: string
-  header: string
-  cssClass: `w-${number}/${number}` | `w-[${number}/${number}]`
-  isHidden?: boolean
-  isSortable?: boolean
-  isFilterable?: boolean
-  filterOptions?: unknown[] | undefined
-  filterType?: 'text' | 'number' | 'select' | 'multi-select' | undefined
-}>()
+  filterOptions,
+} = defineProps<AppDataTableColumnProperties>()
 
 const EMPTY_VALUE_PLACEHOLDER = '-'
 
@@ -85,11 +77,15 @@ const showFilterByNumber = computed(() => {
   return isFilterable && filterType === 'number'
 })
 
+const showFilterOptions = computed(() => {
+  return isFilterable && filterOptions !== undefined && filterOptions.length > 0
+})
+
 const showFilterBySelect = computed(() => {
-  return isFilterable && filterType === 'select' && filterOptions !== undefined
+  return showFilterOptions.value && filterType === 'select'
 })
 
 const showFilterByMultiSelect = computed(() => {
-  return isFilterable && filterType === 'multi-select' && filterOptions !== undefined
+  return showFilterOptions.value && filterType === 'multi-select'
 })
 </script>

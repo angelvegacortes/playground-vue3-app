@@ -104,6 +104,6 @@ describe('app-input-number', () => {
     await userEvent.keyboard('{Enter}')
 
     expect(emitted('update:modelValue')).toBeDefined()
-    expect(emitted('update:modelValue').flat().pop()).toBe(parseInt(data.value))
+    expect(emitted('update:modelValue').flat().pop()).toBe(Number.parseInt(data.value))
   })
 })

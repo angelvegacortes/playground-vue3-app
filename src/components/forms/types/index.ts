@@ -1,15 +1,15 @@
-interface AppCommonProps {
+interface AppCommonProperties {
   field?: string | undefined
   isDisabled?: boolean
   isRequired?: boolean
   label: string
 }
 
-export interface AppInputTextProps extends AppCommonProps {
+export interface AppInputTextProperties extends AppCommonProperties {
   maxLength?: number | undefined
 }
 
-export interface AppTextAreaProps extends AppInputTextProps {
+export interface AppTextAreaProperties extends AppInputTextProperties {
   rows: number
   cols: number
 }
@@ -19,31 +19,31 @@ export interface AppSelectOption {
   value: string
 }
 
-export interface AppSelectProps extends AppCommonProps {
+export interface AppSelectProperties extends AppCommonProperties {
   options: string[] | number[] | AppSelectOption[]
   optionLabel?: string
   optionValue?: string
 }
 
-export interface AppMultiSelectProps extends AppSelectProps {
+export interface AppMultiSelectProperties extends AppSelectProperties {
   optionDisplayFormat?: 'chip' | 'comma'
   optionSelectedMax?: number
 }
 
-export interface AppLabelProps extends Required<Omit<AppCommonProps, 'isDisabled'>> {
+export interface AppLabelProperties extends Required<Omit<AppCommonProperties, 'isDisabled'>> {
   field: string
 }
 
-export interface AppInputNumberProps extends AppCommonProps {
+export interface AppInputNumberProperties extends AppCommonProperties {
   min?: number | undefined
   max?: number | undefined
 }
 
-export interface AppErrorMessageProps {
+export interface AppErrorMessageProperties {
   error: string | undefined
 }
 
-export interface AppCharacterCounterProps {
+export interface AppCharacterCounterProperties {
   value: string | undefined
   maxLength: number | undefined
 }

@@ -23,16 +23,16 @@ import { useField } from 'vee-validate'
 import { computed } from 'vue'
 import AppErrorMessage from './app-error-message.vue'
 import AppLabel from './app-label.vue'
-import type { AppInputNumberProps } from './types'
+import type { AppInputNumberProperties } from './types'
 
 const {
   label,
-  field = undefined,
-  min = undefined,
-  max = undefined,
+  field,
+  min,
+  max,
   isRequired = false,
   isDisabled = false,
-} = defineProps<AppInputNumberProps>()
+} = defineProps<AppInputNumberProperties>()
 
 defineModel<number>()
 
@@ -44,7 +44,7 @@ const emit = defineEmits<{
  * Account for field being used inside or outside of forms
  */
 const fieldName = computed(() => {
-  return field ? field : label.replaceAll(' ', '')
+  return field ?? label.replaceAll(' ', '')
 })
 
 const { value, errorMessage } = useField<number>(() => fieldName.value, undefined, {

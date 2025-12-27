@@ -113,20 +113,6 @@
                 :show-filter-match-modes="false"
               >
                 <template #filter="{ filterModel }">
-                  <!-- NOTE fiter by text -->
-                  <!-- <InputText
-          v-model="filterModel.value"
-          type="text"
-          @input="filterCallback()"
-          placeholder="Filter by Country"
-        /> -->
-                  <!-- NOTE fiter by select -->
-                  <!-- <Select
-          v-model="filterModel.value"
-          :options="countries"
-          placeholder="Filter by Country"
-         /> -->
-                  <!-- NOTE fiter by multi select -->
                   <MultiSelect
                     v-model="filterModel.value"
                     :options="countries"
@@ -231,8 +217,8 @@
                 css-class="w-1/6"
                 :is-sortable="true"
                 :is-filterable="true"
+                filter-type="multi-select"
                 :filter-options="countries"
-                :is-filter-options-multi-select="true"
               />
             </DataTable>
           </template>
@@ -302,7 +288,7 @@
                 :is-sortable="true"
                 :is-filterable="true"
                 :filter-options="countries"
-                :is-filter-options-multi-select="true"
+                filter-type="multi-select"
               />
             </AppDataTable>
           </template>
@@ -318,25 +304,19 @@ import AppDataTable from '@app/components/tables/app-data-table.vue'
 import apiService from '@app/services/api'
 import type { Product } from '@app/types'
 import { FilterMatchMode } from '@primevue/core/api'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const { data: products, isLoading } = apiService.getProducts()
-
-watch(isLoading, (newValue) => {
-  if (newValue) {
-    getCountries()
-  }
-})
+const { data: products, isLoading, isSuccess } = apiService.getProducts()
 
 onMounted(async () => {
   initFilters()
 })
 
 const baseFilters = ref({
-  firstName: { value: null, matchMode: FilterMatchMode.CONTAINS },
-  middleName: { value: null, matchMode: FilterMatchMode.CONTAINS },
-  lastName: { value: null, matchMode: FilterMatchMode.CONTAINS },
-  country: { value: null, matchMode: FilterMatchMode.IN },
+  firstName: { value: undefined, matchMode: FilterMatchMode.CONTAINS },
+  middleName: { value: undefined, matchMode: FilterMatchMode.CONTAINS },
+  lastName: { value: undefined, matchMode: FilterMatchMode.CONTAINS },
+  country: { value: undefined, matchMode: FilterMatchMode.IN },
 })
 
 const filters1 = ref()
@@ -344,14 +324,18 @@ const filters2 = ref()
 const filters3 = ref()
 
 const countries = ref<string[]>([])
-
 const getCountries = () => {
   if (products.value && products.value.length > 0) {
     countries.value = products.value.map((d: Product) => {
       return d.country
     })
     countries.value = [...new Set(countries.value)]
+    console.log(countries.value)
   }
+}
+
+if (isSuccess.value) {
+  getCountries()
 }
 
 const initFilters = () => {

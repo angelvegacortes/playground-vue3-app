@@ -30,22 +30,16 @@
 </template>
 
 <script setup lang="ts">
-import type { DataTableFilterMeta } from 'primevue/datatable'
 import { computed, onMounted, ref } from 'vue'
+import type { AppDataTableProperties } from './types'
 
 const {
   data,
   size = 'small',
   dataKey = 'id',
-  filters = undefined,
+  filters,
   isLoading = false,
-} = defineProps<{
-  data: unknown[] | undefined
-  size?: 'small' | 'large'
-  dataKey?: string
-  filters?: DataTableFilterMeta
-  isLoading?: boolean
-}>()
+} = defineProps<AppDataTableProperties>()
 
 const rows = ref(5)
 const rowsPerPageOptions = ref([5, 10, 20, 50])

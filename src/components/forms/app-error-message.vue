@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AppErrorMessageProps } from './types'
+import type { AppErrorMessageProperties } from './types'
 
-const { error } = defineProps<AppErrorMessageProps>()
+const { error } = defineProps<AppErrorMessageProperties>()
 </script>

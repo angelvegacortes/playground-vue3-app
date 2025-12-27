@@ -7,7 +7,7 @@ import { ref } from 'vue'
 export const useUserStore = defineStore(
   'user',
   () => {
-    const user = ref<User | null>(null)
+    const user = ref<User | undefined>(undefined)
 
     const init = async () => {
       if (user.value === null) {
@@ -22,7 +22,7 @@ export const useUserStore = defineStore(
     }
 
     const isAuthenticated = () => {
-      if (user.value !== null) {
+      if (user.value !== undefined) {
         return user.value!.isAuthenticated
       }
 
@@ -30,7 +30,7 @@ export const useUserStore = defineStore(
     }
 
     const hasAcceptedTerms = () => {
-      if (user.value !== null) {
+      if (user.value !== undefined) {
         return user.value!.hasAcceptedTerms
       }
 
@@ -62,7 +62,16 @@ export const useUserStore = defineStore(
       }
     }
 
-    return { isAuthenticated, login, logout, getName, hasAcceptedTerms, acceptTerms, user, init }
+    return {
+      isAuthenticated,
+      login,
+      logout,
+      getName,
+      hasAcceptedTerms,
+      acceptTerms,
+      user,
+      init,
+    }
   },
   {
     persist: true,

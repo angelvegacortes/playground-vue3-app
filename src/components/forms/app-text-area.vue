@@ -32,17 +32,17 @@ import { computed } from 'vue'
 import AppCharacterCounter from './app-character-counter.vue'
 import AppErrorMessage from './app-error-message.vue'
 import AppLabel from './app-label.vue'
-import type { AppTextAreaProps } from './types'
+import type { AppTextAreaProperties } from './types'
 
 const {
   label,
   rows,
   cols,
-  field = undefined,
+  field,
   isRequired = false,
   isDisabled = false,
-  maxLength = undefined,
-} = defineProps<AppTextAreaProps>()
+  maxLength,
+} = defineProps<AppTextAreaProperties>()
 
 defineModel<string>()
 
@@ -54,7 +54,7 @@ const emit = defineEmits<{
  * Account for field being used inside or outside of forms
  */
 const fieldName = computed(() => {
-  return field ? field : label.replaceAll(' ', '')
+  return field ?? label.replaceAll(' ', '')
 })
 
 const { value, errorMessage } = useField<string>(() => fieldName.value, undefined, {

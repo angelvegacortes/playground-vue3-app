@@ -3,14 +3,14 @@
  * @param fieldName name of form element
  */
 export const scrollToFieldError = (fieldName: string) => {
-  const el = document.querySelector(`[name="${fieldName}"]`) as HTMLElement
-  if (el.scrollIntoView) {
-    el?.scrollIntoView({
+  const element = document.querySelector(`[name="${fieldName}"]`) as HTMLElement
+  if (element.scrollIntoView) {
+    element?.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
     })
   }
-  if (el.focus) {
-    el?.focus()
+  if (element.focus) {
+    element?.focus()
   }
 }

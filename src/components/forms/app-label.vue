@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import type { AppLabelProps } from './types'
+import type { AppLabelProperties } from './types'
 import { DEFAULT_REQUIRED_INDICATOR } from './utils'
 
-const { field, label, isRequired } = defineProps<AppLabelProps>()
+const { field, label, isRequired } = defineProps<AppLabelProperties>()
 </script>

@@ -31,15 +31,15 @@ import { computed } from 'vue'
 import AppCharacterCounter from './app-character-counter.vue'
 import AppErrorMessage from './app-error-message.vue'
 import AppLabel from './app-label.vue'
-import type { AppInputTextProps } from './types'
+import type { AppInputTextProperties } from './types'
 
 const {
   label,
-  field = undefined,
+  field,
   isRequired = false,
   isDisabled = false,
-  maxLength = undefined,
-} = defineProps<AppInputTextProps>()
+  maxLength,
+} = defineProps<AppInputTextProperties>()
 
 defineModel<string>()
 
@@ -51,7 +51,7 @@ const emit = defineEmits<{
  * Account for field being used inside or outside of forms
  */
 const fieldName = computed(() => {
-  return field ? field : label.replaceAll(' ', '')
+  return field ?? label.replaceAll(' ', '')
 })
 
 const { value, errorMessage } = useField<string>(() => fieldName.value, undefined, {

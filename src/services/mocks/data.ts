@@ -20,13 +20,13 @@ const getUserData = (): User => {
 
 const getProducts = (limit: number): Product[] => {
   const products: Product[] = []
-  for (let i = 0; i < limit; i++) {
+  for (let index = 0; index < limit; index++) {
     products.push({
       firstName: faker.person.firstName(),
-      middleName: i % 2 !== 0 ? faker.person.middleName() : undefined,
+      middleName: index % 2 === 0 ? undefined : faker.person.middleName(),
       lastName: faker.person.lastName(),
       email: faker.internet.email(),
-      jobType: i % 2 === 0 ? faker.person.jobType() : undefined,
+      jobType: index % 2 === 0 ? faker.person.jobType() : undefined,
       country: faker.location.country(),
     })
   }
@@ -35,7 +35,7 @@ const getProducts = (limit: number): Product[] => {
 
 const getCalendarEvents = (limit: number): CalendarEvent[] => {
   const calendarEvents: CalendarEvent[] = []
-  for (let i = 0; i < limit; i++) {
+  for (let index = 0; index < limit; index++) {
     calendarEvents.push({
       title: faker.book.title(),
       start: faker.date.recent({ days: 1 }),

@@ -22,11 +22,7 @@ const tabs = ref([
 
 const getActiveTab = () => {
   const fullPath = useRoute().fullPath
-  if (fullPath.includes('feature')) {
-    return fullPath
-  } else {
-    return tabs.value[0]!.route
-  }
+  return fullPath.includes('feature') ? fullPath : tabs.value[0]!.route
 }
 
 const activeTab = ref(getActiveTab())

@@ -44,20 +44,20 @@ import { useField } from 'vee-validate'
 import { computed } from 'vue'
 import AppErrorMessage from './app-error-message.vue'
 import AppLabel from './app-label.vue'
-import type { AppMultiSelectProps } from './types'
+import type { AppMultiSelectProperties } from './types'
 import { DEFAULT_REQUIRED_INDICATOR, isObject } from './utils'
 
 const {
   label,
   options,
-  field = undefined,
+  field,
   optionLabel = 'label',
   optionValue = 'value',
   optionDisplayFormat = 'chip',
   optionSelectedMax = 3,
   isRequired = false,
   isDisabled = false,
-} = defineProps<AppMultiSelectProps>()
+} = defineProps<AppMultiSelectProperties>()
 
 defineModel<string[] | number[]>()
 
@@ -69,7 +69,7 @@ const emit = defineEmits<{
  * Account for field being used inside or outside of forms
  */
 const fieldName = computed(() => {
-  return field ? field : label.replaceAll(' ', '')
+  return field ?? label.replaceAll(' ', '')
 })
 
 const { value, errorMessage } = useField<string>(() => fieldName.value, undefined, {

@@ -3,7 +3,7 @@ import 'pdfmake/build/vfs_fonts'
 import type { TDocumentDefinitions } from 'pdfmake/interfaces'
 
 export const generatePdf = () => {
-  const docDefinition: TDocumentDefinitions = {
+  const documentDefinition: TDocumentDefinitions = {
     header: {
       text: 'sample header',
       alignment: 'center',
@@ -18,5 +18,5 @@ export const generatePdf = () => {
     ],
   }
 
-  pdfMake.createPdf(docDefinition).open()
+  pdfMake.createPdf(documentDefinition).open()
 }

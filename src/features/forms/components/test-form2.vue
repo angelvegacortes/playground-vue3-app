@@ -8,7 +8,7 @@
             v-model="email"
             name="email"
             type="text"
-            v-bind="emailAttrs"
+            v-bind="emailAttributes"
             :invalid="errors.email ? true : false"
             fluid
           />
@@ -39,7 +39,7 @@ const { errors, handleSubmit, resetForm, defineField } = useForm({
   },
 })
 
-const [email, emailAttrs] = defineField('email')
+const [email, emailAttributes] = defineField('email')
 
 const onSubmitSuccess = () => {
   toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })

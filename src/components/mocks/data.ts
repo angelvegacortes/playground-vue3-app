@@ -47,11 +47,11 @@ export const createMockSelectData = () => {
   return {
     field: faker.book.genre(),
     label: faker.book.title(),
-    value: null,
+    value: undefined,
     options: {
       strings: faker.helpers.multiple(() => faker.book.title()),
       numbers: faker.helpers.multiple(() => faker.number.int()),
-      objects: faker.helpers.multiple((_, i) => createMockSelectOption(i)),
+      objects: faker.helpers.multiple((_, index) => createMockSelectOption(index)),
     },
   }
 }

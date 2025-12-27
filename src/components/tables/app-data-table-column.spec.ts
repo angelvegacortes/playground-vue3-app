@@ -169,8 +169,8 @@ describe('app-data-table-column', () => {
       props: {
         value: data,
         filters: {
-          book: { value: null, matchMode: FilterMatchMode.CONTAINS },
-          color: { value: null, matchMode: FilterMatchMode.CONTAINS },
+          book: { value: undefined, matchMode: FilterMatchMode.CONTAINS },
+          color: { value: undefined, matchMode: FilterMatchMode.CONTAINS },
         },
         dataKey: 'id',
         filterDisplay: 'menu',

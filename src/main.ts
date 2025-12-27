@@ -15,29 +15,33 @@ import { themeOptions } from './config/theme'
 import App from './app.vue'
 import router from './router'
 
-// enable msw only for development
-async function prepare() {
-  if (import.meta.env.DEV || import.meta.env.PROD) {
+/**
+ * Enable MSW browser worker if running in development mode
+ * @returns
+ */
+async function startMockServiceWorker() {
+  if (import.meta.env.DEV) {
     return worker.start({
       onUnhandledRequest: 'bypass',
     })
   }
 }
 
-// create and run app after prepare
-prepare().then(() => {
-  const app = createApp(App)
+await startMockServiceWorker()
 
-  const pinia = createPinia()
-  pinia.use(piniaPluginPersistedstate)
+// setup pinia config
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
-  app.use(VueQueryPlugin)
-  app.use(ToastService)
-  app.use(pinia)
-  app.use(router)
-  app.use(PrimeVue, themeOptions)
-  app.directive('tooltip', Tooltip)
-  app.use(abilitiesPlugin, ability)
+// setup app config
+const app = createApp(App)
+app.use(VueQueryPlugin)
+app.use(ToastService)
+app.use(pinia)
+app.use(router)
+app.use(PrimeVue, themeOptions)
+app.use(abilitiesPlugin, ability)
+app.directive('tooltip', Tooltip)
 
-  app.mount('#app')
-})
+// run app
+app.mount('#app')

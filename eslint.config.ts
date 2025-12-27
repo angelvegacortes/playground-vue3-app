@@ -3,6 +3,7 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import boundaries from 'eslint-plugin-boundaries'
 import importPlugin from 'eslint-plugin-import'
+import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import pluginVue from 'eslint-plugin-vue'
 
 export default defineConfigWithVueTs(
@@ -12,7 +13,36 @@ export default defineConfigWithVueTs(
   },
   {
     name: 'app/files-to-ignore',
-    ignores: ['dist/**', 'coverage/**', 'docker/**'],
+    ignores: ['coverage/**', 'dist/**', 'docker/**', 'public/**', '*.d.ts'],
+  },
+  {
+    // NOTE: Check all source files except spec files
+    ignores: ['**/*.spec.ts'],
+    rules: {
+      'max-lines': [
+        'error',
+        {
+          max: 1000,
+          skipBlankLines: true,
+          skipComments: true,
+        },
+      ],
+    },
+  },
+  {
+    // NOTE: Check all source files except spec and store files
+    ignores: ['**/*.spec.ts', '**/*store.ts'],
+    rules: {
+      'max-lines-per-function': [
+        'error',
+        {
+          max: 100,
+          skipBlankLines: true,
+          skipComments: true,
+          IIFEs: true,
+        },
+      ],
+    },
   },
   pluginVue.configs['flat/recommended'],
   {
@@ -34,6 +64,7 @@ export default defineConfigWithVueTs(
       ],
     },
   },
+  eslintPluginUnicorn.configs.recommended,
   vueTsConfigs.recommended,
   {
     files: ['src/**/*'],
@@ -144,7 +175,7 @@ export default defineConfigWithVueTs(
     files: ['src/**/*.spec.ts'],
     rules: {
       'vitest/consistent-test-it': 'error',
-      'vitest/consistent-test-filename': ['error', { pattern: '.*\\.spec\\.ts?$' }],
+      'vitest/consistent-test-filename': ['error', { pattern: String.raw`.*\.spec\.ts?$` }],
     },
   },
   skipFormatting,

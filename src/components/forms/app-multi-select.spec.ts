@@ -164,7 +164,10 @@ describe('app-multi-select', () => {
     const selectOption = getByRole('option', { name: data.options.strings[0]! })
     await userEvent.click(selectOption)
 
+    const DEFAULT_ARRAY_DEPTH = 2
     expect(emitted('update:modelValue')).toBeDefined()
-    expect(emitted('update:modelValue').flat(2).pop()).toBe(data.options.strings[0])
+    expect(emitted('update:modelValue').flat(DEFAULT_ARRAY_DEPTH).pop()).toBe(
+      data.options.strings[0],
+    )
   })
 })

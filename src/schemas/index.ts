@@ -15,11 +15,9 @@ const errorMessages = {
  * @returns
  */
 export const getEmail = (isOptional: boolean = false) => {
-  if (isOptional) {
-    return z.email().optional()
-  } else {
-    return z.email().nonempty({ error: errorMessages.requiresValue })
-  }
+  return isOptional
+    ? z.email().optional()
+    : z.email().nonempty({ error: errorMessages.requiresValue })
 }
 
 /**
@@ -34,11 +32,9 @@ export const getEmail = (isOptional: boolean = false) => {
  * @returns
  */
 export const getObjectArray = (data: ZodObject, isOptional: boolean = false) => {
-  if (isOptional) {
-    return z.array(data).optional()
-  } else {
-    return z.array(data).min(1, { message: errorMessages.requiresAtLeastOneValue })
-  }
+  return isOptional
+    ? z.array(data).optional()
+    : z.array(data).min(1, { message: errorMessages.requiresAtLeastOneValue })
 }
 
 /**
@@ -47,11 +43,7 @@ export const getObjectArray = (data: ZodObject, isOptional: boolean = false) => 
  * @returns
  */
 export const getNumber = (isOptional: boolean = false) => {
-  if (isOptional) {
-    return z.number().optional()
-  } else {
-    return z.number({ message: errorMessages.requiresValue })
-  }
+  return isOptional ? z.number().optional() : z.number({ message: errorMessages.requiresValue })
 }
 
 /**
@@ -60,16 +52,14 @@ export const getNumber = (isOptional: boolean = false) => {
  * @returns
  */
 export const getNumberNonNegative = (isOptional: boolean = false) => {
-  if (isOptional) {
-    return z
-      .number()
-      .nonnegative({ message: schemaUtils.errors.requiresNonNegativeValue })
-      .optional()
-  } else {
-    return z.coerce
-      .number({ message: errorMessages.requiresValue })
-      .nonnegative({ message: schemaUtils.errors.requiresNonNegativeValue })
-  }
+  return isOptional
+    ? z
+        .number()
+        .nonnegative({ message: schemaUtilities.errors.requiresNonNegativeValue })
+        .optional()
+    : z.coerce
+        .number({ message: errorMessages.requiresValue })
+        .nonnegative({ message: schemaUtilities.errors.requiresNonNegativeValue })
 }
 
 /**
@@ -78,11 +68,9 @@ export const getNumberNonNegative = (isOptional: boolean = false) => {
  * @returns
  */
 export const getString = (isOptional: boolean = false) => {
-  if (isOptional) {
-    return z.string().optional()
-  } else {
-    return z.string().min(1, { message: errorMessages.requiresValue })
-  }
+  return isOptional
+    ? z.string().optional()
+    : z.string().min(1, { message: errorMessages.requiresValue })
 }
 
 /**
@@ -91,14 +79,12 @@ export const getString = (isOptional: boolean = false) => {
  * @returns
  */
 export const getStringArray = (isOptional: boolean = false) => {
-  if (isOptional) {
-    return z.array(z.string()).optional()
-  } else {
-    return z.array(z.string()).min(1, { message: errorMessages.requiresAtLeastOneValue })
-  }
+  return isOptional
+    ? z.array(z.string()).optional()
+    : z.array(z.string()).min(1, { message: errorMessages.requiresAtLeastOneValue })
 }
 
-const schemaUtils = {
+const schemaUtilities = {
   errors: errorMessages,
   getEmail,
   getObjectArray,
@@ -108,4 +94,4 @@ const schemaUtils = {
   getStringArray,
 }
 
-export default schemaUtils
+export default schemaUtilities

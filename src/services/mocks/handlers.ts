@@ -8,26 +8,26 @@ const basicHandlers = [
   }),
   // HTTP 204 mock
   http.get('api/test/204', () => {
-    return new HttpResponse(null, {
+    return new HttpResponse(undefined, {
       status: 204,
       statusText: 'No Content',
     })
   }),
   // HTTP 400 mock
   http.get('api/test/400', () => {
-    return new HttpResponse(null, { status: 400 })
+    return new HttpResponse(undefined, { status: 400 })
   }),
   // HTTP 401 mock
   http.get('api/test/401', () => {
-    return new HttpResponse(null, { status: 401 })
+    return new HttpResponse(undefined, { status: 401 })
   }),
   // HTTP 404 mock
   http.get('api/test/404', () => {
-    return new HttpResponse(null, { status: 404 })
+    return new HttpResponse(undefined, { status: 404 })
   }),
   // HTTP 500 mock
   http.get('api/test/500', () => {
-    return new HttpResponse(null, { status: 500 })
+    return new HttpResponse(undefined, { status: 500 })
   }),
 ]
 
