@@ -304,7 +304,7 @@ import AppDataTable from '@app/components/tables/app-data-table.vue'
 import apiService from '@app/services/api'
 import type { Product } from '@app/types'
 import { FilterMatchMode } from '@primevue/core/api'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const { data: products, isLoading, isSuccess } = apiService.getProducts()
 
@@ -334,9 +334,11 @@ const getCountries = () => {
   }
 }
 
-if (isSuccess.value) {
-  getCountries()
-}
+watch(isSuccess, (isSuccess) => {
+  if (isSuccess) {
+    getCountries()
+  }
+})
 
 const initFilters = () => {
   filters1.value = { ...baseFilters.value }
