@@ -7,7 +7,9 @@ import AppHeader from './app-header.vue'
 
 describe('app-header', () => {
   beforeAll(() => server.listen())
+
   afterEach(() => server.resetHandlers())
+
   afterAll(() => server.close())
 
   it('shows app title', () => {

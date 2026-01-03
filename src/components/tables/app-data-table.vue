@@ -41,6 +41,10 @@ const {
   isLoading = false,
 } = defineProps<AppDataTableProperties>()
 
+defineSlots<{
+  default(): void
+}>()
+
 const rows = ref(5)
 const rowsPerPageOptions = ref([5, 10, 20, 50])
 const filtersModel = ref()

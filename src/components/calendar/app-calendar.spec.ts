@@ -8,7 +8,9 @@ import AppCalendar from './app-calendar.vue'
 
 describe('app-calendar', () => {
   beforeAll(() => server.listen())
+
   afterEach(() => server.resetHandlers())
+
   afterAll(() => server.close())
 
   beforeEach(() => {

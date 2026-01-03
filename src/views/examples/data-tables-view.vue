@@ -330,7 +330,6 @@ const getCountries = () => {
       return d.country
     })
     countries.value = [...new Set(countries.value)]
-    console.log(countries.value)
   }
 }
 

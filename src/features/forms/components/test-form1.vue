@@ -1,6 +1,6 @@
 <template>
   <Form
-    ref="formApi"
+    ref="form-api"
     v-slot="$form"
     :initial-values
     :resolver="resolver"
@@ -27,7 +27,7 @@
 import type { FormInstance, FormSubmitEvent } from '@primevue/forms/form'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
 import { useToast } from 'primevue/usetoast'
-import { ref } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 import { formSchema1 } from '../schemas'
 
 const toast = useToast()
@@ -36,7 +36,7 @@ const initialValuesData = {
   email: '',
 }
 
-const formApi = ref<FormInstance>()
+const formApi = useTemplateRef<FormInstance>('form-api')
 const initialValues = ref({ ...initialValuesData })
 
 const resolver = ref(zodResolver(formSchema1))

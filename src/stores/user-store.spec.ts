@@ -7,7 +7,9 @@ import { useUserStore } from './user-store'
 
 describe('user-store', () => {
   beforeAll(() => server.listen())
+
   afterEach(() => server.resetHandlers())
+
   afterAll(() => server.close())
 
   beforeEach(() => {

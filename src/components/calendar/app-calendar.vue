@@ -4,7 +4,7 @@ import { type CalendarOptions } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import FullCalendar from '@fullcalendar/vue3'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, useTemplateRef } from 'vue'
 
 const { events } = defineProps<{
   events: CalendarEvent[]
@@ -28,7 +28,7 @@ const calendarOptions = ref<CalendarOptions>({
   events: events,
 })
 
-const fullCalendar = ref<InstanceType<typeof FullCalendar>>()
+const fullCalendar = useTemplateRef<InstanceType<typeof FullCalendar>>('full-calendar')
 const calendar = ref()
 
 onMounted(() => {
@@ -37,5 +37,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <FullCalendar ref="fullCalendar" :options="calendarOptions" />
+  <FullCalendar ref="full-calendar" :options="calendarOptions" />
 </template>

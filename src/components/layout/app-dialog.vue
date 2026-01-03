@@ -16,4 +16,8 @@ const { header, isVisible } = defineProps<{
   header: string
   isVisible: boolean
 }>()
+
+defineSlots<{
+  default(): void
+}>()
 </script>

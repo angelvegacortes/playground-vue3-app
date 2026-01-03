@@ -14,7 +14,7 @@ const errorMessages = {
  * @param isOptional Defaults to false. If true, then type validation is made optional.
  * @returns
  */
-export const getEmail = (isOptional: boolean = false) => {
+const getEmail = (isOptional: boolean = false) => {
   return isOptional
     ? z.email().optional()
     : z.email().nonempty({ error: errorMessages.requiresValue })
@@ -31,7 +31,7 @@ export const getEmail = (isOptional: boolean = false) => {
  * @param isOptional Defaults to false. If true, then type validation is made optional.
  * @returns
  */
-export const getObjectArray = (data: ZodObject, isOptional: boolean = false) => {
+const getObjectArray = (data: ZodObject, isOptional: boolean = false) => {
   return isOptional
     ? z.array(data).optional()
     : z.array(data).min(1, { message: errorMessages.requiresAtLeastOneValue })
@@ -42,7 +42,7 @@ export const getObjectArray = (data: ZodObject, isOptional: boolean = false) => 
  * @param isOptional Defaults to false. If true, then type validation is made optional.
  * @returns
  */
-export const getNumber = (isOptional: boolean = false) => {
+const getNumber = (isOptional: boolean = false) => {
   return isOptional ? z.number().optional() : z.number({ message: errorMessages.requiresValue })
 }
 
@@ -51,7 +51,7 @@ export const getNumber = (isOptional: boolean = false) => {
  * @param isOptional Defaults to false. If true, then type validation is made optional.
  * @returns
  */
-export const getNumberNonNegative = (isOptional: boolean = false) => {
+const getNumberNonNegative = (isOptional: boolean = false) => {
   return isOptional
     ? z
         .number()
@@ -67,7 +67,7 @@ export const getNumberNonNegative = (isOptional: boolean = false) => {
  * @param isOptional Defaults to false. If true, then type validation is made optional.
  * @returns
  */
-export const getString = (isOptional: boolean = false) => {
+const getString = (isOptional: boolean = false) => {
   return isOptional
     ? z.string().optional()
     : z.string().min(1, { message: errorMessages.requiresValue })
@@ -78,7 +78,7 @@ export const getString = (isOptional: boolean = false) => {
  * @param isOptional Defaults to false. If true, then type validation is made optional.
  * @returns
  */
-export const getStringArray = (isOptional: boolean = false) => {
+const getStringArray = (isOptional: boolean = false) => {
   return isOptional
     ? z.array(z.string()).optional()
     : z.array(z.string()).min(1, { message: errorMessages.requiresAtLeastOneValue })
