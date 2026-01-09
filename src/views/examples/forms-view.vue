@@ -1,5 +1,4 @@
 <template>
-  <Toast />
   <h1 class="text-2xl">Forms</h1>
   <Tabs value="1" :lazy="true">
     <TabList>

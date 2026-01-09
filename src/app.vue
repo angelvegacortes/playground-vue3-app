@@ -26,6 +26,8 @@ onMounted(() => {
     <!-- <sideNavigation /> -->
   </nav>
   <main class="mx-5 my-5 z-0 flex-1">
+    <!-- NOTE global toast component. Define once and can be used by all child components -->
+    <Toast :pt="{ root: 'mt-12' }" />
     <Suspense>
       <RouterView />
     </Suspense>
