@@ -52,12 +52,12 @@
 
 <script setup lang="ts">
 import AppInputText from '@app/components/forms/app-input-text.vue'
-import { useToast } from 'primevue/usetoast'
+import { useMessageService } from '@app/services/message-service'
 import { useFieldArray, useForm } from 'vee-validate'
 import { formSchema3 } from '../schemas'
 import { scrollToFieldError } from '../utils'
 
-const toast = useToast()
+const { showSuccessMessage } = useMessageService()
 
 const contact = {
   firstName: '',
@@ -76,7 +76,7 @@ const { handleSubmit, resetForm, values, errors } = useForm({
 const { fields, push, remove } = useFieldArray('contacts')
 
 const onSubmitSuccess = () => {
-  toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })
+  showSuccessMessage('Form submitted.')
   resetForm()
 }
 

@@ -67,12 +67,12 @@ import AppInputText from '@app/components/forms/app-input-text.vue'
 import AppMultiSelect from '@app/components/forms/app-multi-select.vue'
 import AppSelect from '@app/components/forms/app-select.vue'
 import AppTextArea from '@app/components/forms/app-text-area.vue'
-import { useToast } from 'primevue/usetoast'
+import { useMessageService } from '@app/services/message-service'
 import { useForm } from 'vee-validate'
 import { formSchema4 } from '../schemas'
 import { scrollToFieldError } from '../utils'
 
-const toast = useToast()
+const { showSuccessMessage } = useMessageService()
 
 const { handleSubmit, resetForm, values, errors } = useForm({
   validationSchema: formSchema4,
@@ -101,7 +101,7 @@ const selectOptions = [
 ]
 
 const onSubmitSuccess = () => {
-  toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })
+  showSuccessMessage('Form submitted.')
   resetForm()
 }
 

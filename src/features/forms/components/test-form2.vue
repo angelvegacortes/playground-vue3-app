@@ -25,12 +25,12 @@
 </template>
 
 <script setup lang="ts">
-import { useToast } from 'primevue/usetoast'
+import { useMessageService } from '@app/services/message-service'
 import { useForm } from 'vee-validate'
 import { formSchema1 } from '../schemas'
 import { scrollToFieldError } from '../utils'
 
-const toast = useToast()
+const { showSuccessMessage } = useMessageService()
 
 const { errors, handleSubmit, resetForm, defineField } = useForm({
   validationSchema: formSchema1,
@@ -42,7 +42,7 @@ const { errors, handleSubmit, resetForm, defineField } = useForm({
 const [email, emailAttributes] = defineField('email')
 
 const onSubmitSuccess = () => {
-  toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })
+  showSuccessMessage('Form submitted.')
   resetForm()
 }
 

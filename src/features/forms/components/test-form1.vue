@@ -24,13 +24,13 @@
 </template>
 
 <script setup lang="ts">
+import { useMessageService } from '@app/services/message-service'
 import type { FormInstance, FormSubmitEvent } from '@primevue/forms/form'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
-import { useToast } from 'primevue/usetoast'
 import { ref, useTemplateRef } from 'vue'
 import { formSchema1 } from '../schemas'
 
-const toast = useToast()
+const { showSuccessMessage } = useMessageService()
 
 const initialValuesData = {
   email: '',
@@ -43,7 +43,7 @@ const resolver = ref(zodResolver(formSchema1))
 
 const onFormSubmit = (event: FormSubmitEvent) => {
   if (event.valid) {
-    toast.add({ severity: 'success', summary: 'Form submitted.', life: 3000 })
+    showSuccessMessage('Form submitted.')
   }
 }
 
