@@ -11,6 +11,7 @@ import ToastService from 'primevue/toastservice'
 import Tooltip from 'primevue/tooltip'
 import { createApp } from 'vue'
 import { themeOptions } from './config/theme'
+import keyboardShortcuts from './plugins/keyboard-shortcuts'
 
 import App from './app.vue'
 import router from './router'
@@ -40,6 +41,7 @@ app.use(ToastService)
 app.use(pinia)
 app.use(router)
 app.use(PrimeVue, themeOptions)
+app.use(keyboardShortcuts)
 app.use(abilitiesPlugin, ability)
 app.directive('tooltip', Tooltip)
 

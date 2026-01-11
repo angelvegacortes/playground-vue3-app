@@ -1,6 +1,7 @@
 import TestParentA from '@app/features/general/components/test-parent-a.vue'
 import TestParentB from '@app/features/general/components/test-parent-b.vue'
 import TestParentC from '@app/features/general/components/test-parent-c.vue'
+import KeyboardShortcutsView from '@app/views/examples/keyboard-shortcuts-view.vue'
 import ConsentView from '../views/consent-view.vue'
 import NotAuthorized from '../views/errors/not-authorized.vue'
 import CalendarsView from '../views/examples/calendars-view.vue'
@@ -93,6 +94,12 @@ const routes = [
     path: '/examples/inputs',
     name: 'inputs',
     component: InputsView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/examples/keyboard-shortcuts',
+    name: 'keyboard-shortcuts',
+    component: KeyboardShortcutsView,
     meta: { requiresAuth: true },
   },
   {

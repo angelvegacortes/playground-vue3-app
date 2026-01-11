@@ -73,6 +73,10 @@ export default defineConfigWithVueTs(
           ],
         },
         {
+          type: 'plugin-resources',
+          pattern: ['src/plugins/**'],
+        },
+        {
           type: 'router-resources',
           pattern: ['src/router/**'],
         },
@@ -132,10 +136,15 @@ export default defineConfigWithVueTs(
               ],
             },
             {
+              from: 'plugin-resources',
+              allow: ['global-resources', 'router-resources'],
+            },
+            {
               from: 'app-root-resources',
               allow: [
                 'app-root-resources',
                 'global-resources',
+                'plugin-resources',
                 'router-resources',
                 ['feature-resources', { featureName: 'notifications' }],
               ],
