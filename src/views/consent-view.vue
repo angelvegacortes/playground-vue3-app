@@ -14,6 +14,8 @@ import { onMounted, onUnmounted } from 'vue'
 
 const userStore = useUserStore()
 
+// const test = 5;
+
 onMounted(() => {
   document.body.classList.add('consent-alternate-background-color')
 })

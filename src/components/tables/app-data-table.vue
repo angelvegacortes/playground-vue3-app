@@ -9,8 +9,8 @@
     paginator
     sort-mode="multiple"
     filter-display="menu"
-    :rows="rows"
-    :rows-per-page-options="rowsPerPageOptions"
+    :rows="5"
+    :rows-per-page-options="[5, 10, 20, 50]"
   >
     <template v-if="filtersModel" #header>
       <div class="flex justify-between">
@@ -45,8 +45,6 @@ defineSlots<{
   default(): void
 }>()
 
-const rows = ref(5)
-const rowsPerPageOptions = ref([5, 10, 20, 50])
 const filtersModel = ref()
 
 const value = computed(() => {

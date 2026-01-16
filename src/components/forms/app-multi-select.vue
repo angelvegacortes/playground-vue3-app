@@ -47,6 +47,8 @@ import AppLabel from './app-label.vue'
 import type { AppMultiSelectProperties } from './types'
 import { DEFAULT_REQUIRED_INDICATOR, isObject } from './utils'
 
+const DEFAULT_MAX_OPTIONS_SELECTED = 3
+
 const {
   label,
   options,
@@ -54,7 +56,7 @@ const {
   optionLabel = 'label',
   optionValue = 'value',
   optionDisplayFormat = 'chip',
-  optionSelectedMax = 3,
+  optionSelectedMax = DEFAULT_MAX_OPTIONS_SELECTED,
   isRequired = false,
   isDisabled = false,
 } = defineProps<AppMultiSelectProperties>()

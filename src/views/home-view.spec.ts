@@ -20,6 +20,8 @@ describe('home-view', () => {
 
     const dummyTextCards = await findAllByText('Dummy Text Card')
 
+    // const dummy = 5
+
     expect(dummyTextCards).toHaveLength(3)
   })
 })

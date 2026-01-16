@@ -1,18 +1,3 @@
-<script setup lang="ts">
-import NotificationsCounter from '@app/features/notifications/notifications-counter.vue'
-import { onMounted } from 'vue'
-import { RouterView } from 'vue-router'
-import AppFooter from './components/layout/app-footer.vue'
-import AppHeader from './components/layout/app-header.vue'
-import { useUserStore } from './stores/user-store'
-
-const userStore = useUserStore()
-
-onMounted(() => {
-  userStore.init()
-})
-</script>
-
 <template>
   <header class="sticky top-0 z-50">
     <AppHeader>
@@ -36,3 +21,18 @@ onMounted(() => {
     <AppFooter />
   </footer>
 </template>
+
+<script setup lang="ts">
+import NotificationsCounter from '@app/features/notifications/notifications-counter.vue'
+import { onMounted } from 'vue'
+import { RouterView } from 'vue-router'
+import AppFooter from './components/layout/app-footer.vue'
+import AppHeader from './components/layout/app-header.vue'
+import { useUserStore } from './stores/user-store'
+
+const userStore = useUserStore()
+
+onMounted(() => {
+  userStore.init()
+})
+</script>

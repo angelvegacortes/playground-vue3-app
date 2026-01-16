@@ -1,7 +1,8 @@
 import { faker } from '@faker-js/faker'
 import type { AppSelectOption } from '../forms/types'
 
-faker.seed(1234)
+const DEFAULT_FAKER_SEED = 1234
+faker.seed(DEFAULT_FAKER_SEED)
 
 export const createMockCharacterCounter = () => {
   return {

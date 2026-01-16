@@ -1,3 +1,7 @@
+<template>
+  <FullCalendar ref="full-calendar" :options="calendarOptions" />
+</template>
+
 <script setup lang="ts">
 import type { CalendarEvent } from '@app/types'
 import { type CalendarOptions } from '@fullcalendar/core'
@@ -35,7 +39,3 @@ onMounted(() => {
   calendar.value = fullCalendar.value?.getApi()
 })
 </script>
-
-<template>
-  <FullCalendar ref="full-calendar" :options="calendarOptions" />
-</template>

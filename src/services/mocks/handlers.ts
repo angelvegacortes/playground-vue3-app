@@ -1,6 +1,8 @@
 import { http, HttpResponse } from 'msw'
 import mockData from './data'
 
+const DEFAULT_RESULTS_COUNT = 10
+
 const basicHandlers = [
   // HTTP 200 mock
   http.get('api/test/200', () => {
@@ -36,10 +38,10 @@ const dataHandlers = [
     return HttpResponse.json(mockData.getUserData())
   }),
   http.get('api/products', () => {
-    return HttpResponse.json(mockData.getProducts(10))
+    return HttpResponse.json(mockData.getProducts(DEFAULT_RESULTS_COUNT))
   }),
   http.get('api/calendar/events', () => {
-    return HttpResponse.json(mockData.getCalendarEvents(10))
+    return HttpResponse.json(mockData.getCalendarEvents(DEFAULT_RESULTS_COUNT))
   }),
 ]
 

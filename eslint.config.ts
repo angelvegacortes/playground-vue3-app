@@ -3,6 +3,7 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import boundaries from 'eslint-plugin-boundaries'
 import importPlugin from 'eslint-plugin-import'
+import sonarjs from 'eslint-plugin-sonarjs'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import pluginVue from 'eslint-plugin-vue'
 
@@ -32,6 +33,12 @@ export default defineConfigWithVueTs(
       ],
       'no-console': ['error', { allow: ['error'] }],
       'no-useless-concat': 'error',
+      // Note: you must disable the base rule as it can report incorrect errors
+      'no-magic-numbers': 'off',
+      '@typescript-eslint/no-magic-numbers': [
+        'error',
+        { ignoreArrayIndexes: true, ignore: [0, 1] },
+      ],
     },
   },
   {
@@ -161,6 +168,8 @@ export default defineConfigWithVueTs(
       ],
     },
   },
+  sonarjs.configs.recommended,
+  eslintPluginUnicorn.configs.recommended,
   pluginVue.configs['flat/recommended'],
   {
     name: 'vue/extended/rules',
@@ -191,10 +200,18 @@ export default defineConfigWithVueTs(
       'vue/require-emit-validator': 'error',
       'vue/slot-name-casing': 'error',
       'vue/no-console': 'error',
+      'vue/block-lang': [
+        'error',
+        {
+          script: {
+            lang: ['ts'],
+          },
+        },
+      ],
       'vue/block-order': [
         'error',
         {
-          order: [['template', 'script'], 'style'],
+          order: ['template', 'script', 'style'],
         },
       ],
       'vue/component-name-in-template-casing': [
@@ -207,7 +224,6 @@ export default defineConfigWithVueTs(
       ],
     },
   },
-  eslintPluginUnicorn.configs.recommended,
   vueTsConfigs.recommended,
   {
     extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],

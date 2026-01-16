@@ -1,7 +1,6 @@
 import './assets/main.css'
 
 import ability from '@app/auth/ability-config-advanced'
-import { worker } from '@app/services/mocks/browser'
 import { abilitiesPlugin } from '@casl/vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
@@ -15,6 +14,7 @@ import keyboardShortcuts from './plugins/keyboard-shortcuts'
 
 import App from './app.vue'
 import router from './router'
+import { worker } from './services/mocks/browser'
 
 /**
  * Enable MSW browser worker if running in development mode
