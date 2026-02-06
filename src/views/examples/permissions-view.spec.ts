@@ -1,59 +1,86 @@
 import ability from '@app/auth/ability-config-advanced'
-import { render } from '@testing-library/vue'
-import { beforeEach, describe, expect, it } from 'vitest'
-import Test1View from './permissions-view.vue'
+import { server } from '@app/services/mocks/node'
+import { render, screen } from '@testing-library/vue'
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
+import PermissionsView from './permissions-view.vue'
 
 describe('permissions-view', () => {
+  beforeAll(() => server.listen())
+
+  afterEach(() => server.resetHandlers())
+
+  afterAll(() => server.close())
+
   beforeEach(() => {
     // NOTE: disable all permissions before each test
     ability.update([])
   })
 
   it('shows no features without permissions', async () => {
-    const { queryByText } = await render(Test1View)
+    await render(PermissionsView)
 
-    expect(queryByText('Feature A Test')).toBeNull()
-    expect(queryByText('Feature B Test')).toBeNull()
-    expect(queryByText('Feature C Test')).toBeNull()
+    expect(screen.queryByText('Feature A Test')).toBeNull()
+    expect(screen.queryByText('Feature B Test')).toBeNull()
+    expect(screen.queryByText('Feature C Test')).toBeNull()
   })
 
   it('shows all features with all permissions', () => {
     ability.update([{ action: 'read', subject: 'all' }])
 
-    const { getByText } = render(Test1View)
+    render(PermissionsView)
 
-    expect(getByText('Feature A Test')).toBeTruthy()
-    expect(getByText('Feature B Test')).toBeTruthy()
-    expect(getByText('Feature C Test')).toBeTruthy()
+    expect(screen.getByText('Feature A Test')).toBeTruthy()
+    expect(screen.getByText('Feature B Test')).toBeTruthy()
+    expect(screen.getByText('Feature C Test')).toBeTruthy()
   })
 
   it('shows only feature a when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureA' }])
 
-    const { getByText, queryByText } = render(Test1View)
+    render(PermissionsView)
 
-    expect(getByText('Feature A Test')).toBeTruthy()
-    expect(queryByText('Feature B Test')).toBeNull()
-    expect(queryByText('Feature C Test')).toBeNull()
+    expect(screen.getByText('Feature A Test')).toBeTruthy()
+    expect(screen.queryByText('Feature B Test')).toBeNull()
+    expect(screen.queryByText('Feature C Test')).toBeNull()
   })
 
   it('shows only feature b when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureB' }])
 
-    const { getByText, queryByText } = render(Test1View)
+    render(PermissionsView)
 
-    expect(queryByText('Feature A Test')).toBeNull()
-    expect(getByText('Feature B Test')).toBeTruthy()
-    expect(queryByText('Feature C Test')).toBeNull()
+    expect(screen.queryByText('Feature A Test')).toBeNull()
+    expect(screen.getByText('Feature B Test')).toBeTruthy()
+    expect(screen.queryByText('Feature C Test')).toBeNull()
   })
 
   it('shows only feature C when its enabled', () => {
     ability.update([{ action: 'read', subject: 'featureC' }])
 
-    const { getByText, queryByText } = render(Test1View)
+    render(PermissionsView)
 
-    expect(queryByText('Feature A Test')).toBeNull()
-    expect(queryByText('Feature B Test')).toBeNull()
-    expect(getByText('Feature C Test')).toBeTruthy()
+    expect(screen.queryByText('Feature A Test')).toBeNull()
+    expect(screen.queryByText('Feature B Test')).toBeNull()
+    expect(screen.getByText('Feature C Test')).toBeTruthy()
+  })
+
+  it('shows message when loading', () => {
+    render(PermissionsView)
+    expect(screen.getByText('Loading test data...')).toBeTruthy()
+    expect(screen.queryByText('Is data null?')).toBeFalsy()
+    expect(screen.queryByText('Is data undefined?')).toBeFalsy()
+  })
+
+  it('shows data when not loading', async () => {
+    await render(PermissionsView)
+
+    const data1 = await screen.findByText('Is data null?')
+    expect(data1).toBeTruthy()
+
+    const data2 = await screen.findByText('Is data undefined?')
+    expect(data2).toBeDefined()
+
+    const loadingMessage = screen.queryByText('Loading test data...')
+    expect(loadingMessage).toBeFalsy()
   })
 })

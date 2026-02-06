@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event'
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import flushPromises from 'flush-promises'
 import { describe, expect, it } from 'vitest'
 import waitForExpect from 'wait-for-expect'
@@ -7,68 +7,68 @@ import TestForm3 from './test-form3.vue'
 
 describe('test-form-3', () => {
   it('shows the form fields', () => {
-    const { getByRole } = render(TestForm3)
+    render(TestForm3)
 
-    expect(getByRole('textbox', { name: '*Email' })).toBeTruthy()
+    expect(screen.getByRole('textbox', { name: '*Email' })).toBeTruthy()
   })
 
   it('shows the form buttons', () => {
-    const { getByRole } = render(TestForm3)
+    render(TestForm3)
 
-    expect(getByRole('button', { name: 'Clear' })).toBeTruthy()
-    expect(getByRole('button', { name: 'Submit' })).toBeTruthy()
+    expect(screen.getByRole('button', { name: 'Clear' })).toBeTruthy()
+    expect(screen.getByRole('button', { name: 'Submit' })).toBeTruthy()
   })
 
   it('shows errors when submitting an empty form', async () => {
-    const { getByRole, getByText } = render(TestForm3)
+    render(TestForm3)
     const user = userEvent.setup()
 
-    const submitButton = getByRole('button', { name: 'Submit' })
+    const submitButton = screen.getByRole('button', { name: 'Submit' })
     await user.click(submitButton)
 
     await flushPromises()
     await waitForExpect(() => {
-      expect(getByText('Invalid email address')).toBeTruthy()
+      expect(screen.getByText('Invalid email address')).toBeTruthy()
     })
   })
 
   it('shows errors when inputting invalid values', async () => {
-    const { getByRole, getByText } = render(TestForm3)
+    render(TestForm3)
     const user = userEvent.setup()
 
-    const emailField = getByRole<HTMLInputElement>('textbox', { name: '*Email' })
+    const emailField = screen.getByRole<HTMLInputElement>('textbox', { name: '*Email' })
     await user.type(emailField, 'test')
 
     await flushPromises()
     await waitForExpect(() => {
       expect(emailField.ariaInvalid).toBeTruthy()
-      expect(getByText('Invalid email address')).toBeTruthy()
+      expect(screen.getByText('Invalid email address')).toBeTruthy()
     })
   })
 
   it('shows no errors when inputting valid values', async () => {
-    const { getByRole, queryByText } = render(TestForm3)
+    render(TestForm3)
     const user = userEvent.setup()
 
-    const emailField = getByRole<HTMLInputElement>('textbox', { name: '*Email' })
+    const emailField = screen.getByRole<HTMLInputElement>('textbox', { name: '*Email' })
     await user.type(emailField, 'test@test.gov')
 
     await flushPromises()
     await waitForExpect(() => {
       expect(emailField.ariaInvalid).toBeFalsy()
-      expect(queryByText('Invalid email address')).toBeFalsy()
+      expect(screen.queryByText('Invalid email address')).toBeFalsy()
     })
   })
 
   it('clears the form', async () => {
-    const { getByRole } = render(TestForm3)
+    render(TestForm3)
     const user = userEvent.setup()
 
-    const emailField = getByRole<HTMLInputElement>('textbox', { name: '*Email' })
+    const emailField = screen.getByRole<HTMLInputElement>('textbox', { name: '*Email' })
     await user.type(emailField, 'test')
     expect(emailField.value).toBe('test')
 
-    const clearButton = getByRole('button', { name: 'Clear' })
+    const clearButton = screen.getByRole('button', { name: 'Clear' })
     await user.click(clearButton)
 
     expect(emailField.value).toBe('')

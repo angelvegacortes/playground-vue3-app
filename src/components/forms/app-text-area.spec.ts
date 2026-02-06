@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event'
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import { createMockTextAreaData } from '../mocks/data'
 import AppTextArea from './app-text-area.vue'
@@ -9,7 +9,7 @@ describe('app-text-area', () => {
   const data = createMockTextAreaData()
 
   it('shows the input text area', async () => {
-    const { getByRole } = render(AppTextArea, {
+    render(AppTextArea, {
       props: {
         field: data.field,
         label: data.label,
@@ -18,11 +18,11 @@ describe('app-text-area', () => {
       },
     })
 
-    expect(getByRole('textbox', { name: data.label })).toBeTruthy()
+    expect(screen.getByRole('textbox', { name: data.label })).toBeTruthy()
   })
 
   it('shows the input text area as required', async () => {
-    const { getByRole } = render(AppTextArea, {
+    render(AppTextArea, {
       props: {
         field: data.field,
         label: data.label,
@@ -33,11 +33,11 @@ describe('app-text-area', () => {
     })
 
     const name = `${DEFAULT_REQUIRED_INDICATOR}${data.label}`
-    expect(getByRole('textbox', { name: name })).toBeTruthy()
+    expect(screen.getByRole('textbox', { name: name })).toBeTruthy()
   })
 
   it('shows the input text area as disabled', async () => {
-    const { getByRole } = render(AppTextArea, {
+    render(AppTextArea, {
       props: {
         field: data.field,
         label: data.label,
@@ -47,12 +47,12 @@ describe('app-text-area', () => {
       },
     })
 
-    const textArea = getByRole<HTMLInputElement>('textbox', { name: data.label })
+    const textArea = screen.getByRole<HTMLInputElement>('textbox', { name: data.label })
     expect(textArea.disabled).toBe(true)
   })
 
   it('shows the input text area value', async () => {
-    const { getByRole } = render(AppTextArea, {
+    render(AppTextArea, {
       props: {
         field: data.field,
         label: data.label,
@@ -61,13 +61,13 @@ describe('app-text-area', () => {
       },
     })
 
-    const textArea = getByRole<HTMLInputElement>('textbox', { name: data.label })
+    const textArea = screen.getByRole<HTMLInputElement>('textbox', { name: data.label })
     await userEvent.type(textArea, data.value)
     expect(textArea.value).toBe(data.value)
   })
 
   it('shows the input text area max length', async () => {
-    const { getByText, getByRole } = render(AppTextArea, {
+    render(AppTextArea, {
       props: {
         field: data.field,
         label: data.label,
@@ -77,16 +77,16 @@ describe('app-text-area', () => {
       },
     })
 
-    expect(getByText(`0 / ${data.maxLength}`)).toBeTruthy()
+    expect(screen.getByText(`0 / ${data.maxLength}`)).toBeTruthy()
 
-    const textArea = getByRole<HTMLInputElement>('textbox', { name: data.label })
+    const textArea = screen.getByRole<HTMLInputElement>('textbox', { name: data.label })
     await userEvent.type(textArea, data.value)
 
-    expect(getByText(`${data.value.length} / ${data.maxLength}`)).toBeTruthy()
+    expect(screen.getByText(`${data.value.length} / ${data.maxLength}`)).toBeTruthy()
   })
 
   it('emits event on input', async () => {
-    const { getByRole, emitted } = render(AppTextArea, {
+    const { emitted } = render(AppTextArea, {
       props: {
         field: data.field,
         label: data.label,
@@ -97,14 +97,14 @@ describe('app-text-area', () => {
 
     expect(emitted('input')).toBeUndefined()
 
-    const textArea = getByRole<HTMLInputElement>('textbox', { name: data.label })
+    const textArea = screen.getByRole<HTMLInputElement>('textbox', { name: data.label })
     await userEvent.type(textArea, 'hello')
 
     expect(emitted('input')).toBeDefined()
   })
 
   it('emits event on v-model update', async () => {
-    const { getByRole, emitted } = render(AppTextArea, {
+    const { emitted } = render(AppTextArea, {
       props: {
         field: data.field,
         label: data.label,
@@ -115,7 +115,7 @@ describe('app-text-area', () => {
 
     expect(emitted('update:modelValue')).toBeUndefined()
 
-    const textArea = getByRole<HTMLInputElement>('textbox', { name: data.label })
+    const textArea = screen.getByRole<HTMLInputElement>('textbox', { name: data.label })
     await userEvent.type(textArea, data.value)
 
     expect(emitted('update:modelValue')).toBeDefined()

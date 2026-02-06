@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import { createMockLabelData } from '../mocks/data'
 import AppLabel from './app-label.vue'
@@ -8,7 +8,7 @@ describe('app-label', () => {
   const data = createMockLabelData()
 
   it('shows the label', async () => {
-    const { getByText } = render(AppLabel, {
+    render(AppLabel, {
       props: {
         field: data.field,
         label: data.label,
@@ -16,11 +16,11 @@ describe('app-label', () => {
       },
     })
 
-    expect(getByText(data.label)).toBeTruthy()
+    expect(screen.getByText(data.label)).toBeTruthy()
   })
 
   it('shows the label as required', async () => {
-    const { getByText } = render(AppLabel, {
+    render(AppLabel, {
       props: {
         field: data.field,
         label: data.label,
@@ -28,7 +28,7 @@ describe('app-label', () => {
       },
     })
 
-    expect(getByText(DEFAULT_REQUIRED_INDICATOR)).toBeTruthy()
-    expect(getByText(data.label)).toBeTruthy()
+    expect(screen.getByText(DEFAULT_REQUIRED_INDICATOR)).toBeTruthy()
+    expect(screen.getByText(data.label)).toBeTruthy()
   })
 })

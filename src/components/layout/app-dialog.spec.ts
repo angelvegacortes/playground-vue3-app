@@ -1,10 +1,10 @@
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import AppDialog from './app-dialog.vue'
 
 describe('app-dialog', () => {
   it('can be hidden', () => {
-    const { queryByRole } = render(AppDialog, {
+    render(AppDialog, {
       props: {
         header: 'dialog header',
         isVisible: false,
@@ -16,11 +16,11 @@ describe('app-dialog', () => {
       },
     })
 
-    expect(queryByRole('dialog')).toBeFalsy()
+    expect(screen.queryByRole('dialog')).toBeFalsy()
   })
 
   it('can be visible', () => {
-    const { getByRole } = render(AppDialog, {
+    render(AppDialog, {
       props: {
         header: 'dialog header',
         isVisible: true,
@@ -32,11 +32,11 @@ describe('app-dialog', () => {
       },
     })
 
-    expect(getByRole('dialog')).toBeTruthy()
+    expect(screen.getByRole('dialog')).toBeTruthy()
   })
 
   it('should show header', () => {
-    const { getByText } = render(AppDialog, {
+    render(AppDialog, {
       props: {
         header: 'dialog header',
         isVisible: true,
@@ -48,11 +48,11 @@ describe('app-dialog', () => {
       },
     })
 
-    expect(getByText('dialog header')).toBeTruthy()
+    expect(screen.getByText('dialog header')).toBeTruthy()
   })
 
   it('should show content', () => {
-    const { getByText } = render(AppDialog, {
+    render(AppDialog, {
       props: {
         header: 'dialog header',
         isVisible: true,
@@ -64,6 +64,6 @@ describe('app-dialog', () => {
       },
     })
 
-    expect(getByText('dialog content')).toBeTruthy()
+    expect(screen.getByText('dialog content')).toBeTruthy()
   })
 })

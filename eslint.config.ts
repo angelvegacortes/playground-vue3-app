@@ -4,6 +4,7 @@ import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescri
 import boundaries from 'eslint-plugin-boundaries'
 import importPlugin from 'eslint-plugin-import'
 import sonarjs from 'eslint-plugin-sonarjs'
+import testingLibrary from 'eslint-plugin-testing-library'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import pluginVue from 'eslint-plugin-vue'
 
@@ -170,6 +171,7 @@ export default defineConfigWithVueTs(
   },
   sonarjs.configs.recommended,
   eslintPluginUnicorn.configs.recommended,
+  testingLibrary.configs['flat/vue'],
   pluginVue.configs['flat/recommended'],
   {
     name: 'vue/extended/rules',

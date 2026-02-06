@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import Column from 'primevue/column'
 import { describe, expect, it } from 'vitest'
 import { createMockTableData } from '../mocks/data'
@@ -8,7 +8,7 @@ describe('app-data-table', () => {
   const data = createMockTableData()
 
   it('should display column headers by default', async () => {
-    const { getByRole } = render(AppDataTable, {
+    render(AppDataTable, {
       global: {
         components: {
           Column,
@@ -25,12 +25,12 @@ describe('app-data-table', () => {
       },
     })
 
-    expect(getByRole('columnheader', { name: 'Book' })).toBeTruthy()
-    expect(getByRole('columnheader', { name: 'Color' })).toBeTruthy()
+    expect(screen.getByRole('columnheader', { name: 'Book' })).toBeTruthy()
+    expect(screen.getByRole('columnheader', { name: 'Color' })).toBeTruthy()
   })
 
   it('should display column values by default', async () => {
-    const { getByRole } = render(AppDataTable, {
+    render(AppDataTable, {
       global: {
         components: {
           Column,
@@ -47,14 +47,14 @@ describe('app-data-table', () => {
       },
     })
 
-    expect(getByRole('cell', { name: data[0]?.book })).toBeTruthy()
-    expect(getByRole('cell', { name: data[1]?.book })).toBeTruthy()
-    expect(getByRole('cell', { name: data[0]?.color })).toBeTruthy()
-    expect(getByRole('cell', { name: data[1]?.color })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[0]?.book })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[1]?.book })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[0]?.color })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[1]?.color })).toBeTruthy()
   })
 
   it('should display message when empty', async () => {
-    const { getByText } = render(AppDataTable, {
+    render(AppDataTable, {
       global: {
         components: {
           Column,
@@ -71,11 +71,11 @@ describe('app-data-table', () => {
       },
     })
 
-    expect(getByText('No data available.')).toBeTruthy()
+    expect(screen.getByText('No data available.')).toBeTruthy()
   })
 
   it('should display message when loading', async () => {
-    const { getByText } = render(AppDataTable, {
+    render(AppDataTable, {
       global: {
         components: {
           Column,
@@ -93,6 +93,6 @@ describe('app-data-table', () => {
       },
     })
 
-    expect(getByText('Loading data...')).toBeTruthy()
+    expect(screen.getByText('Loading data...')).toBeTruthy()
   })
 })

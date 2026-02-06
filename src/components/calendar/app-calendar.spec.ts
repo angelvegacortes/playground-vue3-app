@@ -1,7 +1,7 @@
 import ability from '@app/auth/ability-config-advanced'
 import mockData from '@app/services/mocks/data'
 import { server } from '@app/services/mocks/node'
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import { DateTime } from 'luxon'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import AppCalendar from './app-calendar.vue'
@@ -19,36 +19,36 @@ describe('app-calendar', () => {
   })
 
   it('shows the navigation buttons', async () => {
-    const { getByRole } = render(AppCalendar, {
+    render(AppCalendar, {
       props: {
         events: [],
       },
     })
 
-    expect(getByRole('button', { name: 'Previous month' })).toBeTruthy()
-    expect(getByRole('button', { name: 'Next month' })).toBeTruthy()
+    expect(screen.getByRole('button', { name: 'Previous month' })).toBeTruthy()
+    expect(screen.getByRole('button', { name: 'Next month' })).toBeTruthy()
   })
 
   it('shows the current month', async () => {
-    const { getByRole } = render(AppCalendar, {
+    render(AppCalendar, {
       props: {
         events: [],
       },
     })
 
     const currentMonth = DateTime.now().toFormat('LLLL yyyy')
-    expect(getByRole('heading', { level: 2, name: currentMonth })).toBeTruthy()
+    expect(screen.getByRole('heading', { level: 2, name: currentMonth })).toBeTruthy()
   })
 
   it('shows events', async () => {
     const events = mockData.getCalendarEvents(1)
 
-    const { queryAllByText } = render(AppCalendar, {
+    render(AppCalendar, {
       props: {
         events: events,
       },
     })
 
-    expect(queryAllByText(events[0]!.title).length).toBeGreaterThanOrEqual(1)
+    expect(screen.queryAllByText(events[0]!.title).length).toBeGreaterThanOrEqual(1)
   })
 })

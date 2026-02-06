@@ -1,5 +1,5 @@
 import { FilterMatchMode } from '@primevue/core/api'
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import DataTable from 'primevue/datatable'
 import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
@@ -10,7 +10,7 @@ describe('app-data-table-column', () => {
   const data = createMockTableData()
 
   it('should display column headers by default', async () => {
-    const { getByRole } = render(DataTable, {
+    render(DataTable, {
       global: {
         components: {
           AppDataTableColumn,
@@ -30,12 +30,12 @@ describe('app-data-table-column', () => {
     // Helpers are registered on Column mount, it is not immediate
     await nextTick()
 
-    expect(getByRole('columnheader', { name: 'Book' })).toBeTruthy()
-    expect(getByRole('columnheader', { name: 'Color' })).toBeTruthy()
+    expect(screen.getByRole('columnheader', { name: 'Book' })).toBeTruthy()
+    expect(screen.getByRole('columnheader', { name: 'Color' })).toBeTruthy()
   })
 
   it('should display column values by default', async () => {
-    const { getByRole } = render(DataTable, {
+    render(DataTable, {
       global: {
         components: {
           AppDataTableColumn,
@@ -55,14 +55,14 @@ describe('app-data-table-column', () => {
     // Helpers are registered on Column mount, it is not immediate
     await nextTick()
 
-    expect(getByRole('cell', { name: data[0]?.book })).toBeTruthy()
-    expect(getByRole('cell', { name: data[1]?.book })).toBeTruthy()
-    expect(getByRole('cell', { name: data[0]?.color })).toBeTruthy()
-    expect(getByRole('cell', { name: data[1]?.color })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[0]?.book })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[1]?.book })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[0]?.color })).toBeTruthy()
+    expect(screen.getByRole('cell', { name: data[1]?.color })).toBeTruthy()
   })
 
   it('should hide columns when enabled', async () => {
-    const { queryAllByRole } = render(DataTable, {
+    render(DataTable, {
       global: {
         components: {
           AppDataTableColumn,
@@ -82,11 +82,11 @@ describe('app-data-table-column', () => {
     // Helpers are registered on Column mount, it is not immediate
     await nextTick()
 
-    expect(queryAllByRole('columnheader')).toHaveLength(0)
+    expect(screen.queryAllByRole('columnheader')).toHaveLength(0)
   })
 
   it('should disable sorting by default', async () => {
-    const { getByRole } = render(DataTable, {
+    render(DataTable, {
       global: {
         components: {
           AppDataTableColumn,
@@ -106,12 +106,12 @@ describe('app-data-table-column', () => {
     // Helpers are registered on Column mount, it is not immediate
     await nextTick()
 
-    expect(getByRole('columnheader', { name: 'Book' }).ariaSort).toBeFalsy()
-    expect(getByRole('columnheader', { name: 'Color' }).ariaSort).toBeFalsy()
+    expect(screen.queryByRole('columnheader', { name: 'Book' })?.ariaSort).toBeNull()
+    expect(screen.queryByRole('columnheader', { name: 'Color' })?.ariaSort).toBeNull()
   })
 
   it('should sort columns when enabled', async () => {
-    const { getByRole } = render(DataTable, {
+    render(DataTable, {
       global: {
         components: {
           AppDataTableColumn,
@@ -131,12 +131,12 @@ describe('app-data-table-column', () => {
     // Helpers are registered on Column mount, it is not immediate
     await nextTick()
 
-    expect(getByRole('columnheader', { name: 'Book' }).ariaSort).toBe('none')
-    expect(getByRole('columnheader', { name: 'Color' }).ariaSort).toBe('none')
+    expect(screen.getByRole('columnheader', { name: 'Book' }).ariaSort).toBe('none')
+    expect(screen.getByRole('columnheader', { name: 'Color' }).ariaSort).toBe('none')
   })
 
   it('should disable filtering by default', async () => {
-    const { queryAllByRole } = render(DataTable, {
+    render(DataTable, {
       global: {
         components: {
           AppDataTableColumn,
@@ -156,11 +156,11 @@ describe('app-data-table-column', () => {
     // Helpers are registered on Column mount, it is not immediate
     await nextTick()
 
-    expect(queryAllByRole('button', { name: 'Show Filter Menu' })).toHaveLength(0)
+    expect(screen.queryAllByRole('button', { name: 'Show Filter Menu' })).toHaveLength(0)
   })
 
   it.todo('should filter columns when enabled', async () => {
-    const { getAllByRole } = render(DataTable, {
+    render(DataTable, {
       global: {
         components: {
           AppDataTableColumn,
@@ -189,6 +189,6 @@ describe('app-data-table-column', () => {
     // Helpers are registered on Column mount, it is not immediate
     await nextTick()
 
-    expect(getAllByRole('button')).toHaveLength(2)
+    expect(screen.getAllByRole('button')).toHaveLength(2)
   })
 })

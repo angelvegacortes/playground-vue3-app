@@ -43,16 +43,17 @@
   <Card>
     <template #title>API Test</template>
     <template #content>
-      <div>
-        <span v-if="isFetching">
-          <span>Loading test data...</span>
-        </span>
-        <span v-else></span>
+      <template v-if="isFetching">
+        <p>Loading test data...</p>
+      </template>
+      <template v-else>
         <pre v-if="data">{{ data }}</pre>
         <span v-if="error"> Error: {{ error }}</span>
-        <p>Is data null? {{ data === null }}</p>
-        <p>Is data undefined? {{ data === undefined }}</p>
-      </div>
+        <p>Is data null?</p>
+        <p>{{ data === null }}</p>
+        <p>Is data undefined?</p>
+        <p>{{ data === undefined }}</p>
+      </template>
     </template>
   </Card>
 </template>

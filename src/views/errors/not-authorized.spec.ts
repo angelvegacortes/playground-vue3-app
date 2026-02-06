@@ -1,23 +1,23 @@
 import router from '@app/router'
 import { createTestingPinia } from '@pinia/testing'
-import { render } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import NotAuthorizedView from './not-authorized.vue'
 
 describe('not-authorized', () => {
   it('shows title', () => {
-    const { getByText } = render(NotAuthorizedView)
+    render(NotAuthorizedView)
 
-    expect(getByText('Unauthorized')).toBeTruthy()
+    expect(screen.getByText('Unauthorized')).toBeTruthy()
   })
 
   it('shows the back to home page', () => {
-    const { getByRole } = render(NotAuthorizedView, {
+    render(NotAuthorizedView, {
       global: {
         plugins: [createTestingPinia(), router],
       },
     })
 
-    expect(getByRole('link', { name: 'Back to home page' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Back to home page' })).toBeTruthy()
   })
 })
