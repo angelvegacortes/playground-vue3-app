@@ -1,12 +1,12 @@
 interface AppCommonProperties {
-  field?: string | undefined
+  field?: string
   isDisabled?: boolean
   isRequired?: boolean
   label: string
 }
 
 export interface AppInputTextProperties extends AppCommonProperties {
-  maxLength?: number | undefined
+  maxLength?: number
 }
 
 export interface AppTextAreaProperties extends AppInputTextProperties {
@@ -35,8 +35,8 @@ export interface AppLabelProperties extends Required<Omit<AppCommonProperties, '
 }
 
 export interface AppInputNumberProperties extends AppCommonProperties {
-  min?: number | undefined
-  max?: number | undefined
+  min?: number
+  max?: number
 }
 
 export interface AppErrorMessageProperties {

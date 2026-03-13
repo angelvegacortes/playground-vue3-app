@@ -10,7 +10,7 @@ export const useUserStore = defineStore(
     const user = ref<User | undefined>(undefined)
 
     const init = async () => {
-      if (user.value === null) {
+      if (user.value == undefined) {
         const { data, error } = apiService.getUser()
 
         if (error) {

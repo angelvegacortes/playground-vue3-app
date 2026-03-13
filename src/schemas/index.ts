@@ -3,7 +3,7 @@ import { z, ZodObject } from 'zod'
 /**
  * List of available type validation error messages.
  */
-const errorMessages = {
+const errors = {
   requiresValue: 'Field is required.',
   requiresAtLeastOneValue: 'Field requires at least one value.',
   requiresNonNegativeValue: 'Field requires a non-negative value.',
@@ -11,87 +11,107 @@ const errorMessages = {
 
 /**
  * Get email type validation.
- * @param isOptional Defaults to false. If true, then type validation is made optional.
- * @returns
  */
-const getEmail = (isOptional: boolean = false) => {
-  return isOptional
-    ? z.email().optional()
-    : z.email().nonempty({ error: errorMessages.requiresValue })
+const email = () => {
+  return z.email().nonempty({ error: errors.requiresValue })
+}
+
+/**
+ * Get email optional type validation.
+ */
+const emailOptional = () => {
+  return z.email().optional()
 }
 
 /**
  * Get object array type validation.
- * @param isOptional Defaults to false. If true, then type validation is made optional.
- * @returns
  */
+const objectArray = (data: ZodObject) => {
+  return z.array(data).min(1, { message: errors.requiresAtLeastOneValue })
+}
+
 /**
- * Get object array type validation.
- * @param data ZodObject that wil be passed into the array type.
- * @param isOptional Defaults to false. If true, then type validation is made optional.
- * @returns
+ * Get object array optional type validation.
  */
-const getObjectArray = (data: ZodObject, isOptional: boolean = false) => {
-  return isOptional
-    ? z.array(data).optional()
-    : z.array(data).min(1, { message: errorMessages.requiresAtLeastOneValue })
+const objectArrayOptional = (data: ZodObject) => {
+  return z.array(data).optional()
 }
 
 /**
  * Get number type validation.
- * @param isOptional Defaults to false. If true, then type validation is made optional.
- * @returns
  */
-const getNumber = (isOptional: boolean = false) => {
-  return isOptional ? z.number().optional() : z.number({ message: errorMessages.requiresValue })
+const number = () => {
+  return z.number({ message: errors.requiresValue })
+}
+
+/**
+ * Get number optional type validation.
+ */
+const numberOptional = () => {
+  return z.number().optional()
 }
 
 /**
  * Get number non-negative type validation.
- * @param isOptional Defaults to false. If true, then type validation is made optional.
- * @returns
  */
-const getNumberNonNegative = (isOptional: boolean = false) => {
-  return isOptional
-    ? z
-        .number()
-        .nonnegative({ message: schemaUtilities.errors.requiresNonNegativeValue })
-        .optional()
-    : z.coerce
-        .number({ message: errorMessages.requiresValue })
-        .nonnegative({ message: schemaUtilities.errors.requiresNonNegativeValue })
+const numberNonNegative = () => {
+  return z.coerce
+    .number({ message: errors.requiresValue })
+    .nonnegative({ message: schemaUtilities.errors.requiresNonNegativeValue })
+}
+
+/**
+ * Get number non-negative type validation.
+ */
+const numberNonNegativeOptional = () => {
+  return z
+    .number()
+    .nonnegative({ message: schemaUtilities.errors.requiresNonNegativeValue })
+    .optional()
 }
 
 /**
  * Get string type validation.
- * @param isOptional Defaults to false. If true, then type validation is made optional.
- * @returns
  */
-const getString = (isOptional: boolean = false) => {
-  return isOptional
-    ? z.string().optional()
-    : z.string().min(1, { message: errorMessages.requiresValue })
+const string = () => {
+  return z.string().min(1, { message: errors.requiresValue })
+}
+
+/**
+ * Get string optional type validation.
+ */
+const stringOptional = () => {
+  return z.string().optional()
 }
 
 /**
  * Get string array type validation.
- * @param isOptional Defaults to false. If true, then type validation is made optional.
- * @returns
  */
-const getStringArray = (isOptional: boolean = false) => {
-  return isOptional
-    ? z.array(z.string()).optional()
-    : z.array(z.string()).min(1, { message: errorMessages.requiresAtLeastOneValue })
+const stringArray = () => {
+  return z.array(z.string()).min(1, { message: errors.requiresAtLeastOneValue })
+}
+
+/**
+ * Get string array optional type validation.
+ */
+const stringArrayOptional = () => {
+  return z.array(z.string()).optional()
 }
 
 const schemaUtilities = {
-  errors: errorMessages,
-  getEmail,
-  getObjectArray,
-  getNumber,
-  getNumberNonNegative,
-  getString,
-  getStringArray,
+  errors: errors,
+  email,
+  emailOptional,
+  objectArray,
+  objectArrayOptional,
+  number,
+  numberOptional,
+  numberNonNegative,
+  numberNonNegativeOptional,
+  string,
+  stringOptional,
+  stringArray,
+  stringArrayOptional,
 }
 
 export default schemaUtilities

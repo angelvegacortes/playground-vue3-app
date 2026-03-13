@@ -11,11 +11,86 @@ import pluginVue from 'eslint-plugin-vue'
 export default defineConfigWithVueTs(
   {
     name: 'app/defaults/files',
-    files: ['**/*.{ts,vue}'],
+    files: ['src/**/*.{ts,vue}'],
   },
   {
     name: 'app/defaults/ignores',
     ignores: ['coverage/**', 'dist/**', 'docker/**', 'public/**', '*.d.ts'],
+  },
+  sonarjs.configs.recommended,
+  eslintPluginUnicorn.configs.recommended,
+  testingLibrary.configs['flat/vue'],
+  pluginVue.configs['flat/recommended'],
+  {
+    name: 'vue/extended/rules',
+    rules: {
+      'vue/component-api-style': ['error', ['script-setup']],
+      'vue/no-extra-parens': 'error',
+      'vue/define-emits-declaration': 'error',
+      'vue/define-props-declaration': 'error',
+      'vue/enforce-style-attribute': ['error', { allow: ['scoped'] }],
+      'vue/no-empty-component-block': 'error',
+      'vue/no-duplicate-class-names': 'error',
+      'vue/no-multiple-objects-in-class': 'error',
+      'vue/no-template-target-blank': 'error',
+      'vue/no-static-inline-styles': 'error',
+      'vue/eqeqeq': 'error',
+      'vue/comma-dangle': 'error',
+      'vue/no-v-text': 'error',
+      'vue/no-undef-properties': 'error',
+      'vue/no-unused-emit-declarations': 'error',
+      'vue/no-useless-v-bind': 'error',
+      'vue/no-useless-mustaches': 'error',
+      'vue/no-unused-refs': 'error',
+      'vue/no-use-v-else-with-v-for': 'error',
+      'vue/v-for-delimiter-style': 'error',
+      'vue/padding-line-between-blocks': 'error',
+      'vue/prefer-use-template-ref': 'error',
+      'vue/prefer-separate-static-class': 'error',
+      'vue/require-emit-validator': 'error',
+      'vue/slot-name-casing': 'error',
+      'vue/no-console': 'error',
+      'vue/block-lang': [
+        'error',
+        {
+          script: {
+            lang: ['ts'],
+          },
+        },
+      ],
+      'vue/block-order': [
+        'error',
+        {
+          order: ['template', 'script', 'style'],
+        },
+      ],
+      'vue/component-name-in-template-casing': [
+        'error',
+        'PascalCase',
+        {
+          registeredComponentsOnly: false,
+          ignores: [],
+        },
+      ],
+    },
+  },
+  vueTsConfigs.recommended,
+  {
+    extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
+    settings: {
+      'import/resolver': {
+        typescript: true,
+        node: true,
+        alias: {
+          map: [['@app', './src']],
+          extensions: ['.ts', '.vue'],
+        },
+      },
+    },
   },
   {
     // NOTE: Check all source files except spec files
@@ -73,6 +148,8 @@ export default defineConfigWithVueTs(
             'src/auth/**',
             'src/components/**',
             'src/config/**',
+            'src/constants/**',
+            'src/enums/**',
             'src/mocks/**',
             'src/schemas/**',
             'src/services/**',
@@ -169,79 +246,31 @@ export default defineConfigWithVueTs(
       ],
     },
   },
-  sonarjs.configs.recommended,
-  eslintPluginUnicorn.configs.recommended,
-  testingLibrary.configs['flat/vue'],
-  pluginVue.configs['flat/recommended'],
   {
-    name: 'vue/extended/rules',
+    name: 'app/rules/constants',
+    files: ['src/**/constants/**'],
     rules: {
-      'vue/component-api-style': ['error', ['script-setup']],
-      'vue/no-extra-parens': 'error',
-      'vue/define-emits-declaration': 'error',
-      'vue/define-props-declaration': 'error',
-      'vue/enforce-style-attribute': ['error', { allow: ['scoped'] }],
-      'vue/no-empty-component-block': 'error',
-      'vue/no-duplicate-class-names': 'error',
-      'vue/no-multiple-objects-in-class': 'error',
-      'vue/no-template-target-blank': 'error',
-      'vue/no-static-inline-styles': 'error',
-      'vue/eqeqeq': 'error',
-      'vue/comma-dangle': 'error',
-      'vue/no-v-text': 'error',
-      'vue/no-undef-properties': 'error',
-      'vue/no-unused-emit-declarations': 'error',
-      'vue/no-useless-v-bind': 'error',
-      'vue/no-useless-mustaches': 'error',
-      'vue/no-unused-refs': 'error',
-      'vue/no-use-v-else-with-v-for': 'error',
-      'vue/v-for-delimiter-style': 'error',
-      'vue/padding-line-between-blocks': 'error',
-      'vue/prefer-use-template-ref': 'error',
-      'vue/prefer-separate-static-class': 'error',
-      'vue/require-emit-validator': 'error',
-      'vue/slot-name-casing': 'error',
-      'vue/no-console': 'error',
-      'vue/block-lang': [
+      '@typescript-eslint/naming-convention': [
         'error',
         {
-          script: {
-            lang: ['ts'],
-          },
-        },
-      ],
-      'vue/block-order': [
-        'error',
-        {
-          order: ['template', 'script', 'style'],
-        },
-      ],
-      'vue/component-name-in-template-casing': [
-        'error',
-        'PascalCase',
-        {
-          registeredComponentsOnly: false,
-          ignores: [],
+          selector: 'variable',
+          modifiers: ['const'],
+          format: ['UPPER_CASE'],
         },
       ],
     },
   },
-  vueTsConfigs.recommended,
   {
-    extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-    },
-    settings: {
-      'import/resolver': {
-        typescript: true,
-        node: true,
-        alias: {
-          map: [['@app', './src']],
-          extensions: ['.ts', '.vue'],
+    name: 'app/rules/enums',
+    files: ['src/**/enums/**'],
+    rules: {
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'enum',
+          format: ['StrictPascalCase'],
         },
-      },
+      ],
     },
   },
   pluginVitest.configs.recommended,
