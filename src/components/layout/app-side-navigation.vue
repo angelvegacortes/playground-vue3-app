@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@app/stores/user-store'
+import Drawer from 'primevue/drawer'
 import { ref } from 'vue'
 const userStore = useUserStore()
 const visible = ref(false)

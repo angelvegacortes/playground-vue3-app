@@ -1,4 +1,4 @@
-import * as pdfMake from 'pdfmake/build/pdfmake'
+import pdfmake from 'pdfmake/build/pdfmake'
 import 'pdfmake/build/vfs_fonts'
 import type { TDocumentDefinitions } from 'pdfmake/interfaces'
 
@@ -18,5 +18,5 @@ export const generatePdf = () => {
     ],
   }
 
-  pdfMake.createPdf(documentDefinition).open()
+  pdfmake.createPdf(documentDefinition).open()
 }

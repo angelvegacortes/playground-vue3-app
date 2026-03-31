@@ -17,6 +17,7 @@ export default defineConfigWithVueTs(
     name: 'app/defaults/ignores',
     ignores: ['coverage/**', 'dist/**', 'docker/**', 'public/**', '*.d.ts'],
   },
+  // @ts-expect-error due to sonarjs typescript issue
   sonarjs.configs.recommended,
   eslintPluginUnicorn.configs.recommended,
   testingLibrary.configs['flat/vue'],
@@ -193,52 +194,62 @@ export default defineConfigWithVueTs(
       'boundaries/no-private': 'off',
       'boundaries/no-unknown': 'error',
       'boundaries/no-unknown-files': 'error',
-      'boundaries/element-types': [
+      'boundaries/dependencies': [
         'error',
         {
           default: 'disallow',
           rules: [
             {
-              from: 'global-resources',
-              allow: ['global-resources', 'router-resources'],
+              from: { type: 'global-resources' },
+              allow: [{ to: { type: 'global-resources' } }, { to: { type: 'router-resources' } }],
             },
             {
-              from: 'router-resources',
+              from: { type: 'router-resources' },
               allow: [
-                'router-resources',
-                'global-resources',
-                'feature-resources',
-                'view-resources',
+                { to: { type: 'router-resources' } },
+                { to: { type: 'global-resources' } },
+                { to: { type: 'feature-resources' } },
+                { to: { type: 'view-resources' } },
               ],
             },
             {
-              from: 'view-resources',
+              from: { type: 'view-resources' },
               allow: [
-                'view-resources',
-                'global-resources',
-                'router-resources',
-                'feature-resources',
+                { to: { type: 'view-resources' } },
+                { to: { type: 'global-resources' } },
+                { to: { type: 'router-resources' } },
+                { to: { type: 'feature-resources' } },
               ],
             },
             {
-              from: 'plugin-resources',
-              allow: ['global-resources', 'router-resources'],
+              from: { type: 'plugin-resources' },
+              allow: [{ to: { type: 'global-resources' } }, { to: { type: 'router-resources' } }],
             },
             {
-              from: 'app-root-resources',
+              from: { type: 'app-root-resources' },
               allow: [
-                'app-root-resources',
-                'global-resources',
-                'plugin-resources',
-                'router-resources',
-                ['feature-resources', { featureName: 'notifications' }],
+                { to: { type: 'app-root-resources' } },
+                { to: { type: 'global-resources' } },
+                { to: { type: 'plugin-resources' } },
+                { to: { type: 'router-resources' } },
+                {
+                  to: {
+                    type: 'feature-resources',
+                    captured: { featureName: 'notifications' },
+                  },
+                },
               ],
             },
             {
-              from: 'feature-resources',
+              from: { type: 'feature-resources' },
               allow: [
-                'global-resources',
-                ['feature-resources', { featureName: '${from.featureName}' }],
+                { to: { type: 'global-resources' } },
+                {
+                  to: {
+                    type: 'feature-resources',
+                    captured: { featureName: '{{ from.captured.featureName }}' },
+                  },
+                },
               ],
             },
           ],
