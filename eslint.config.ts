@@ -143,7 +143,7 @@ export default defineConfigWithVueTs(
     settings: {
       'boundaries/elements': [
         {
-          type: 'global-resources',
+          type: 'globals',
           pattern: [
             'src/assets/**',
             'src/auth/**',
@@ -159,26 +159,30 @@ export default defineConfigWithVueTs(
           ],
         },
         {
-          type: 'plugin-resources',
+          type: 'plugins',
           pattern: ['src/plugins/**'],
         },
         {
-          type: 'router-resources',
+          type: 'router',
           pattern: ['src/router/**'],
         },
         {
           mode: 'full',
-          type: 'app-root-resources',
-          pattern: ['src/app.vue', 'src/main.ts'],
+          type: 'root',
+          pattern: ['src/app.vue'],
         },
         {
           mode: 'full',
-          type: 'view-resources',
+          type: 'entrypoint',
+          pattern: ['src/main.ts'],
+        },
+        {
+          type: 'views',
           pattern: ['src/views/**'],
         },
         {
           mode: 'full',
-          type: 'feature-resources',
+          type: 'features',
           capture: ['featureName'],
           pattern: ['src/features/*/**/*'],
         },
@@ -200,53 +204,60 @@ export default defineConfigWithVueTs(
           default: 'disallow',
           rules: [
             {
-              from: { type: 'global-resources' },
-              allow: [{ to: { type: 'global-resources' } }, { to: { type: 'router-resources' } }],
+              from: { type: 'globals' },
+              allow: [{ to: { type: 'globals' } }, { to: { type: 'router' } }],
             },
             {
-              from: { type: 'router-resources' },
+              from: { type: 'router' },
               allow: [
-                { to: { type: 'router-resources' } },
-                { to: { type: 'global-resources' } },
-                { to: { type: 'feature-resources' } },
-                { to: { type: 'view-resources' } },
+                { to: { type: 'router' } },
+                { to: { type: 'globals' } },
+                { to: { type: 'features' } },
+                { to: { type: 'views' } },
               ],
             },
             {
-              from: { type: 'view-resources' },
+              from: { type: 'views' },
               allow: [
-                { to: { type: 'view-resources' } },
-                { to: { type: 'global-resources' } },
-                { to: { type: 'router-resources' } },
-                { to: { type: 'feature-resources' } },
+                { to: { type: 'views' } },
+                { to: { type: 'globals' } },
+                { to: { type: 'router' } },
+                { to: { type: 'features' } },
               ],
             },
             {
-              from: { type: 'plugin-resources' },
-              allow: [{ to: { type: 'global-resources' } }, { to: { type: 'router-resources' } }],
+              from: { type: 'plugins' },
+              allow: [{ to: { type: 'globals' } }, { to: { type: 'router' } }],
             },
             {
-              from: { type: 'app-root-resources' },
+              from: { type: 'root' },
               allow: [
-                { to: { type: 'app-root-resources' } },
-                { to: { type: 'global-resources' } },
-                { to: { type: 'plugin-resources' } },
-                { to: { type: 'router-resources' } },
+                { to: { type: 'globals' } },
+                { to: { type: 'router' } },
                 {
                   to: {
-                    type: 'feature-resources',
+                    type: 'features',
                     captured: { featureName: 'notifications' },
                   },
                 },
               ],
             },
             {
-              from: { type: 'feature-resources' },
+              from: { type: 'entrypoint' },
               allow: [
-                { to: { type: 'global-resources' } },
+                { to: { type: 'root' } },
+                { to: { type: 'globals' } },
+                { to: { type: 'plugins' } },
+                { to: { type: 'router' } },
+              ],
+            },
+            {
+              from: { type: 'features' },
+              allow: [
+                { to: { type: 'globals' } },
                 {
                   to: {
-                    type: 'feature-resources',
+                    type: 'features',
                     captured: { featureName: '{{ from.captured.featureName }}' },
                   },
                 },
