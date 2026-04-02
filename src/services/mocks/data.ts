@@ -1,5 +1,6 @@
 import { type CalendarEvent, type Product, type User } from '@app/types'
 import { faker } from '@faker-js/faker'
+import { DateTime } from 'luxon'
 
 const DEFAULT_FAKER_SEED = 1234
 faker.seed(DEFAULT_FAKER_SEED)
@@ -47,10 +48,15 @@ const getCalendarEvents = (limit: number): CalendarEvent[] => {
   return calendarEvents
 }
 
+const getDayInCurrentMonth = (day: number): string => {
+  return DateTime.now().set({ day: day }).toISODate()
+}
+
 const mockData = {
   getUserData,
   getProducts,
   getCalendarEvents,
+  getDayInCurrentMonth,
 }
 
 export default mockData
