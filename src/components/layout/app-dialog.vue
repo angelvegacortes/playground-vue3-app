@@ -3,21 +3,33 @@
     :visible="isVisible"
     modal
     :header="header"
-    :closable="false"
+    :closable="isCloseable"
     append-to="self"
     v-bind="$attrs"
+    @update:visible="onUpdateVisible"
   >
-    <slot></slot>
+    <template #default>
+      <slot></slot>
+    </template>
   </Dialog>
 </template>
 
 <script setup lang="ts">
-const { header, isVisible } = defineProps<{
-  header: string
-  isVisible: boolean
-}>()
+import type { AppDialogProperties } from './types'
+
+const { header, isVisible, isCloseable = false } = defineProps<AppDialogProperties>()
 
 defineSlots<{
   default(): void
 }>()
+
+const emit = defineEmits<{
+  close: []
+}>()
+
+const onUpdateVisible = (visible: boolean) => {
+  if (!visible) {
+    emit('close')
+  }
+}
 </script>

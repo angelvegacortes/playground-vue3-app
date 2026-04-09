@@ -1,5 +1,5 @@
 <template>
-  <AppDialog header="EULA" :is-visible="true">
+  <AppDialog header="EULA" :is-visible="true" class="w-1/2">
     <DummyText class="my-5" />
     <div class="text-center">
       <Button as="RouterLink" to="/" label="Accept" @click="userStore.acceptTerms" />

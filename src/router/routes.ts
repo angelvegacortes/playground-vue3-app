@@ -1,6 +1,7 @@
 import TestParentA from '@app/features/general/components/test-parent-a.vue'
 import TestParentB from '@app/features/general/components/test-parent-b.vue'
 import TestParentC from '@app/features/general/components/test-parent-c.vue'
+import DialogsView from '@app/views/examples/dialogs-view.vue'
 import KeyboardShortcutsView from '@app/views/examples/keyboard-shortcuts-view.vue'
 import ConsentView from '../views/consent-view.vue'
 import NotAuthorized from '../views/errors/not-authorized.vue'
@@ -70,6 +71,12 @@ const routes = [
     path: '/examples/calendars',
     name: 'calendars',
     component: CalendarsView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/examples/dialogs',
+    name: 'dialogs',
+    component: DialogsView,
     meta: { requiresAuth: true },
   },
   {

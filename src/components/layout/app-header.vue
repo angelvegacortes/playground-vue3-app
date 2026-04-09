@@ -88,6 +88,11 @@ const items = ref([
         icon: 'data_table',
         route: '/examples/data-tables',
       },
+      {
+        label: 'Dialogs',
+        icon: 'dialogs',
+        route: '/examples/dialogs',
+      },
     ],
   },
   {
