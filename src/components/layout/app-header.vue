@@ -1,7 +1,10 @@
 <template>
   <Menubar :model="items">
     <template #start>
-      <div class="mt-2 flex items-center gap-2">
+      <div class="flex items-center gap-2">
+        <Button type="button" size="small" @click="appSideNavigationStore.toggle()">
+          <span class="material-symbols-rounded">menu</span>
+        </Button>
         <span>{{ title }}</span>
       </div>
     </template>
@@ -45,12 +48,14 @@
 import router from '@app/router'
 import { useUserStore } from '@app/stores/user-store'
 import { ref } from 'vue'
+import { useAppSideNavigationStore } from './stores/app-side-navigation-store'
 
 defineSlots<{
   notificationsButton(): void
 }>()
 
 const userStore = useUserStore()
+const appSideNavigationStore = useAppSideNavigationStore()
 const title = import.meta.env.VITE_APP_TITLE
 
 const logout = () => {

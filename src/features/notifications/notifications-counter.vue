@@ -22,7 +22,7 @@
 import { computed, ref } from 'vue'
 
 const DEFAULT_COUNTER_VALUE = 0
-const DEFAULT_COUNTER_LIMIT = 25
+const DEFAULT_COUNTER_LIMIT = 10
 
 const counter = ref(DEFAULT_COUNTER_VALUE)
 
