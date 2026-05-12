@@ -1,0 +1,11 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": ["src/components/text/app-dummy-text.vue"],
+  "files": ["src/**/*.vue", "src/**/*.ts"],
+  "caseSensitive": false,
+  "allowCompoundWords": true,
+  "failFast": false,
+  "dictionaries": ["en_us", "softwareTerms", "typescript", "html", "css", "vue", "node"],
+  "words": ["primeuix", "pdfs", "vueuse", "luxon"]
+}
