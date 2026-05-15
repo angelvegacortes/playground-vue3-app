@@ -8,6 +8,10 @@ import ability from './src/auth/ability-config-advanced'
 
 const queryClient = new QueryClient()
 
+config.global.stubs['Portal'] = {
+  template: '<div><slot /></div>',
+}
+
 config.global.plugins = [
   [abilitiesPlugin, ability],
   PrimeVue,

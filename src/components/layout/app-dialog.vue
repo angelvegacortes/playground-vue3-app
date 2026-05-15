@@ -4,7 +4,7 @@
     modal
     :header="header"
     :closable="isCloseable"
-    append-to="self"
+    append-to="body"
     v-bind="$attrs"
     @update:visible="onUpdateVisible"
   >
